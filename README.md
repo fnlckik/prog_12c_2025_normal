@@ -32,10 +32,10 @@ https://download-directory.github.io/
 	- Ismétlés, gyakorlás: JS, SQL, C#
 	- [Bitfaragó](https://mik.uni-pannon.hu/kari-elet/rendezvenyek/bakonyi-bitfarago-bajnoksag-2025) ?
 	- Projektek
-  - Dokumentumszerkesztés (Word)
+  	- Dokumentumszerkesztés (Word)
 	- Prezentálás
 	- Skills Junior
-  - GAMF ?
+  	- GAMF ?
 	- Advent Of Code ?
 	- Algoritmusok ?
 	- Tesztelés ?
