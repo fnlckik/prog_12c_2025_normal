@@ -27,24 +27,36 @@ namespace Triangle
             Random r = new Random();
             F1(r);
             F2(r);
+            double area = Area(3, 4, 5); // 6
+            Console.WriteLine("3. feladat:");
+            Console.WriteLine($"Terület: {area}");
+        }
+
+        private static double Area(double a, double b, double c)
+        {
+            double s = (a + b + c) / 2;
+            double area = Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+            return area;
         }
 
         private static void F2(Random r)
         {
             Console.WriteLine("2. feladat:");
+            const int N = 10000000;
             int count = 0;
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < N; i++)
             {
-                int a = r.Next(1, 21);
-                int b = r.Next(1, 21);
-                int c = r.Next(1, 21);
-                Console.WriteLine($"Oldalak: {a} {b} {c}");
-                if (a*a + b*b == c*c)
+                int a = r.Next(1, 21); // 5
+                int b = r.Next(1, 21); // 3
+                int c = r.Next(1, 21); // 4
+                //Console.WriteLine($"Oldalak: {a} {b} {c}");
+                if (a*a + b*b == c*c || b*b + c*c == a*a || a*a + c*c == b*b)
                 {
                     count++;
                 }
             }
-            Console.WriteLine($"Derékszögű háromszögek száma: {count}");
+            double percent = Math.Round((double)count / N * 100, 2);
+            Console.WriteLine($"Derékszögű háromszögek száma: {percent}%");
         }
     }
 }
