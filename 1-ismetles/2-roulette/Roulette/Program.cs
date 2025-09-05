@@ -7,7 +7,7 @@ namespace Roulette
         static void Plain(int number, int bet, ref int money)
         {
             Random r = new Random();
-            int winner = 5;//r.Next(37);
+            int winner = r.Next(37);
             Console.WriteLine($"Nyertes szám: {winner}");
             if (number == winner)
             {
@@ -20,10 +20,13 @@ namespace Roulette
             }
         }
 
-        static void GetBet(out int bet)
+        static void GetBet(out int bet, int money)
         {
-            Console.Write("Tét: ");
-            bet = int.Parse(Console.ReadLine());
+            do
+            {
+                Console.Write("Tét: ");
+                bet = int.Parse(Console.ReadLine());
+            } while (bet > money || bet <= 0);
         }
 
         static void Main(string[] args)
@@ -34,7 +37,7 @@ namespace Roulette
                 Console.Write("Szám: ");
                 int number = int.Parse(Console.ReadLine());
                 int bet;
-                GetBet(out bet);
+                GetBet(out bet, money);
                 money -= bet;
                 Plain(number, bet, ref money);
                 Console.WriteLine($"Aktuális egyenleg: {money}\n");
