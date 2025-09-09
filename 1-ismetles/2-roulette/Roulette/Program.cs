@@ -1,14 +1,21 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
+//using System.Threading;
 
 namespace Roulette
 {
     internal class Program
     {
+        // static: osztályszintű tagváltozó / metódus
+        // (Az osztályhoz tartozik, nem az objektumhoz.)
+        // => Nincs szükség példányosításra a használatához!
+        static public Random r = new Random();
+        static public HashSet<int> red, black;
+
         static void Plain(int number, int bet, ref int money)
         {
-            Thread.Sleep(1000);
-            Random r = new Random();
+            //Thread.Sleep(1);
+            //Random r = new Random();
             int winner = r.Next(37);
             Console.WriteLine($"Nyertes szám: {winner}");
             if (number == winner)
@@ -35,8 +42,14 @@ namespace Roulette
         {
             int money = 500;
             Console.WriteLine($"Kezdőpénz: {money}");
+            ReadFromFile("szinek.txt");
             //Play(money);
             AutoPlay(money);
+        }
+
+        static void ReadFromFile(string file)
+        {
+            // TODO
         }
 
         static void AutoPlay(int money)
