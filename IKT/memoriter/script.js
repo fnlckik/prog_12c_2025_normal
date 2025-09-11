@@ -1,5 +1,4 @@
-// const title = document.getElementById("title");
-
+// Globális változók!
 const poem = 
 `Isten, áldd meg a magyart
 Jó kedvvel, bőséggel,
@@ -20,15 +19,32 @@ Tiszának, Dunának,
 Felvirágozának.`;
 
 const poemDiv = document.querySelector("#poem");
+const words = poem.replaceAll("\n", "\n ").split(" ");
+
+// [a..b]-on random számok
+// [3..7] => 7 - 3 + 1 
+// Hány fajta szám? b - a + 1
+// Legkisebb szám? a
+function randint(a, b) {
+    return Math.floor(Math.random()*(b - a + 1)) + a;
+}
+
+// Játék működése
+function createPoem() {
+    let result = "";
+    for (const word of words) {
+        result += word + " ";
+        if (word[word.length-1] === "\n") {
+            result += "<br>";
+        }
+    }
+    return result;
+}
 
 const startBtn = document.querySelector("#start");
-// startBtn.onclick = startGame;
 function startGame() {
-    poemDiv.innerText = poem;
+    poemDiv.innerHTML = createPoem();
     poemDiv.classList.remove("d-none");
-    // poemDiv.className = "";
-    // poemDiv.removeAttribute("class");
-    // startBtn.setAttribute("disabled", "true");
     startBtn.disabled = true;
     startBtn.removeEventListener("click", startGame);
 }
