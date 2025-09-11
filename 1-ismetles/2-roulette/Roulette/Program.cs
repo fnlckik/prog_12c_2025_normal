@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 //using System.Threading;
 
 namespace Roulette
@@ -10,14 +11,19 @@ namespace Roulette
         // (Az osztályhoz tartozik, nem az objektumhoz.)
         // => Nincs szükség példányosításra a használatához!
         static public Random r = new Random();
-        static public HashSet<int> red, black;
+        static public HashSet<int> red = new HashSet<int>();
+        static public HashSet<int> black = new HashSet<int>();
 
         static void Plain(int number, int bet, ref int money)
         {
             //Thread.Sleep(1);
             //Random r = new Random();
             int winner = r.Next(37);
-            Console.WriteLine($"Nyertes szám: {winner}");
+            char color;
+            if (red.Contains(winner)) color = 'R';
+            else if (black.Contains(winner)) color = 'B';
+            else color = 'G';
+            Console.WriteLine($"Nyertes szám: {winner} ({color})");
             if (number == winner)
             {
                 Console.WriteLine($"Nyeremény: {bet * 36}");
@@ -47,9 +53,23 @@ namespace Roulette
             AutoPlay(money);
         }
 
+        // Beolvas egy sort, és a set halmazba eltárolja.
+        static void ReadRow(StreamReader sr, HashSet<int> set)
+        {
+            string[] temp = sr.ReadLine().Split(' ');
+            foreach (string item in temp)
+            {
+                set.Add(int.Parse(item));
+            }
+        }
+
         static void ReadFromFile(string file)
         {
-            // TODO
+            StreamReader sr = new StreamReader(file);
+            sr.ReadLine();
+            ReadRow(sr, red);
+            ReadRow(sr, black);
+            sr.Close();
         }
 
         static void AutoPlay(int money)
