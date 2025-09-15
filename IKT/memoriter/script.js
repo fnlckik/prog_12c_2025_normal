@@ -20,6 +20,7 @@ Felvirágozának.`;
 
 const poemDiv = document.querySelector("#poem");
 const words = poem.replaceAll("\n", "\n ").split(" ");
+const missing = [];
 
 // [a..b]-on random számok
 // [3..7] => 7 - 3 + 1 
@@ -33,7 +34,13 @@ function randint(a, b) {
 function createPoem() {
     let result = "";
     for (const word of words) {
-        result += word + " ";
+        const p = randint(1, 100); // 23% valószínűséggel <input>
+        if (p <= 23 && word !== "\n") {
+            result += `<input type='text' size='${word.length}' maxlength='${word.length}'> `;
+            missing.push(word.replace("\n", ""));
+        } else {
+            result += word + " ";
+        }
         if (word[word.length-1] === "\n") {
             result += "<br>";
         }
@@ -41,11 +48,25 @@ function createPoem() {
     return result;
 }
 
+const checkBtn = document.querySelector("#check");
+function checkPoem() {
+    const guessInputs = document.querySelectorAll("input[type='text']");
+    for (let i = 0; i < guessInputs.length; i++) {
+        if (guessInputs[i].value === missing[i]) {
+            guessInputs[i].style.backgroundColor = "lightgreen";
+        } else {
+            guessInputs[i].style.backgroundColor = "red";
+        }
+    }
+}
+
 const startBtn = document.querySelector("#start");
 function startGame() {
     poemDiv.innerHTML = createPoem();
     poemDiv.classList.remove("d-none");
     startBtn.disabled = true;
+    checkBtn.disabled = false;
     startBtn.removeEventListener("click", startGame);
+    checkBtn.addEventListener("click", checkPoem);
 }
 startBtn.addEventListener("click", startGame);
