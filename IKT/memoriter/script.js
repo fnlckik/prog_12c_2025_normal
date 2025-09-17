@@ -48,14 +48,18 @@ function createPoem() {
     return result;
 }
 
+// event.preventDefault()
 const checkBtn = document.querySelector("#check");
-function checkPoem() {
+function checkPoem(event) {
+    if (event.type === "keyup" && event.key !== "Enter") return;
+    console.log(event.type);
     const guessInputs = document.querySelectorAll("input[type='text']");
     for (let i = 0; i < guessInputs.length; i++) {
-        if (guessInputs[i].value === missing[i]) {
+        if (guessInputs[i].value.toLowerCase() === missing[i].toLowerCase()) {
             guessInputs[i].style.backgroundColor = "lightgreen";
+            guessInputs[i].readOnly = true;
         } else {
-            guessInputs[i].style.backgroundColor = "red";
+            guessInputs[i].style.backgroundColor = "pink";
         }
     }
 }
@@ -68,5 +72,6 @@ function startGame() {
     checkBtn.disabled = false;
     startBtn.removeEventListener("click", startGame);
     checkBtn.addEventListener("click", checkPoem);
+    poemDiv.addEventListener("keyup", checkPoem);
 }
 startBtn.addEventListener("click", startGame);
