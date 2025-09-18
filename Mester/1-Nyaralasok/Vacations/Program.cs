@@ -26,8 +26,24 @@ namespace Vacations
 
         static void T4(int studentCount, List<Vacation> vacations)
         {
+            Console.WriteLine("#");
             List<bool> hasVacation = new List<bool>();
-            // TODO
+            int i;
+            for (i = 0; i < studentCount; i++)
+            {
+                hasVacation.Add(false);
+            }
+            foreach (Vacation vacation in vacations)
+            {
+                hasVacation[vacation.studentId - 1] = true;
+            }
+            i = 0;
+            while (i < hasVacation.Count && hasVacation[i])
+            {
+                i++;
+            }
+            if (i < hasVacation.Count) Console.WriteLine(i+1);
+            else Console.WriteLine(-1);
         }
 
         static void T4(int studentCount, Dictionary<int, int> studentCounts)
