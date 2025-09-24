@@ -50,12 +50,24 @@ function createPoem() {
 
 // event.preventDefault()
 const checkBtn = document.querySelector("#check");
+const solveBtn = document.querySelector("#solve");
+function checkWord(a, b) {
+    const cleanA = a.toLowerCase().replaceAll(/\p{P}/gu, "");
+    const cleanB = b.toLowerCase().replaceAll(/\p{P}/gu, "");
+    console.log(cleanA, cleanB);
+    return cleanA === cleanB;
+}
+
+function cleanWord(a) {
+    return a.toLowerCase().replaceAll(/\p{P}/gu, ""); 
+}
+
 function checkPoem(event) {
     if (event.type === "keyup" && event.key !== "Enter") return;
     console.log(event.type);
     const guessInputs = document.querySelectorAll("input[type='text']");
     for (let i = 0; i < guessInputs.length; i++) {
-        if (guessInputs[i].value.toLowerCase() === missing[i].toLowerCase()) {
+        if (cleanWord(guessInputs[i].value) === cleanWord(missing[i])) {
             guessInputs[i].style.backgroundColor = "lightgreen";
             guessInputs[i].readOnly = true;
         } else {
@@ -64,14 +76,23 @@ function checkPoem(event) {
     }
 }
 
+function solvePoem() {
+    const guessInputs = document.querySelectorAll("input[type='text']");
+    // for (const input of guessInputs) {
+        
+    // }
+}
+
 const startBtn = document.querySelector("#start");
 function startGame() {
     poemDiv.innerHTML = createPoem();
     poemDiv.classList.remove("d-none");
     startBtn.disabled = true;
     checkBtn.disabled = false;
+    solveBtn.disabled = false;
     startBtn.removeEventListener("click", startGame);
     checkBtn.addEventListener("click", checkPoem);
+    solveBtn.addEventListener("click", solvePoem);
     poemDiv.addEventListener("keyup", checkPoem);
 }
 startBtn.addEventListener("click", startGame);
