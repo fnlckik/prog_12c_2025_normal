@@ -1,5 +1,5 @@
 // Globális változók!
-const poem = 
+let poem = 
 `Isten, áldd meg a magyart
 Jó kedvvel, bőséggel,
 Nyújts feléje védő kart,
@@ -19,8 +19,8 @@ Tiszának, Dunának,
 Felvirágozának.`;
 
 const poemDiv = document.querySelector("#poem");
-const words = poem.replaceAll("\n", "\n ").split(" ");
-const missing = [];
+let words = poem.replaceAll("\n", "\n ").split(" ");
+let missing = [];
 
 // [a..b]-on random számok
 // [3..7] => 7 - 3 + 1 
@@ -78,13 +78,20 @@ function checkPoem(event) {
 
 function solvePoem() {
     const guessInputs = document.querySelectorAll("input[type='text']");
-    // for (const input of guessInputs) {
-        
-    // }
+    for (let i = 0; i < missing.length; i++) {
+        guessInputs[i].value = missing[i];
+        guessInputs[i].style.backgroundColor = "lightblue";
+    }
+    checkBtn.disabled = true;
+    checkBtn.removeEventListener("click", checkPoem);
+    poemDiv.removeEventListener("keyup", checkPoem);
+    startBtn.disabled = false;
+    startBtn.addEventListener("click", startGame);
 }
 
 const startBtn = document.querySelector("#start");
 function startGame() {
+    missing = [];
     poemDiv.innerHTML = createPoem();
     poemDiv.classList.remove("d-none");
     startBtn.disabled = true;
@@ -96,3 +103,23 @@ function startGame() {
     poemDiv.addEventListener("keyup", checkPoem);
 }
 startBtn.addEventListener("click", startGame);
+
+const fileInput = document.querySelector("input[type=file]");
+function changePoem(event) {
+    const fr = event.target; // target: aki kiváltotta az eseményt
+    poem = fr.result;
+    words = poem.replaceAll("\r\n", "\n ").split(" ");
+}
+function loadPoem() {
+    const file = fileInput.files[0];
+    const h1 = document.querySelector("h1");
+    // h1.innerText = file.name.replace(".txt", "");
+    h1.innerText = file.name.split(".")[0];
+    const fr = new FileReader();
+    fr.readAsText(file);
+    fr.addEventListener("load", () => {
+        poem = fr.result;
+        words = poem.replaceAll("\r\n", "\n ").split(" ");
+    });
+}
+fileInput.addEventListener("change", loadPoem);
