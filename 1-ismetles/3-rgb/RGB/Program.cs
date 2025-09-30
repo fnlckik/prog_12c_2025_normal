@@ -11,6 +11,11 @@ namespace RGB
             public int red;
             public int green;
             public int blue;
+
+            public override string ToString()
+            {
+                return $"RGB({red},{green},{blue})";
+            }
         }
 
         static int Sum(Color color)
@@ -26,6 +31,60 @@ namespace RGB
             //T2(colors);
             T3(colors);
             T4(colors);
+            T6(colors);
+            T7(colors);
+        }
+
+        static void T7(List<List<Color>> colors)
+        {
+            Dictionary<string, int> freq = new Dictionary<string, int>
+            {
+                { "red", 0 },
+                { "green", 0 },
+                { "blue", 0 }
+            };
+            // Domináns komponens: nagyobb, mint a másik kettő.
+            // red: 43 (Hány pixel esetében volt domináns?)
+            // green: 127
+            // blue: 4124112
+        }
+
+        static void T6(List<List<Color>> colors)
+        {
+            Console.WriteLine("6. feladat:");
+            int i = 0;
+            while (i < colors.Count && !(Hatar(colors, i, 10)))
+            {
+                i++;
+            }
+            if (i < colors.Count)
+            {
+                Console.WriteLine($"A felhő legfelső sora: {i+1}");
+            }
+            i = colors.Count - 1;
+            while (i >= 0 && !(Hatar(colors, i, 10)))
+            {
+                i--;
+            }
+            if (i >= 0)
+            {
+                Console.WriteLine($"A felhő legalsó sora: {i+1}");
+            }
+        }
+
+        static int Diff(List<List<Color>> colors, int i, int j)
+        {
+            return Math.Abs(colors[i][j].blue - colors[i][j + 1].blue);
+        }
+
+        static bool Hatar(List<List<Color>> colors, int i, int difference)
+        {
+            int j = 0;
+            while (j < colors[i].Count - 1 && !(Diff(colors, i, j) > difference))
+            {
+                j++;
+            }
+            return j < colors[i].Count - 1;
         }
 
         static void T4(List<List<Color>> colors)
@@ -44,6 +103,18 @@ namespace RGB
                 }
             }
             Console.WriteLine($"A legsötétebb pont RGB összege: {minValue}");
+            Console.WriteLine("A legsötétebb pixelek színe:");
+            for (int i = 0; i < colors.Count; i++)
+            {
+                for (int j = 0; j < colors[i].Count; j++)
+                {
+                    int currentSum = Sum(colors[i][j]);
+                    if (minValue == currentSum)
+                    {
+                        Console.WriteLine(colors[i][j]);
+                    }
+                }
+            }
         }
 
         static void T3(List<List<Color>> colors)
