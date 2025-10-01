@@ -35,18 +35,40 @@ namespace RGB
             T7(colors);
         }
 
+        static string Dominant(Color c)
+        {
+            if (c.red > c.green && c.red > c.blue) return "red";
+            if (c.green > c.red && c.green > c.blue) return "green";
+            if (c.blue > c.red && c.blue > c.green) return "blue";
+            return "";
+        }
+
         static void T7(List<List<Color>> colors)
         {
+            // Dictionary, szótár, Map, asszociatív tömb
             Dictionary<string, int> freq = new Dictionary<string, int>
             {
                 { "red", 0 },
                 { "green", 0 },
                 { "blue", 0 }
             };
+            for (int i = 0; i < colors.Count; i++)
+            {
+                for (int j = 0; j < colors[i].Count; j++)
+                {
+                    string color = Dominant(colors[i][j]);
+                    if (color != "") freq[color]++;
+                }
+            }
             // Domináns komponens: nagyobb, mint a másik kettő.
             // red: 43 (Hány pixel esetében volt domináns?)
             // green: 127
             // blue: 4124112
+
+            foreach (KeyValuePair<string, int> item in freq)
+            {
+                Console.WriteLine($"{item.Key}: {item.Value}");
+            }
         }
 
         static void T6(List<List<Color>> colors)
