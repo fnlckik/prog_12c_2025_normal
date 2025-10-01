@@ -33,6 +33,33 @@ namespace RGB
             T4(colors);
             T6(colors);
             T7(colors);
+            //Console.WriteLine(Format(41241)); // "41 241"
+            //Console.WriteLine(Format(4141)); // "4 141"
+            //Console.WriteLine(Format(412041)); // "412 041"
+            //Console.WriteLine(Format(141)); // "141"
+            //Console.WriteLine(Format(5465465141)); // "5 465 465 141"
+        }
+
+        // 41241 => "14214"
+        static string Format(long n)
+        {
+            // Matek: a + b == b + a
+            // Stringekre: "alma" + "fa" != "fa" + "alma"
+            string result = "";
+            string s = n.ToString(); // 41241 => "41241"
+            int count = 0;
+            for (int i = s.Length-1; i >= 0; i--)
+            {
+                // "241" = '2' + "41"
+                result = s[i] + result;
+                count++;
+                if (count == 3 && i > 0) // i = 0 esetén már nem rakunk
+                {
+                    result = " " + result;
+                    count = 0;
+                }
+            }
+            return result;
         }
 
         static string Dominant(Color c)
@@ -45,6 +72,7 @@ namespace RGB
 
         static void T7(List<List<Color>> colors)
         {
+            Console.WriteLine("7. feladat:");
             // Dictionary, szótár, Map, asszociatív tömb
             Dictionary<string, int> freq = new Dictionary<string, int>
             {
@@ -61,13 +89,15 @@ namespace RGB
                 }
             }
             // Domináns komponens: nagyobb, mint a másik kettő.
-            // red: 43 (Hány pixel esetében volt domináns?)
-            // green: 127
-            // blue: 4124112
+            // red: 9 582 (Hány pixel esetében volt domináns?)
+            // green: 4 687
+            // blue: 213 280
 
             foreach (KeyValuePair<string, int> item in freq)
             {
-                Console.WriteLine($"{item.Key}: {item.Value}");
+                string formattedValue = Format(item.Value); // :0,00
+                //string formattedValue = string.Format("{0:N0}", item.Value);
+                Console.WriteLine($"{item.Key}: {formattedValue}");
             }
         }
 
