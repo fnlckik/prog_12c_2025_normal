@@ -34,8 +34,9 @@ namespace Bitzeria
             // ------------------------------------------
             // BC. Rendelés, Forgalom osztályok
             Console.WriteLine("\n11. feladat:");
-            
-
+            Rendeles r = new Rendeles("Kovacs Bela", true, 8650, "Csípős nélkül kérem a gyrost!");
+            //Console.WriteLine(r.Fizetendo);
+            Console.WriteLine(r);
         }
     }
 }
