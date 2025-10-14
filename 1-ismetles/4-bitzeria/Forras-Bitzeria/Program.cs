@@ -23,20 +23,83 @@ namespace Bitzeria
             };
 
             Console.WriteLine("1. feladat:");
-
+            ShowItems(vasarlasok);
 
             Console.WriteLine("\n2. feladat:");
-
+            Console.WriteLine("Átlagos fizetendő: " + AvgSpent(vasarlasok) + " Ft");
 
             Console.WriteLine("\n3. feladat:");
+            Coupons(vasarlasok);
 
 
             // ------------------------------------------
             // BC. Rendelés, Forgalom osztályok
             Console.WriteLine("\n11. feladat:");
-            Rendeles r = new Rendeles("Kovacs Bela", true, 8650, "Csípős nélkül kérem a gyrost!");
+            //Rendeles r = new Rendeles("Kovacs Bela", true, 8650, "Csípős nélkül kérem a gyrost!");
             //Console.WriteLine(r.Fizetendo);
-            Console.WriteLine(r);
+            //Console.WriteLine(r);
+            Forgalom f = new Forgalom("adatok.txt");
+            Console.WriteLine($"Rendelések száma: {f.OrderCount}");
+        }
+
+        private static void Coupons(List<List<int>> vasarlasok)
+        {
+            Random r = new Random();
+            int winners = 0;
+
+            for (int i = 0; i < vasarlasok.Count; i++)
+            {
+                for (int j = 0; j < vasarlasok[i].Count; j++)
+                {
+                    //if (vasarlasok[i][j] > 5000)
+                    //{
+                    //    int chance = r.Next(1, 101); // 1-100
+                    //    if (chance <= 12)
+                    //    {
+                    //        winners++;
+                    //    }
+                    //}
+                    //if (vasarlasok[i][j] > 5000 && r.Next(1, 101) <= 12)
+                    //{
+                    //    winners++;
+                    //}
+                    if (vasarlasok[i][j] > 5000 && r.NextDouble() <= 0.12)
+                    {
+                        winners++;
+                    }
+                }
+            }
+            Console.WriteLine("Kiosztott kuponok száma: " + winners + " db");
+        }
+
+        private static double AvgSpent(List<List<int>> vasarlasok)
+        {
+            int count = 0;
+            int sum = 0;
+            for (int i = 0; i < vasarlasok.Count; i++)
+            {
+                for (int j = 0; j < vasarlasok[i].Count; j++)
+                {
+                    count++;
+                    sum += vasarlasok[i][j];
+                }
+            }
+            return Math.Round((double)sum / count);
+        }
+
+        private static void ShowItems(List<List<int>> vasarlasok)
+        {
+            int rcount = 0;
+            foreach (List<int> row in vasarlasok)
+            {
+                Console.Write(rcount + 1 + ". nap: ");
+                foreach (int item in row)
+                {
+                    Console.Write(item + " ");
+                }
+                rcount++;
+                Console.WriteLine();
+            }
         }
     }
 }

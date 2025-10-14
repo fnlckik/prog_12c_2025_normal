@@ -10,7 +10,7 @@ namespace Bitzeria
         private int koltseg;
         private string megjegyzes;
 
-        // Constructor
+        // Constructor overloading
         public Rendeles() { }
 
         public Rendeles(string nev, bool kupon, int koltseg, string megjegyzes)
