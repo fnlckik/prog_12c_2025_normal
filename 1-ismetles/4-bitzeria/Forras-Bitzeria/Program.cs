@@ -39,7 +39,10 @@ namespace Bitzeria
             //Console.WriteLine(r.Fizetendo);
             //Console.WriteLine(r);
             Forgalom f = new Forgalom("adatok.txt");
-            Console.WriteLine($"Rendelések száma: {f.OrderCount}");
+            //Console.WriteLine($"Rendelések száma: {f.OrderCount}");
+            Rendeles maxRendeles = f.Legdragabb();
+            Console.WriteLine(maxRendeles);
+            f.KupontalanokFajlba_DIC();
         }
 
         private static void Coupons(List<List<int>> vasarlasok)
