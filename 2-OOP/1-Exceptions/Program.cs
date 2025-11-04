@@ -51,11 +51,11 @@ namespace Exceptions
                 int i = int.Parse(Console.ReadLine());
                 Console.WriteLine($"A {i}. elem: {gyumolcsok[i-1]}");
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 Console.WriteLine("Adj meg egy egész számot!");
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 Console.WriteLine($"Adj meg egy 1 és {gyumolcsok.Length} közötti számot!");
             }
@@ -66,19 +66,20 @@ namespace Exceptions
             Console.WriteLine();
         }
 
+        // finally: garantáltan lefut a benne lévő kód részlet
         static void E4()
         {
             Console.WriteLine("4. példa: fájlok");
             Console.Write("Fájl neve: ");
             string fileName = Console.ReadLine();
+            StreamReader sr = null;
             try
             {
-                StreamReader sr = new StreamReader(fileName);
+                sr = new StreamReader(fileName);
                 string[] temp = sr.ReadLine().Split(' ');
                 int a = int.Parse(temp[0]);
                 int b = int.Parse(temp[1]);
                 Console.WriteLine($"Beolvasott számok: {a} és {b}.");
-                sr.Close();
             }
             catch (FileNotFoundException e)
             {
@@ -86,19 +87,51 @@ namespace Exceptions
             }
             catch (IndexOutOfRangeException e)
             {
+                //Console.WriteLine(e.StackTrace);
                 Console.WriteLine(e.Message);
                 Console.WriteLine("A fájl első sorában szóközzel elválasztva legyen legalább két egész szám!");
+                return;
             }
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("A fájlban csak egész számok legyenek!");
             }
-            //catch (Exception e) // üres fájl (NullReferenceException)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
-            // Van itt egy nagy gond még...
+            catch (Exception e) // üres fájl (NullReferenceException)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                // Van itt egy nagy gond még: nincs lezárva a fájl
+                //if (sr != null)
+                //{
+                //    sr.Close();
+                //    Console.WriteLine("Fájl lezárása sikeres!");
+                //}
+                sr?.Close(); // null conditional operator
+                Console.WriteLine("Fájl lezárása sikeres!");
+            }
+            Console.WriteLine("Eljárás vége.");
+        }
+
+        static void E5()
+        {
+            Console.WriteLine("5. példa: fájlba írás");
+            Console.Write("Fájl neve: ");
+            string fileName = Console.ReadLine();
+            StreamWriter sw = null;
+            try
+            {
+                sw = new StreamWriter(fileName);
+                sw.WriteLine("Sikeres fájlba írás!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.GetType()); // UnauthorizedAccessException
+            }
+            finally { sw?.Close(); }
             Console.WriteLine();
         }
 
@@ -107,7 +140,8 @@ namespace Exceptions
             //E1();
             //E2();
             //E3();
-            E4();
+            //E4();
+            E5();
             Console.WriteLine("Program vége.");
         }
     }
