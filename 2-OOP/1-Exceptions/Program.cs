@@ -120,18 +120,60 @@ namespace Exceptions
             Console.WriteLine("5. példa: fájlba írás");
             Console.Write("Fájl neve: ");
             string fileName = Console.ReadLine();
-            StreamWriter sw = null;
             try
             {
-                sw = new StreamWriter(fileName);
-                sw.WriteLine("Sikeres fájlba írás!");
+                //using StreamWriter sw = new StreamWriter(fileName);
+                //sw.WriteLine("Sikeres fájlba írás!");
+                using (StreamWriter sw = new StreamWriter(fileName))
+                {
+                    sw.WriteLine("Sikeres fájlba írás!");
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.GetType()); // UnauthorizedAccessException
             }
-            finally { sw?.Close(); }
+            Console.WriteLine();
+        }
+
+        // 3 4 => 5
+        // 5 12 => 13
+        static double Pythagoras(int a, int b)
+        {
+            if (a <= 0 || b <= 0)
+            {
+                throw new ArgumentException("Nincs ilyen háromszög.");
+            }
+            return Math.Sqrt(a * a + b * b);
+        }
+
+        static void E6()
+        {
+            Console.WriteLine("6. példa:");
+            Console.Write("Fájl neve: ");
+            string fileName = Console.ReadLine();
+            try
+            {
+                using (StreamReader sr = new StreamReader(fileName))
+                {
+                    string[] temp = sr.ReadLine().Split(' ');
+                    int a = int.Parse(temp[0]);
+                    int b = int.Parse(temp[1]);
+                    Console.WriteLine($"Befogók: {a} és {b}.");
+                    double c = Pythagoras(a, b);
+                    Console.WriteLine($"Átfogó: {c:0.00}");
+                }
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Egy háromszög oldalai csak pozitívak lehetnek.");
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             Console.WriteLine();
         }
 
@@ -141,8 +183,15 @@ namespace Exceptions
             //E2();
             //E3();
             //E4();
-            E5();
+            //E5();
+            E6();
+            //E7();
             Console.WriteLine("Program vége.");
+        }
+
+        private static void E7()
+        {
+            throw new NotImplementedException();
         }
     }
 }
