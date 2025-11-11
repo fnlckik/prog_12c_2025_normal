@@ -53,7 +53,9 @@ namespace _2_Fractions
             Console.Clear();
 
             // ---------------------------------
-
+            Algebra algebra = new Algebra("tortek.txt");
+            Console.WriteLine(algebra.fractions.Count);
+            Console.WriteLine("Program vége.");
         }
     }
 }
