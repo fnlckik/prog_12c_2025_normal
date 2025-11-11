@@ -21,14 +21,27 @@ namespace _2_Fractions
 
         public double Value => (double)this.a / this.b;
 
+        // Indexer
         // x["a"], x["b"]
         public int this[string s]
         {
             get
             {
+                //if (s != "a" && s != "b")
+                //{
+                //    throw new IndexOutOfRangeException("Indexként csak a és b használható!");
+                //}
+                //else if (s == "a")
+                //{
+                //    return this.a;
+                //}
+                //else
+                //{
+                //    return this.b;
+                //}
                 if (s == "a") return this.a;
                 if (s == "b") return this.b;
-                return -1;
+                throw new IndexOutOfRangeException("Indexként csak a és b használható!");
             }
         }
 

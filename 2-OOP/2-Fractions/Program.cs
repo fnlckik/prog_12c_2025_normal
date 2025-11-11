@@ -40,7 +40,20 @@ namespace _2_Fractions
             Console.Clear();
 
             // Indexer
-            Console.WriteLine($"{x} számlálója: {x["a"]}, nevező: {x["b"]}, hiba: {x["c"]}");
+            try
+            {
+                Console.WriteLine($"{x} számlálója: {x["a"]}, nevező: {x["b"]}");
+                Console.WriteLine($"Hiba: {x["c"]}");
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            Console.WriteLine("Program vége.");
+            Console.Clear();
+
+            // ---------------------------------
+
         }
     }
 }
