@@ -15,6 +15,40 @@ namespace Bands
             this.bands = new List<Band>();
         }
 
+        // Normál eset: 0 <= i < Count
+        // Most: 0 < i <= Count
+        // manager[1] => bands[0]
+        public Band this[int i]
+        {
+            get
+            {
+                if (i <= 0 || i > bands.Count)
+                {
+                    throw new IndexOutOfRangeException("Hibás index!");
+                }
+                return new Band(bands[i - 1]);
+            }
+        }
+
+        public static bool operator ==(Manager x, Manager y)
+        {
+            if (x.bands.Count != y.bands.Count) return false;
+            for (int i = 0; i < x.bands.Count; i++)
+            {
+                // Indexerrel rövidebb: x[i].Name != y[i].Name
+                if (x.bands[i].Name != y.bands[i].Name)
+                {
+                    return false;
+                }
+            }
+            return x.name == y.name;
+        }
+
+        public static bool operator !=(Manager x, Manager y)
+        {
+            return !(x == y);
+        }
+
         public void LoadFromFile(string fileName)
         {
             try
@@ -27,9 +61,9 @@ namespace Bands
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -55,11 +89,19 @@ namespace Bands
                 Console.WriteLine(line);
                 Console.WriteLine("Hiba: az alapítás éve nem egész szám.");
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public Band OldestBand()
         {
+            if (bands.Count == 0)
+            {
+                string msg = "Nem tartozik egyetlen zenekar sem a menedzserhez!";
+                throw new InvalidOperationException(msg);
+            }
             Band oldest = bands[0];
             foreach (Band band in bands)
             {
@@ -69,21 +111,6 @@ namespace Bands
                 }
             }
             return oldest;
-        }
-
-        // Normál eset: 0 <= i < Count
-        // Most: 0 < i <= Count
-        // manager[1] => bands[0]
-        public Band this[int i]
-        {
-            get
-            {
-                if (i <= 0 || i > bands.Count)
-                {
-                    throw new IndexOutOfRangeException("Hibás index!");
-                }
-                return new Band(bands[i-1]);
-            }
         }
 
         public void OrderByMembersCount()
