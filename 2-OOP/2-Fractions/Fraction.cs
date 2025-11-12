@@ -5,8 +5,8 @@ namespace _2_Fractions
     internal class Fraction
     {
         // numerator, denominator: a / b
-        private int a;
-        private int b;
+        public int a;
+        public int b;
 
         public Fraction(int a, int b)
         {
@@ -17,6 +17,14 @@ namespace _2_Fractions
             }
             this.a = a;
             this.b = b;
+        }
+
+        // this: objektum, amit most hozunk létre
+        // other: másik objektum, amit másolni akarunk
+        public Fraction(Fraction other)
+        {
+            this.a = other.a;
+            this.b = other.b;
         }
 
         public double Value => (double)this.a / this.b;

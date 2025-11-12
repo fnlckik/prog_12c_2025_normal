@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace _2_Fractions
 {
@@ -54,7 +54,23 @@ namespace _2_Fractions
 
             // ---------------------------------
             Algebra algebra = new Algebra("tortek.txt");
-            Console.WriteLine(algebra.fractions.Count);
+            //Console.WriteLine(algebra.fractions.Count);
+            //Console.WriteLine($"Első tört: {algebra.Fractions[0]}");
+            //Console.WriteLine($"Második tört: {algebra.Fractions[1]}");
+            //Console.WriteLine($"Harmadik tört: {algebra.Fractions[2]}");
+            Fraction first = algebra[0];
+            first.a = 3;
+            first.b = 11;
+            try
+            {
+                Console.WriteLine($"Első tört: {algebra[0]}");
+                Console.WriteLine($"Sokadik tört: {algebra[99]}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            Console.WriteLine($"Törtek összege: {algebra.SumOfFractions()}");
             Console.WriteLine("Program vége.");
         }
     }
