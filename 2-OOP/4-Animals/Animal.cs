@@ -2,6 +2,7 @@
 
 namespace Animals
 {
+    // Az "Animal" őse az "Object"
     internal class Animal
     {
         public string name;
@@ -15,10 +16,11 @@ namespace Animals
 
         public override string ToString()
         {
-            return $"{name} {age} éves. Osztály: {this.GetType().Name}";
+            return $"{name} {age} éves. Osztály: {this.GetType()}";
         }
 
-        public void MakeSound()
+        // virtual: felül lehet írni leszármazott osztályban
+        public virtual void MakeSound()
         {
             Console.WriteLine("Általános állat hangok..");
         }

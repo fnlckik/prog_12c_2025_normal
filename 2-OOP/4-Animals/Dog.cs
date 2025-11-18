@@ -12,7 +12,7 @@ namespace Animals
         // amely során a leszármazott osztály örökli 
         // az ősosztály adattagjait, metódusait.
 
-        // A leszármazott osztálynak kötelező meghívni
+        // 1. A leszármazott osztálynak kötelező meghívni
         // az ősosztály konstruktorát.
         public string breed; // fajta
 
@@ -22,9 +22,14 @@ namespace Animals
         }
 
         // Itt a hiba! Nem írtuk felül!
-        public void MakeSound()
+        public override void MakeSound()
         {
             Console.WriteLine($"{name}: Vau!");
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $" ({this.breed})";
         }
     }
 }

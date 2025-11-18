@@ -10,6 +10,7 @@ namespace Animals
             Animal zsolti = new Animal("Zsolti", 67);
             Dog ubul = new Dog("Ubul", 5, "beagle");
             Animal scooby = new Dog("Scooby", 12, "dándog");
+            Cat szofi = new Cat("Szofi", 7);
             //double a = 4;
 
             // ToString()
@@ -17,6 +18,7 @@ namespace Animals
             Console.WriteLine(zsolti);
             Console.WriteLine(ubul);
             Console.WriteLine(scooby);
+            Console.WriteLine(szofi);
             Console.WriteLine();
 
             // MakeSound()
@@ -24,6 +26,7 @@ namespace Animals
             zsolti.MakeSound();
             ubul.MakeSound();
             scooby.MakeSound();
+            szofi.MakeSound();
             Console.WriteLine();
         }
     }
