@@ -21,7 +21,10 @@ namespace Animals
             this.breed = breed;
         }
 
-        // Itt a hiba! Nem írtuk felül!
+        // implementáció: megvalósítása egy függvények
+        // polimorfizmus: többalakúság
+        // -> a leszármazott osztályok különféle módon
+        // tudják implementálni az ősosztály egy metódusát
         public override void MakeSound()
         {
             Console.WriteLine($"{name}: Vau!");
@@ -30,6 +33,11 @@ namespace Animals
         public override string ToString()
         {
             return base.ToString() + $" ({this.breed})";
+        }
+
+        public void GivePaw()
+        {
+            Console.WriteLine($"{name} pacsit adott.");
         }
     }
 }
