@@ -19,6 +19,7 @@ namespace Animals
         public Dog(string name, int age, string breed) : base(name, age)
         {
             this.breed = breed;
+            this.species = "Emlős";
         }
 
         // implementáció: megvalósítása egy függvények

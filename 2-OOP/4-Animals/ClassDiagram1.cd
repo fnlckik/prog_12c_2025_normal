@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="Animals.Animal">
-    <Position X="3" Y="0.5" Width="1.75" />
+    <Position X="4" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAQAAEAAAAAAAAAAAEACAAAAAAAAAAAAA=</HashCode>
       <FileName>Animal.cs</FileName>
@@ -17,29 +17,36 @@
   <Class Name="Animals.Dog">
     <Position X="0.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAUAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Dog.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Animals.Program">
-    <Position X="8.25" Y="0.5" Width="1.5" />
+    <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Animals.Bird">
-    <Position X="5.5" Y="3.5" Width="1.75" />
+    <Position X="6.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAABAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Bird.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Animals.Parrot">
-    <Position X="5.5" Y="6.25" Width="1.5" />
+    <Position X="7.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Parrot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animals.Duck">
+    <Position X="5.5" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Duck.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

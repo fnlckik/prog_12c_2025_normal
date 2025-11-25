@@ -6,6 +6,7 @@ namespace Animals
     {
         public Cat(string name, int age) : base(name, age)
         {
+            this.species = "Emlős";
         }
 
         public override void MakeSound()

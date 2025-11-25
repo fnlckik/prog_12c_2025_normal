@@ -31,6 +31,7 @@ namespace Animals
             //Console.WriteLine(rico);
             //Console.WriteLine(jago);
             //Console.WriteLine(donald);
+            //ubul.species = "Hüllő";
             foreach (Animal animal in animals)
             {
                 Console.WriteLine(animal);
@@ -55,7 +56,19 @@ namespace Animals
 
             // GivePaw()
             Console.WriteLine("--------- GivePaw() ---------");
-            ubul.GivePaw();
+            //ubul.GivePaw();
+            //Dog dog = scooby as Dog;
+            //dog.GivePaw();
+            foreach (Animal animal in animals)
+            {
+                //if (animal is Dog)
+                //{
+                //    Dog dog = animal as Dog;
+                //    dog.GivePaw();
+                //}
+                Dog dog = animal as Dog;
+                dog?.GivePaw(); // ha nem null a dog, akkor hívjuk a metódust
+            }
         }
     }
 }

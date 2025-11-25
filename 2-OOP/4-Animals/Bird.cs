@@ -9,6 +9,7 @@ namespace Animals
         public Bird(string name, int age, bool canFly) : base(name, age)
         {
             this.canFly = canFly;
+            this.species = "Madár";
         }
 
         public override string ToString()
