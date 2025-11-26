@@ -8,7 +8,8 @@ namespace Animals
         static void Main(string[] args)
         {
             // Példányosítás
-            Animal zsolti = new Animal("Zsolti", 67);
+            // Fontos! Abstact osztályt nem lehet példányosítani!
+            //Animal zsolti = new Animal("Zsolti", 67);
             Dog ubul = new Dog("Ubul", 5, "beagle");
             Animal scooby = new Dog("Scooby", 12, "dándog");
             Cat szofi = new Cat("Szofi", 7);
@@ -19,7 +20,7 @@ namespace Animals
             
             List<Animal> animals = new List<Animal>
             { 
-                zsolti, ubul, scooby, szofi, rico, jago, donald
+                ubul, scooby, szofi, rico, jago, donald
             };
 
             // ToString()

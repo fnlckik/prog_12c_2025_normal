@@ -2,6 +2,8 @@
 
 namespace Animals
 {
+    // Fontos! Abstract osztálytól örökölve
+    // kötelező override-olni az abstract metódusokat!
     internal class Cat : Animal
     {
         public Cat(string name, int age) : base(name, age)

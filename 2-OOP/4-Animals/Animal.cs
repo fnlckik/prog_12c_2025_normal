@@ -3,7 +3,7 @@
 namespace Animals
 {
     // Az "Animal" őse az "Object"
-    internal class Animal
+    internal abstract class Animal
     {
         // public: mindenhol látható
         // protected: látható az osztályban, és a leszármazott osztályokban
@@ -25,9 +25,13 @@ namespace Animals
         }
 
         // virtual: felül lehet írni leszármazott osztályban
-        public virtual void MakeSound()
-        {
-            Console.WriteLine("Általános állat hangok..");
-        }
+        //public virtual void MakeSound()
+        //{
+        //    Console.WriteLine("Általános állat hangok..");
+        //}
+
+        // abstract: olyan metódus, aminek nincs törzse, csak fejléc
+        // Fontos! Abstract metódus csak abstract osztályban lehet!
+        public abstract void MakeSound();
     }
 }
