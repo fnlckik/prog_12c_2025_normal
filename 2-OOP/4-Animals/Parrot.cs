@@ -1,6 +1,8 @@
-﻿namespace Animals
+﻿using System;
+
+namespace Animals
 {
-    internal class Parrot : Bird
+    internal class Parrot : Bird, ITrickPerformer
     {
         public string color;
 
@@ -8,6 +10,11 @@
         {
             this.color = color;
             this.canFly = true;
+        }
+
+        public void PerformTrick()
+        {
+            Console.WriteLine($"{name} viccet mesél.");
         }
     }
 }

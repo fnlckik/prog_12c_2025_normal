@@ -8,7 +8,7 @@ namespace Animals
         static void Main(string[] args)
         {
             // Példányosítás
-            // Fontos! Abstact osztályt nem lehet példányosítani!
+            // Fontos! Abstract osztályt nem lehet példányosítani!
             //Animal zsolti = new Animal("Zsolti", 67);
             Dog ubul = new Dog("Ubul", 5, "beagle");
             Animal scooby = new Dog("Scooby", 12, "dándog");
@@ -69,6 +69,34 @@ namespace Animals
                 //}
                 Dog dog = animal as Dog;
                 dog?.GivePaw(); // ha nem null a dog, akkor hívjuk a metódust
+            }
+            Console.WriteLine();
+
+            // PerformTrick()
+            Console.WriteLine("--------- PerformTrick() ---------");
+            //ubul.PerformTrick();
+            //jago.PerformTrick();
+            foreach (Animal animal in animals)
+            {
+                //if (animal is Dog)
+                //{
+                //    Dog dog = animal as Dog;
+                //    dog.PerformTrick();
+                //}
+                //if (animal is Parrot)
+                //{
+                //    Parrot parrot = animal as Parrot;
+                //    parrot.PerformTrick();
+                //}
+                /*
+                if (animal is ITrickPerformer)
+                {
+                    ITrickPerformer performer = animal as ITrickPerformer;
+                    performer.PerformTrick();
+                }
+                */
+                ITrickPerformer performer = animal as ITrickPerformer;
+                performer?.PerformTrick();
             }
         }
     }

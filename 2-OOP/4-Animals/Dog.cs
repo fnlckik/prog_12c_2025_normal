@@ -2,7 +2,9 @@
 
 namespace Animals
 {
-    internal class Dog : Animal
+    // A Dog osztály örököl az Animal osztálytól.
+    // A Dog osztály implementálja (megvalósítja) az ITrickPerformer interfészt.
+    internal class Dog : Animal, ITrickPerformer
     {
         // Inheritance: öröklődés
         // Dog: leszármazott (derived class)
@@ -39,6 +41,11 @@ namespace Animals
         public void GivePaw()
         {
             Console.WriteLine($"{name} pacsit adott.");
+        }
+
+        public void PerformTrick()
+        {
+            Console.WriteLine($"{name} visszahozza a botot.");
         }
     }
 }
