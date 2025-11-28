@@ -23,6 +23,8 @@ namespace Animals
                 ubul, scooby, szofi, rico, jago, donald
             };
 
+            animals.Sort();
+
             // ToString()
             Console.WriteLine("--------- ToString() ---------");
             //Console.WriteLine(zsolti);

@@ -6,6 +6,8 @@
     // interface: csak metódus fejléceket tartalmaz
     internal interface ITrickPerformer
     {
+        //int time; -> Property-vel + getterel lehetne
+
         void PerformTrick();
     }
 }
