@@ -1,8 +1,8 @@
 const MAXLEFT = 9;
 const MAXRIGHT = 4;
 
-let left = 0; // Bal oldali aktuális mennyisége
-let right = 0; // Jobb oldali aktuális mennyisége
+// let left = 0; // Bal oldali aktuális mennyisége
+// let right = 0; // Jobb oldali aktuális mennyisége
 
 // const leftFill = document.querySelector("#left-fill");
 const div = document.querySelector(".container");
@@ -29,3 +29,24 @@ function fillRows(rows, amount) {
         rows[i].classList.add("filled");
     }
 }
+
+function pour(e) {
+    const button = e.target;
+    if (button.id.split("-")[1] !== "pour") return;
+    
+    const currentTable = button.parentNode.querySelector("table");
+    const current = currentTable.querySelectorAll(".filled").length;
+
+    const div = button.parentNode;
+    console.log(div.id === "left");
+    
+    let otherTable;
+    if (div.id === "left") {
+        otherTable = document.querySelector("#right table");
+    } else {
+        otherTable = document.querySelector("#left table");
+    }
+    const other = otherTable.querySelectorAll(".filled").length;
+    console.log(current, other);
+}
+div.addEventListener("click", pour);
