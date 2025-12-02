@@ -17,10 +17,11 @@ namespace Animals
             Bird rico = new Bird("Rico", 3, false); // pingvin
             Parrot jago = new Parrot("Jago", 5, "piros", false); // TODO
             Duck donald = new Duck("Donald", 8);
+            PersianCat uborka = new PersianCat("Uborka", 5);
             
             List<Animal> animals = new List<Animal>
             { 
-                ubul, scooby, szofi, rico, jago, donald
+                ubul, scooby, szofi, rico, jago, donald, uborka
             };
 
             animals.Sort();
@@ -99,6 +100,14 @@ namespace Animals
                 */
                 ITrickPerformer performer = animal as ITrickPerformer;
                 performer?.PerformTrick();
+            }
+            Console.WriteLine();
+
+            // Sleep()
+            Console.WriteLine("--------- Sleep() ---------");
+            foreach (Animal animal in animals)
+            {
+                animal.Sleep();
             }
         }
     }

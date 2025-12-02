@@ -57,5 +57,10 @@ namespace Animals
         //{
         //    throw new NotImplementedException();
         //}
+
+        public virtual void Sleep()
+        {
+            Console.WriteLine($"{this.name} alszik.");
+        }
     }
 }

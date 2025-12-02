@@ -3,9 +3,10 @@
   <Class Name="Animals.Animal">
     <Position X="4" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAEAAAAAAAAAAAEACAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAQAQEAAAAAAAAAAAEACAAAAAAAAAABAA=</HashCode>
       <FileName>Animal.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Animals.Cat">
     <Position X="3" Y="3.5" Width="1.75" />
@@ -17,9 +18,10 @@
   <Class Name="Animals.Dog">
     <Position X="0.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAUAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAUAAAAAAAAAAAAACIAAAAAAAAAAAA=</HashCode>
       <FileName>Dog.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Animals.Program">
     <Position X="10.25" Y="0.5" Width="1.5" />
@@ -38,9 +40,10 @@
   <Class Name="Animals.Parrot">
     <Position X="7.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAA=</HashCode>
       <FileName>Parrot.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Animals.Duck">
     <Position X="5.5" Y="6.25" Width="1.75" />
@@ -49,5 +52,12 @@
       <FileName>Duck.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="Animals.ITrickPerformer" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ITrickPerformer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
