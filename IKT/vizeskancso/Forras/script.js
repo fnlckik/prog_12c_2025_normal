@@ -24,6 +24,11 @@ div.addEventListener("click", fill);
 // Feltölti a kapott rows sorokat alulról 
 // kezdve amount mennyiségű vízzel.
 function fillRows(rows, amount) {
+    // Ürítem az aktuális táblázat sorait.
+    for (const tr of rows) {
+        tr.classList.remove("filled");
+    }
+    // Elvégzem a feltöltést.
     const n = rows.length;
     for (let i = n - 1; i > n-1-amount; i--) {
         rows[i].classList.add("filled");
@@ -34,11 +39,9 @@ function pour(e) {
     const button = e.target;
     if (button.id.split("-")[1] !== "pour") return;
     
-    const currentTable = button.parentNode.querySelector("table");
-    const current = currentTable.querySelectorAll(".filled").length;
-
     const div = button.parentNode;
-    console.log(div.id === "left");
+    const currentTable = div.querySelector("table");
+    let currentFilled = currentTable.querySelectorAll(".filled").length;
     
     let otherTable;
     if (div.id === "left") {
@@ -46,7 +49,13 @@ function pour(e) {
     } else {
         otherTable = document.querySelector("#left table");
     }
-    const other = otherTable.querySelectorAll(".filled").length;
-    console.log(current, other);
+    let otherFilled = otherTable.querySelectorAll(".filled").length;
+    const free = otherTable.querySelectorAll("tr").length - otherFilled;
+    const amount = Math.min(currentFilled, free);
+    // console.log(currentFilled, otherFilled, free, amount);
+    currentFilled -= amount;
+    otherFilled += amount;
+    fillRows(currentTable.rows, currentFilled);
+    fillRows(otherTable.rows, otherFilled);
 }
 div.addEventListener("click", pour);
