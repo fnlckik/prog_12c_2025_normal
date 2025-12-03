@@ -1,4 +1,6 @@
-﻿namespace Bakery
+﻿using System;
+
+namespace Bakery
 {
     internal class Scone : BakedItem
     {
@@ -10,9 +12,29 @@
             this.type = type;
         }
 
+        // quantity: 50
+        // n: 30
+        // -> 10 lefoglalt
         public override void Buy(int n)
         {
-            
+            if (quantity - n >= 10)
+            {
+                quantity -= n;
+            }
+            else
+            {
+                throw new ArgumentException("Nem vásárolható ennyi pogácsa.");
+            }
+        }
+
+        public sealed override string GetCategory()
+        {
+            return $"{this.type} Pogácsa";
+        }
+
+        public override string ToString()
+        {
+            return $"{this.GetCategory()} " + base.ToString();
         }
     }
 }
