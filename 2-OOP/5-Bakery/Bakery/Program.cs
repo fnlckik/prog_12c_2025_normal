@@ -9,6 +9,9 @@ namespace Bakery
             //Math.Sqrt(2);
             //double x = Math.PI;
             //Console.WriteLine(Coffee.BASEPRICE);
+            Bakery bakery = new Bakery("arlista.txt");
+            bakery.ListProducts();
+            Console.WriteLine(bakery.GetScone("Sajtos"));
         }
     }
 }

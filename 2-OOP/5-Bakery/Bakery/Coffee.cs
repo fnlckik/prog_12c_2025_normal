@@ -27,5 +27,11 @@ namespace Bakery
                 return BASEPRICE;
             }
         }
+
+        public override string ToString()
+        {
+            string type = isMilky ? "Tejeskávé" : "Kávé";
+            return $"{type} - {GetPrice()} Ft";
+        }
     }
 }
