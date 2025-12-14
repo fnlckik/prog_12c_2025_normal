@@ -129,8 +129,34 @@ namespace Basics
 
             // 8. Keresés: First, Last
             //List<int> empty = new List<int>();
-            Console.WriteLine("8. Az első páros elem: " + array.First(x => x % 2 == 0));
+            Console.WriteLine("8. Az első páros elem: " + array.First(x => x % 2 == 0)); // 2
             Console.WriteLine("8. Az utolsó páros elem: " + array.Last(x => x % 2 == 0));
+            int firstEven = array.First(x => x % 2 == 0); // 2
+            Console.WriteLine("8. Az első páros elem indexe: " + array.ToList().IndexOf(array.First(x => x % 2 == 0)));
+            Console.WriteLine("8. Az első páros elem indexe: " + array.ToList().FindIndex(x => x % 2 == 0));
+
+            // 9. Rendezés: OrderBy
+            // a keySelector függvény TKey értéke: olyan típus, amire van CompareTo
+            Write("9. Rendezés (növekvő):", array.OrderBy(x => x));
+            Write("9. Rendezés (csökkenő):", array.OrderByDescending(x => x));
+            Write("9. Rendezés (csökkenő):", array.OrderBy(x => x).Reverse());
+
+            // 10. Halmazkészítés: Distinct
+            Write("10. Elemek (duplikáció nélkül):", array.Distinct());
+
+            // 11. Unió, metszet, különbség: Union, Intersect, Except
+            Write("11. Unió (tömb, lista):", array.Union(list));
+            Write("11. Metszet (tömb, lista):", array.Intersect(list));
+            Write("11. Különbség (tömb, lista):", array.Except(list));
+
+            // 12. ???
+
+            // ------------------------------------
+            Console.Clear();
+
+            // F1: Adjuk meg a páros számok összegét!
+            int evenSum = array.Where(x => x % 2 == 0).Sum();
+            Console.WriteLine("1. Párosak összege: " + evenSum);
         }
     }
 }
