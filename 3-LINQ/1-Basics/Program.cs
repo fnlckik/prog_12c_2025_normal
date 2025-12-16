@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace Basics
@@ -67,6 +66,61 @@ namespace Basics
                 }
             }
             return result;
+        }
+
+        static int Szorzat(IEnumerable<int> collection)
+        {
+            int product = 1;
+            foreach (int item in collection)
+            {
+                product = product * item;
+            }
+            return product;
+        }
+
+        static int Osszeg(IEnumerable<int> collection)
+        {
+            int sum = 0;
+            foreach (int item in collection)
+            {
+                sum = sum + item;
+            }
+            return sum;
+        }
+
+        static double Reciprokosszeg(IEnumerable<int> collection)
+        {
+            double result = 0;
+            foreach (int item in collection)
+            {
+                result = result + 1.0 / item;
+            }
+            return result;
+        }
+
+        // ["alma", "fa"] => "almafa"
+        static string Osszefuz(IEnumerable<string> collection)
+        {
+            string result = "";
+            foreach (string item in collection)
+            {
+                result = result + item;
+            }
+            return result;
+        }
+
+        static int Minimum(IEnumerable<int> collection)
+        {
+            int mine = int.MaxValue;
+            foreach (int item in collection)
+            {
+                //if (item < mine)
+                //{
+                //    mine = item;
+                //}
+                mine = item < mine ? item : mine;
+            }
+            return mine;
         }
 
         static void Main(string[] args)
@@ -149,7 +203,11 @@ namespace Basics
             Write("11. Metszet (tömb, lista):", array.Intersect(list));
             Write("11. Különbség (tömb, lista):", array.Except(list));
 
-            // 12. ???
+            // 12. Sorozatszámítás: Aggregate
+            Console.WriteLine("12. Elemek szorzata: " + array.Aggregate(1, (result, element) => result * element));
+            Console.WriteLine("12. Elemek összege: " + array.Aggregate(0, (result, element) => result + element)); // Sum
+            Console.WriteLine("12. Elemek száma: " + array.Aggregate(0, (result, element) => result + 1)); // Count
+            Console.WriteLine("12. Minimum érték: " + array.Aggregate(int.MaxValue, (min, e) => e < min ? e : min)); // Min
 
             // ------------------------------------
             Console.Clear();
@@ -157,6 +215,22 @@ namespace Basics
             // F1: Adjuk meg a páros számok összegét!
             int evenSum = array.Where(x => x % 2 == 0).Sum();
             Console.WriteLine("1. Párosak összege: " + evenSum);
+
+            // F2: Hány minimális értékű elem van?
+            int minValue = array.Min();
+            Console.WriteLine("2. Minimumok száma: " + array.Count(x => x == array.Min()));
+
+            // F3: Mennyi a legnagyobb átlag alatti érték?
+            double avg = array.Average();
+            IEnumerable<int> belows = array.Where(item => item < avg);
+            //Console.WriteLine("3. Legnagyobb átlag alatti érték: " + belows.Max());
+            Console.WriteLine("3. Legnagyobb átlag alatti érték: " + array.Where(x => x < array.Average()).Max());
+
+            // F4: Melyik elemek szerepelnek kétszer?
+            //array.Where(x => )
+
+            // Egyszerűbb: adjuk meg minden elemhez, hogy hányszor szerepel!
+            Write("Elemek gyakorisága: ", array.Select(x => array.Count(y => y == x)));
         }
     }
 }
