@@ -123,6 +123,24 @@ namespace Basics
             return mine;
         }
 
+        static IEnumerable<int> CountFrequency(IEnumerable<int> collection)
+        {
+            List<int> freq = new List<int>();
+            foreach (int x in collection)
+            {
+                int count = 0;
+                foreach (int y in collection)
+                {
+                    if (y == x)
+                    {
+                        count++;
+                    }
+                }
+                freq.Add(count);
+            }
+            return freq;
+        }
+
         static void Main(string[] args)
         {
             List<int> list = new List<int> { -2, -3, 1, 1, 6, -4, 9 };
@@ -227,10 +245,11 @@ namespace Basics
             Console.WriteLine("3. Legnagyobb átlag alatti érték: " + array.Where(x => x < array.Average()).Max());
 
             // F4: Melyik elemek szerepelnek kétszer?
-            //array.Where(x => )
-
             // Egyszerűbb: adjuk meg minden elemhez, hogy hányszor szerepel!
-            Write("Elemek gyakorisága: ", array.Select(x => array.Count(y => y == x)));
+            //Write("Elemek gyakorisága: ", array.Select(x => array.Count(y => y == x)));
+            //Write("Elemek gyakorisága: ", CountFrequency(array));
+            IEnumerable<int> doubles = array.Where(x => array.Count(y => y == x) == 2);
+            Write("4. Duplán szereplő elemek:", doubles.Distinct());
         }
     }
 }
