@@ -10,8 +10,8 @@ namespace People
         {
             return new List<Person>
             {
-                new Person("Kiss Anna", "Budapest", 28, 165, false),
-                new Person("Lakatos Géza", "Miskolc", 34, 182, true),
+                new Person("Kiss Anna", "Budapest", 28, 165, false), // => "Kiss Anna"
+                new Person("Lakatos Géza", "Miskolc", 34, 182, true), // => "Lakatos Géza"
                 new Person("Szabó Lilla", "Szeged", 33, 170, false),
                 new Person("Tóth László", "Kecskemét", 41, 179, true),
                 new Person("Varga Dóra", "Pécs", 29, 160, true),
@@ -21,16 +21,16 @@ namespace People
                 new Person("Papp Tamás", "Miskolc", 45, 176, true),
                 new Person("Takács Nóra", "Kecskemét", 28, 169, false),
                 new Person("Juhász Edit", "Budapest", 38, 158, true),
-                new Person("Veres András", "Miskolc", 26, 183, false)
+                new Person("Veres András", "Miskolc", 26, 183, false) // => { Name = "Veres András", Age = 26 }
             };
         }
 
-        static void Write(string message, IEnumerable<Person> people)
+        static void Write<T>(string message, IEnumerable<T> collection)
         {
             Console.WriteLine(message);
-            foreach (Person person in people)
+            foreach (T item in collection)
             {
-                Console.WriteLine(person);
+                Console.WriteLine(item);
             }
             Console.WriteLine();
         }
@@ -42,20 +42,29 @@ namespace People
 
             // ---------------------------------------
             // F1 - WHERE
-            //Write("1. Budapestiek: ", budapestiek);
+            IEnumerable<Person> budapestiek = people.Where(x => x.City == "Budapest");
+            Write("1. Budapestiek: ", budapestiek);
 
             // F2 - SELECT
             // anonymous type
             // var: a fordító ki tudja találni a típusát
-            //Write("2. Nevek: ", names);
-            //Write("2. Nevek, életkorok: ", namesAges);
+            IEnumerable<string> names = people.Select(x => x.Name);
+            Write("2. Nevek: ", names);
+            var namesAges = people.Select(x => new { Name = x.Name, Age = x.Age });
+            Write("2. Nevek, életkorok: ", namesAges);
 
             // F3 - ORDER BY
-            //Write("3. Életkor szerint növekvő sorrend: ", ???);
-            //Write("3. Életkor, magasság szerint növekvő sorrend: ", ageHeightOrder);
+            // TKey: definiálva van rá a CompareTo
+            Write("3. Életkor szerint növekvő sorrend: ", people.OrderBy(x => x.Age));
+            //var ageHeightOrder = people.OrderBy(x => x);
+            //var ageHeightOrder = people.OrderBy(x => x.Age).ThenByDescending(x => x.Height);
+            var ageHeightOrder = people.OrderBy(x => x.Age).ThenBy(x => x.Height);
+            Write("3. Életkor, magasság szerint növekvő sorrend: ", ageHeightOrder);
 
             // F4 - LIMIT
-            //Write("4. Legidősebb 5 fő: ", ???);
+            Write("4. Legidősebb 5 fő: ", people.OrderByDescending(x => x.Age).Take(5));
+            Write("4. A 30 év felettiek életkor szerint csökkenően: ", people.OrderByDescending(x => x.Age).TakeWhile(x => x.Age > 30));
+            Write("4. A 30 év felettiek életkor szerint csökkenően: ", people.Where(x => x.Age > 30).OrderByDescending(x => x.Age));
 
             // ---------------------------------------
             //Console.Clear();
@@ -63,24 +72,31 @@ namespace People
             //Console.WriteLine();
 
             // 1. Add meg a 30 év alatti házasokat!
-            //Write("1. Fiatal házasok: ", youngMarried);
+            //var youngMarried = people.Where(x => x.Age < 30).Where(x => x.IsMarried);
+            var youngMarried = people.Where(x => x.Age < 30 && x.IsMarried);
+            Write("1. Fiatal házasok: ", youngMarried);
 
             // 2. Mennyi a házasok átlagéletkora?
-            //Console.WriteLine("2. Házasok átlagéletkora: " + avgMarriedAge);
-            //Console.WriteLine();
+            //var avgMarriedAge = people.Where(x => x.IsMarried).Select(x => x.Age).Average();
+            var avgMarriedAge = people.Where(x => x.IsMarried).Average(x => x.Age);
+            Console.WriteLine("2. Házasok átlagéletkora: " + avgMarriedAge);
+            Console.WriteLine();
 
             // 3. Add meg a legidősebb ember minden adatát!
             // Több megoldás esetén a listában az elsőt írasd ki!
-            //Console.WriteLine("3. Legidősebb ember adatai: ");
-            //Console.WriteLine(oldestPerson);
+            Console.WriteLine("3. Legidősebb ember adatai: ");
+            var oldestPerson = people.First(x => x.Age == people.Max(y => y.Age));
+            var oldestPerson2 = people.Where(x => x.Age == people.Max(y => y.Age)).First();
+            Console.WriteLine(oldestPerson);
 
             // 4. Igaz-e, hogy minden 40 év feletti házas?
             //Console.WriteLine("4. Minden 40 év feletti házas? " + ???);
-            //Console.WriteLine();
+            Console.WriteLine();
 
             // 5. Összesen hány darab L vagy l betűt tartalmaznak a nevek?
-            //Console.WriteLine("5. Összesen ennyi L betűt tartalmaznak a nevek: " + countL);
-            //Console.WriteLine();
+            var countL = people.Select(x => x.Name.Count(y => y == 'L' || y == 'l')).Sum();
+            Console.WriteLine("5. Összesen ennyi L betűt tartalmaznak a nevek: " + countL);
+            Console.WriteLine();
 
             // 6. Add meg minden ember esetén, hogy hány fiatalabb van nála!
             // Az embereket életkor szerint növekvően jelenítsd meg!
