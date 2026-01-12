@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace BookShop
 {
+    // partial: több fájlban található az osztály egy-egy része
     partial class Program
     {
         static void Print(string message, IEnumerable collection)
@@ -34,7 +35,7 @@ namespace BookShop
             Print("Szerzők:", authors);
             Print("\nKönyvek:", books);
             Print("\nRendelések:", orders);
-            Console.Clear();
+            //Console.Clear();
             #endregion
         }
     }
