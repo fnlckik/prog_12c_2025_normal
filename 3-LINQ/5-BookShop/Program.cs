@@ -38,6 +38,7 @@ namespace BookShop
             Console.Clear();
             #endregion
 
+            #region Query VS Method syntax [1-5]
             // 1. A szerzők nevei
             // m = method syntax, q = query syntax
             var m1 = authors.Select(a => a.Name);
@@ -64,7 +65,7 @@ namespace BookShop
             var m3 = books.Where(b => b.Genre == "Fantasy").OrderBy(b => b.Year).ThenBy(b => b.Pages);
             Print("3. Fantasy könyvek, év szerint növekvően: ", m3);
 
-            // Query szintaxis "mindig" select-re végződik!
+            // Query szintaxis "mindig" select-re végződik! => vagy group by-ra
             var q3 = from b in books
                      where b.Genre == "Fantasy"
                      orderby b.Year, b.Pages
@@ -76,6 +77,79 @@ namespace BookShop
                      orderby b.Price descending
                      select b).Take(6);
             Print("4. A 6 legdrágább könyv: ", q4);
+
+            // 5. Különböző műfajok
+            var q5 = (from b in books
+                     select b.Genre).Distinct();
+            Print("5. Különböző műfajok: ", q5);
+            #endregion
+
+            // 6. Műfajonként csoportosítva
+            //IEnumerable<IGrouping<string, Book>> groups = books.GroupBy(b => b.Genre);
+            var groups = books.GroupBy(b => b.Genre);
+
+            var q6 = from b in books
+                     group b by b.Genre;
+
+            Console.WriteLine("\n6. Műfajonként csoportosítva:");
+            foreach (IGrouping<string, Book> group in q6)
+            {
+                Console.WriteLine(group.Key);
+                foreach (Book item in group)
+                {
+                    Console.WriteLine($"\t{item}");
+                }
+            }
+
+            // 7. Műfajonként mennyiség (Hány ilyen könyv van?), átlag oldalszám
+
+            // GROUP BY esetén SELECT-ben csakis
+            // 1. Olyan mező, ami szerint csoportosítunk
+            // 2. Aggregáló függvény: COUNT, SUM, AVG, MIN, MAX
+            // SELECT Genre AS Műfaj, COUNT(*) AS Mennyiség, AVG(Pages) AS Átlagoldal
+            // FROM books
+            // GROUP BY Genre;
+            /*
+            var q7 = from b in books
+                     group b by b.Genre into g
+                     select new 
+                     { 
+                         Műfaj = g.Key,
+                         Mennyiség = g.Count(),
+                         Átlagoldal = Math.Round(g.Average(b => b.Pages), 2)
+                     };
+            */
+            var m7 = books.GroupBy(b => b.Genre)
+                          .Select(g => new
+                          {
+                              Műfaj = g.Key,
+                              Mennyiség = g.Count(),
+                              Átlag = g.Average(b => b.Pages)
+                          });
+                
+            var q7 = from b in books
+                     group b.Pages by b.Genre into g
+                     select new
+                     {
+                         Műfaj = g.Key,
+                         Mennyiség = g.Count(), // Hány eleme van a csoportnak?
+                         Átlagoldal = Math.Round(g.Average(), 2)
+                     };
+            Print("7. Műfajonként mennyiség, átlag oldalszám: ", q7);
+
+            // 8. Legalább 3 könyves műfajok
+            var m8 = books.GroupBy(b => b.Genre).Where(g => g.Count() >= 3).Select(g => g.Key);
+            Print("8. Legalább 3 könyves műfajok:", m8);
+
+            // SELECT Genre
+            // FROM books
+            // GROUP BY Genre
+            // HAVING COUNT(*) >= 3
+            var q8 = from b in books
+                     group b by b.Genre into g
+                     where g.Count() >= 3
+                     select g.Key;
+            Print("8. Legalább 3 könyves műfajok:", q8);
         }
     }
 }
