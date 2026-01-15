@@ -84,6 +84,7 @@ namespace BookShop
             Print("5. Különböző műfajok: ", q5);
             #endregion
 
+            #region GroupBy [6-9]
             // 6. Műfajonként csoportosítva
             //IEnumerable<IGrouping<string, Book>> groups = books.GroupBy(b => b.Genre);
             var groups = books.GroupBy(b => b.Genre);
@@ -147,9 +148,34 @@ namespace BookShop
             // HAVING COUNT(*) >= 3
             var q8 = from b in books
                      group b by b.Genre into g
-                     where g.Count() >= 3
+                     where g.Count() >= 3 
                      select g.Key;
             Print("8. Legalább 3 könyves műfajok:", q8);
+
+            // 9. Csoportosítás hossz (Hány száz oldal?) szerint
+            var q9 = from b in books
+                     orderby b.Pages
+                     group b by new { Size = b.Pages / 100, b.Genre };
+            //select new { b.Title, b.Pages, Category = b.Pages / 100 };
+            //Print("9.", q9);
+            Console.WriteLine("\n9. Csoportosítás hossz szerint:");
+            foreach (var group in q9)
+            {
+                //Console.WriteLine($"A {group.Key * 100} - {group.Key * 100 + 99} oldalas könyvek:");
+                Console.WriteLine($"A {group.Key.Size}00 - {group.Key.Size}99 oldalas {group.Key.Genre} könyvek:");
+                foreach (var item in group)
+                {
+                    Console.WriteLine("\t" + item);
+                }
+            }
+            #endregion
+
+            // 10. Szerzők, könyvek címei:
+            // { Author = "J. K. Rowling", Title = "Harry Potter és Bölcsek köve" } ...
+            var q10 = from a in authors
+                      join b in books on a.Id equals b.AuthorId
+                      select new { Author = a.Name, b.Title } ;
+            Print("10. ", q10);
         }
     }
 }
