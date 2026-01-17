@@ -172,10 +172,34 @@ namespace BookShop
 
             // 10. Szerzők, könyvek címei:
             // { Author = "J. K. Rowling", Title = "Harry Potter és Bölcsek köve" } ...
+            var m10 = authors.Join(books,
+                                   a => a.Id,
+                                   b => b.AuthorId,
+                                   (a, b) => new { Author = a.Name, b.Title });
+            Print("10. Szerzők, könyvek címei:", m10);
+
             var q10 = from a in authors
                       join b in books on a.Id equals b.AuthorId
-                      select new { Author = a.Name, b.Title } ;
-            Print("10. ", q10);
+                      select new { Author = a.Name, b.Title };
+            Print("10. Szerzők, könyvek címei:", q10);
+
+            // Kitekintés: tuple (rendezett n-es)
+            (string Szin, int Ertek) tuple = ("Pikk", 7);
+            Console.WriteLine(tuple);
+            Console.WriteLine($"{tuple.Item1}_{tuple.Item2}");
+            Console.WriteLine($"{tuple.Szin}_{tuple.Ertek}");
+
+            // 11. Könyvenkénti összes eladás
+            // { "Harry Potter és a bölcsek köve", Amount = 150 }
+            var q11 = from book in books
+                      join order in orders on book.Id equals order.BookId
+                      group (book, order) by book into g
+                      select new
+                      {
+                          g.Key.Title,
+                          Amount = g.Sum(t => t.order.Quantity) // tuple elemekből áll egy group
+                      };
+            Print("11. Könyvenkénti összes eladás:", q11);
         }
     }
 }
