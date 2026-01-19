@@ -23,16 +23,36 @@ namespace SportsCompetition
             var results = SeedResults();
 
             // 1. Hány darab volt az egyes verseny típusokból?
-            
-
+            var f1 = from e in events
+                     group e by e.Type into g
+                     select new
+                     {
+                         Típus = g.Key,
+                         Mennyiség = g.Count()
+                     };
+            Print("F1: ", f1);
 
             // 2. Add meg a labdarúgás eredményét,
             // pontszám szerint csökkenő sorrendben!
-            
-
+            var f2 = from r in results
+                     join e in events on r.EventID equals e.ID
+                     where e.Name == "Labdarúgás"
+                     orderby r.Score descending
+                     select new {r.StudentID, r.EventID, r.Score};
+            Print("F2: ", f2);
 
             // 3. Sorold fel a neveket évfolyamonként csoportosítva!
-            
+            var f3 = from s in students
+                     group s by s.Grade;
+            Console.WriteLine("\nF3: ");
+            foreach (var group in f3)
+            {
+                Console.WriteLine($"{group.Key}. évfolyam:");
+                foreach (var item in group)
+                {
+                    Console.WriteLine("\t" + item.Name);
+                }
+            }
 
 
             // 4. Add meg, hogy Molnár Júlia milyen versenyeken 

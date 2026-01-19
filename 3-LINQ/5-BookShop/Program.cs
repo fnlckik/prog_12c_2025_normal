@@ -201,13 +201,35 @@ namespace BookShop
                       };
             Print("11. Könyvenkénti összes eladás:", q11);
 
-            // 12. 
+            // 12. Írok, eladott könyv darabszámok, összes bevétel
+            // { Author = "J. K. Rowling", Amount = 415, Revenue = 4152516 }
 
             var full = from b in books
                        join o in orders on b.Id equals o.BookId
                        join a in authors on b.AuthorId equals a.Id
                        select (a, b, o);
             Print("Minden adat: ", full);
+
+            //var q12 = from e in full
+            //          group e.o.Quantity by e.a into g
+            //          select new
+            //          {
+            //              Author = g.Key.Name,
+            //              Amount = g.Sum()
+            //          };
+
+            var q12 = from b in books
+                      join o in orders on b.Id equals o.BookId
+                      join a in authors on b.AuthorId equals a.Id
+                      select (a, o, b) into e
+                      group (e.o, e.b) by e.a into g
+                      select new
+                      {
+                          Author = g.Key.Name,
+                          Amount = g.Sum(e => e.o.Quantity),
+                          Revenue = g.Sum(e => e.b.Price * e.o.Quantity)
+                      };
+            Print("F12: ", q12);
         }
     }
 }
