@@ -200,6 +200,14 @@ namespace BookShop
                           Amount = g.Sum(t => t.order.Quantity) // tuple elemekből áll egy group
                       };
             Print("11. Könyvenkénti összes eladás:", q11);
+
+            // 12. 
+
+            var full = from b in books
+                       join o in orders on b.Id equals o.BookId
+                       join a in authors on b.AuthorId equals a.Id
+                       select (a, b, o);
+            Print("Minden adat: ", full);
         }
     }
 }
