@@ -12,14 +12,24 @@ namespace _1_Hello
 {
     public partial class Form1 : Form
     {
+        // enum => felsorolás
+        private enum Hetvege
+        { 
+            Szombat = 6,
+            Vasarnap = 7
+        };
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void HelloBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Test");
+            //Console.WriteLine("Hello Világ!");
+            //DialogResult result = MessageBox.Show("Hello Világ!", "Felhasználó köszöntése", MessageBoxButtons.YesNoCancel);
+            //MessageBox.Show(result == ??);
+            MessageBox.Show(((int)Hetvege.Szombat).ToString());
         }
     }
 }

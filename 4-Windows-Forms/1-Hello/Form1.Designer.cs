@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.HelloBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // HelloBtn
             // 
-            this.button1.Location = new System.Drawing.Point(339, 182);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(209, 81);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.HelloBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.HelloBtn.Location = new System.Drawing.Point(266, 168);
+            this.HelloBtn.Name = "HelloBtn";
+            this.HelloBtn.Size = new System.Drawing.Size(231, 103);
+            this.HelloBtn.TabIndex = 0;
+            this.HelloBtn.Text = "Hello!";
+            this.HelloBtn.UseVisualStyleBackColor = true;
+            this.HelloBtn.Click += new System.EventHandler(this.HelloBtn_Click);
             // 
             // Form1
             // 
@@ -47,7 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.HelloBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -59,7 +60,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button HelloBtn;
     }
 }
 
