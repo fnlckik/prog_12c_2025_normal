@@ -92,6 +92,12 @@ namespace _1_Hello
             {
                 // ???
                 //GreetLabel.Font.Bold = true;
+                // (FontStyle)3
+                GreetLabel.Font = new Font(GreetLabel.Font, FontStyle.Bold | FontStyle.Italic);
+            }
+            else
+            {
+                GreetLabel.Font = new Font(GreetLabel.Font, FontStyle.Italic);
             }
         }
     }

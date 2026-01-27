@@ -60,11 +60,11 @@
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.NameLabel.Location = new System.Drawing.Point(125, 115);
             this.NameLabel.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(62, 29);
+            this.NameLabel.Size = new System.Drawing.Size(66, 29);
             this.NameLabel.TabIndex = 2;
             this.NameLabel.Text = "Név:";
             // 
