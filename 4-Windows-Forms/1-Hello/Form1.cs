@@ -100,5 +100,34 @@ namespace _1_Hello
                 GreetLabel.Font = new Font(GreetLabel.Font, FontStyle.Italic);
             }
         }
+
+        // e: esemény objektum
+        // sender: e.target
+        private void ColorRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (!rb.Checked) return;
+            switch (rb.Text)
+            {
+                case "Piros":
+                    GreetLabel.ForeColor = Color.FromArgb(192, 0, 0);
+                    break;
+                case "Zöld":
+                    GreetLabel.ForeColor = Color.Green;
+                    break;
+                case "Kék":
+                    GreetLabel.ForeColor = Color.Blue;
+                    break;
+            }
+        }
+
+        private void Panel_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs mouseEvent = e as MouseEventArgs;
+            PositionLabel.Text = $"P({mouseEvent.X};{mouseEvent.Y})";
+            //Point newLocation = new Point((Panel.Size.Width - PositionLabel.Size.Width) / 2, PositionLabel.Location.Y);
+            //PositionLabel.Location = newLocation;
+            PositionLabel.Left = (Panel.Width - PositionLabel.Width) / 2;
+        }
     }
 }

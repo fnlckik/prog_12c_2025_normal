@@ -33,6 +33,14 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.GreetLabel = new System.Windows.Forms.Label();
             this.BoldCheckBox = new System.Windows.Forms.CheckBox();
+            this.RedRadio = new System.Windows.Forms.RadioButton();
+            this.GreenRadio = new System.Windows.Forms.RadioButton();
+            this.BlueRadio = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Panel = new System.Windows.Forms.Panel();
+            this.PositionLabel = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // HelloBtn
@@ -89,12 +97,86 @@
             this.BoldCheckBox.UseVisualStyleBackColor = true;
             this.BoldCheckBox.CheckedChanged += new System.EventHandler(this.BoldCheckBox_CheckedChanged);
             // 
+            // RedRadio
+            // 
+            this.RedRadio.AutoSize = true;
+            this.RedRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.RedRadio.Location = new System.Drawing.Point(54, 61);
+            this.RedRadio.Name = "RedRadio";
+            this.RedRadio.Size = new System.Drawing.Size(87, 33);
+            this.RedRadio.TabIndex = 5;
+            this.RedRadio.TabStop = true;
+            this.RedRadio.Text = "Piros";
+            this.RedRadio.UseVisualStyleBackColor = true;
+            this.RedRadio.CheckedChanged += new System.EventHandler(this.ColorRadio_CheckedChanged);
+            // 
+            // GreenRadio
+            // 
+            this.GreenRadio.AutoSize = true;
+            this.GreenRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GreenRadio.Location = new System.Drawing.Point(54, 116);
+            this.GreenRadio.Name = "GreenRadio";
+            this.GreenRadio.Size = new System.Drawing.Size(79, 33);
+            this.GreenRadio.TabIndex = 6;
+            this.GreenRadio.TabStop = true;
+            this.GreenRadio.Text = "Zöld";
+            this.GreenRadio.UseVisualStyleBackColor = true;
+            this.GreenRadio.CheckedChanged += new System.EventHandler(this.ColorRadio_CheckedChanged);
+            // 
+            // BlueRadio
+            // 
+            this.BlueRadio.AutoSize = true;
+            this.BlueRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BlueRadio.Location = new System.Drawing.Point(54, 171);
+            this.BlueRadio.Name = "BlueRadio";
+            this.BlueRadio.Size = new System.Drawing.Size(73, 33);
+            this.BlueRadio.TabIndex = 7;
+            this.BlueRadio.TabStop = true;
+            this.BlueRadio.Text = "Kék";
+            this.BlueRadio.UseVisualStyleBackColor = true;
+            this.BlueRadio.CheckedChanged += new System.EventHandler(this.ColorRadio_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RedRadio);
+            this.groupBox1.Controls.Add(this.GreenRadio);
+            this.groupBox1.Controls.Add(this.BlueRadio);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox1.Location = new System.Drawing.Point(64, 259);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(215, 245);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Betűszín választó";
+            // 
+            // Panel
+            // 
+            this.Panel.BackColor = System.Drawing.Color.White;
+            this.Panel.Controls.Add(this.PositionLabel);
+            this.Panel.Location = new System.Drawing.Point(484, 259);
+            this.Panel.Name = "Panel";
+            this.Panel.Size = new System.Drawing.Size(231, 245);
+            this.Panel.TabIndex = 11;
+            this.Panel.Click += new System.EventHandler(this.Panel_Click);
+            // 
+            // PositionLabel
+            // 
+            this.PositionLabel.AutoSize = true;
+            this.PositionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PositionLabel.Location = new System.Drawing.Point(79, 108);
+            this.PositionLabel.Name = "PositionLabel";
+            this.PositionLabel.Size = new System.Drawing.Size(73, 29);
+            this.PositionLabel.TabIndex = 12;
+            this.PositionLabel.Text = "P(x;y)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 438);
+            this.ClientSize = new System.Drawing.Size(800, 564);
+            this.Controls.Add(this.Panel);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BoldCheckBox);
             this.Controls.Add(this.GreetLabel);
             this.Controls.Add(this.NameLabel);
@@ -105,6 +187,10 @@
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Hello Grafikus Világ!";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.Panel.ResumeLayout(false);
+            this.Panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,6 +203,12 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label GreetLabel;
         private System.Windows.Forms.CheckBox BoldCheckBox;
+        private System.Windows.Forms.RadioButton RedRadio;
+        private System.Windows.Forms.RadioButton GreenRadio;
+        private System.Windows.Forms.RadioButton BlueRadio;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel Panel;
+        private System.Windows.Forms.Label PositionLabel;
     }
 }
 
