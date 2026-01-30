@@ -50,10 +50,6 @@
             this.peopleListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.peopleListBox.FormattingEnabled = true;
             this.peopleListBox.ItemHeight = 29;
-            this.peopleListBox.Items.AddRange(new object[] {
-            "Fekete Róbert (19)",
-            "Nagy Kinga (25)",
-            "Szabó Regina (15)"});
             this.peopleListBox.Location = new System.Drawing.Point(475, 50);
             this.peopleListBox.Name = "peopleListBox";
             this.peopleListBox.Size = new System.Drawing.Size(286, 323);
