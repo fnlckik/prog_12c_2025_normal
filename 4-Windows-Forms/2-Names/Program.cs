@@ -8,6 +8,8 @@ namespace _2_Names
 {
     internal static class Program
     {
+        //public static Random r = new Random();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

@@ -17,9 +17,9 @@ namespace _2_Names
             InitializeComponent();
             peopleListBox.Items.AddRange(new object[] 
             {
-                new Person("Fekete Róbert", 19),
-                new Person("Nagy Kinga", 25),
-                new Person("Szabó Regina", 15)
+                new Person("Fekete Róbert", 19, 420000),
+                new Person("Nagy Kinga", 25, 670000),
+                new Person("Szabó Regina", 15, 543000)
             });
         }
 
@@ -27,7 +27,11 @@ namespace _2_Names
         {
             string name = nameTextBox.Text;
             int age = Convert.ToInt32(ageNumUpDown.Value);
-            peopleListBox.Items.Add($"{name} ({age})");
+            //peopleListBox.Items.Add($"{name} ({age})");
+            Random r = new Random();
+            int salary = r.Next(200, 501) * 1000;
+            Person person = new Person(name, age, salary);
+            peopleListBox.Items.Add(person);
         }
 
         private void peopleListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,8 +46,10 @@ namespace _2_Names
             selectedAgeLabel.Text = age;
             */
             Person selected = peopleListBox.SelectedItem as Person;
-            selectedNameLabel.Text = selected.Name;
-            selectedAgeLabel.Text = selected.Age.ToString();
+            if (selected == null) return;
+            selectedNameLabel.Text = "Név: " + selected.Name;
+            selectedAgeLabel.Text = "Életkor: " + selected.Age;
+            selectedSalaryLabel.Text = "Fizetés: " + selected.Salary + " Ft";
         }
     }
 }

@@ -38,6 +38,7 @@
             this.selectedAgeLabel = new System.Windows.Forms.Label();
             this.selectedNameLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.selectedSalaryLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ageNumUpDown)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +123,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.selectedSalaryLabel);
             this.panel1.Controls.Add(this.selectedAgeLabel);
             this.panel1.Controls.Add(this.selectedNameLabel);
             this.panel1.Controls.Add(this.label3);
@@ -134,7 +136,7 @@
             // 
             this.selectedAgeLabel.AutoSize = true;
             this.selectedAgeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectedAgeLabel.Location = new System.Drawing.Point(44, 150);
+            this.selectedAgeLabel.Location = new System.Drawing.Point(44, 117);
             this.selectedAgeLabel.Name = "selectedAgeLabel";
             this.selectedAgeLabel.Size = new System.Drawing.Size(95, 29);
             this.selectedAgeLabel.TabIndex = 2;
@@ -144,7 +146,7 @@
             // 
             this.selectedNameLabel.AutoSize = true;
             this.selectedNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectedNameLabel.Location = new System.Drawing.Point(44, 92);
+            this.selectedNameLabel.Location = new System.Drawing.Point(44, 74);
             this.selectedNameLabel.Name = "selectedNameLabel";
             this.selectedNameLabel.Size = new System.Drawing.Size(62, 29);
             this.selectedNameLabel.TabIndex = 1;
@@ -159,6 +161,16 @@
             this.label3.Size = new System.Drawing.Size(227, 29);
             this.label3.TabIndex = 0;
             this.label3.Text = "Kiválasztott személy";
+            // 
+            // selectedSalaryLabel
+            // 
+            this.selectedSalaryLabel.AutoSize = true;
+            this.selectedSalaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.selectedSalaryLabel.Location = new System.Drawing.Point(44, 161);
+            this.selectedSalaryLabel.Name = "selectedSalaryLabel";
+            this.selectedSalaryLabel.Size = new System.Drawing.Size(97, 29);
+            this.selectedSalaryLabel.TabIndex = 3;
+            this.selectedSalaryLabel.Text = "Fizetés:";
             // 
             // Form1
             // 
@@ -195,6 +207,7 @@
         private System.Windows.Forms.Label selectedAgeLabel;
         private System.Windows.Forms.Label selectedNameLabel;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label selectedSalaryLabel;
     }
 }
 
