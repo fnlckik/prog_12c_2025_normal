@@ -34,13 +34,16 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.ageLabel = new System.Windows.Forms.Label();
             this.addButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel = new System.Windows.Forms.Panel();
+            this.selectedSalaryLabel = new System.Windows.Forms.Label();
             this.selectedAgeLabel = new System.Windows.Forms.Label();
             this.selectedNameLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.selectedSalaryLabel = new System.Windows.Forms.Label();
+            this.sortButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ageNumUpDown)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // peopleListBox
@@ -53,7 +56,7 @@
             this.peopleListBox.ItemHeight = 29;
             this.peopleListBox.Location = new System.Drawing.Point(475, 50);
             this.peopleListBox.Name = "peopleListBox";
-            this.peopleListBox.Size = new System.Drawing.Size(286, 323);
+            this.peopleListBox.Size = new System.Drawing.Size(286, 294);
             this.peopleListBox.TabIndex = 0;
             this.peopleListBox.SelectedIndexChanged += new System.EventHandler(this.peopleListBox_SelectedIndexChanged);
             // 
@@ -119,18 +122,29 @@
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // panel1
+            // panel
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.selectedSalaryLabel);
-            this.panel1.Controls.Add(this.selectedAgeLabel);
-            this.panel1.Controls.Add(this.selectedNameLabel);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(61, 239);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(317, 221);
-            this.panel1.TabIndex = 6;
+            this.panel.BackColor = System.Drawing.Color.White;
+            this.panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel.Controls.Add(this.selectedSalaryLabel);
+            this.panel.Controls.Add(this.selectedAgeLabel);
+            this.panel.Controls.Add(this.selectedNameLabel);
+            this.panel.Controls.Add(this.label3);
+            this.panel.Location = new System.Drawing.Point(61, 239);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(317, 221);
+            this.panel.TabIndex = 6;
+            this.panel.Visible = false;
+            // 
+            // selectedSalaryLabel
+            // 
+            this.selectedSalaryLabel.AutoSize = true;
+            this.selectedSalaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.selectedSalaryLabel.Location = new System.Drawing.Point(44, 161);
+            this.selectedSalaryLabel.Name = "selectedSalaryLabel";
+            this.selectedSalaryLabel.Size = new System.Drawing.Size(97, 29);
+            this.selectedSalaryLabel.TabIndex = 3;
+            this.selectedSalaryLabel.Text = "Fizetés:";
             // 
             // selectedAgeLabel
             // 
@@ -162,22 +176,36 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Kiválasztott személy";
             // 
-            // selectedSalaryLabel
+            // sortButton
             // 
-            this.selectedSalaryLabel.AutoSize = true;
-            this.selectedSalaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectedSalaryLabel.Location = new System.Drawing.Point(44, 161);
-            this.selectedSalaryLabel.Name = "selectedSalaryLabel";
-            this.selectedSalaryLabel.Size = new System.Drawing.Size(97, 29);
-            this.selectedSalaryLabel.TabIndex = 3;
-            this.selectedSalaryLabel.Text = "Fizetés:";
+            this.sortButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.sortButton.Location = new System.Drawing.Point(268, 168);
+            this.sortButton.Name = "sortButton";
+            this.sortButton.Size = new System.Drawing.Size(110, 42);
+            this.sortButton.TabIndex = 7;
+            this.sortButton.Text = "Rendezés";
+            this.sortButton.UseVisualStyleBackColor = true;
+            this.sortButton.Click += new System.EventHandler(this.sortButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.saveButton.Location = new System.Drawing.Point(475, 388);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(110, 42);
+            this.saveButton.TabIndex = 8;
+            this.saveButton.Text = "Mentés";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 501);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.sortButton);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.ageLabel);
             this.Controls.Add(this.nameLabel);
@@ -188,8 +216,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.ageNumUpDown)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,11 +231,14 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label ageLabel;
         private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label selectedAgeLabel;
         private System.Windows.Forms.Label selectedNameLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label selectedSalaryLabel;
+        private System.Windows.Forms.Button sortButton;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 
