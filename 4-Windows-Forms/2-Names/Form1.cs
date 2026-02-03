@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,7 +109,17 @@ namespace _2_Names
             saveFileDialog = new SaveFileDialog();
             //saveFileDialog.InitialDirectory = "H:\\25-26\\prog_12c_2025_normal\\4-Windows-Forms\\2-Names\\bin\\Debug";
             saveFileDialog.InitialDirectory = Application.StartupPath;
-            saveFileDialog.ShowDialog();
+            saveFileDialog.DefaultExt = ".txt";
+            DialogResult result = saveFileDialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = saveFileDialog.FileName;
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (var p in people)
+                {
+                    sw.WriteLine($"{p.Name},{p.Age},{p.Salary}");
+                }
+            }
         }
     }
 }
