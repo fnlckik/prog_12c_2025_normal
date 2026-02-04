@@ -110,9 +110,17 @@ namespace _2_Names
             //saveFileDialog.InitialDirectory = "H:\\25-26\\prog_12c_2025_normal\\4-Windows-Forms\\2-Names\\bin\\Debug";
             saveFileDialog.InitialDirectory = Application.StartupPath;
             saveFileDialog.DefaultExt = ".txt";
+            saveFileDialog.Filter = "Szöveges fájl|*.txt|CSV fájl|*.csv|Minden fájl|*.*";
             DialogResult result = saveFileDialog.ShowDialog();
             if (result != DialogResult.OK) return;
             string path = saveFileDialog.FileName;
+            string extension = path.Split('.').Last(); // "txt", "png" HIBA
+            if (extension != "txt" && extension != "csv")
+            {
+                string msg = "A kiterjesztés nem txt. Nem sikerült a mentés!";
+                MessageBox.Show(msg, "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             using (StreamWriter sw = new StreamWriter(path))
             {
                 foreach (var p in people)
@@ -120,6 +128,58 @@ namespace _2_Names
                     sw.WriteLine($"{p.Name},{p.Age},{p.Salary}");
                 }
             }
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            loadFileDialog = new OpenFileDialog();
+            DialogResult result = loadFileDialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = loadFileDialog.FileName;
+            people.Clear();
+            //List<Person> x = new List<Person>();
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] temp = sr.ReadLine().Split(',');
+                        string name = temp[0];
+                        int age = int.Parse(temp[1]);
+                        int salary = int.Parse(temp[2]);
+                        Person p = new Person(name, age, salary);
+                        people.Add(p); // x.Add(p)
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = "Nem sikerült a beolvasás!";
+                DialogResult dr = MessageBox.Show(msg, "Hiba!", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                switch (dr)
+                {
+                    case DialogResult.Abort:
+                        this.Close();
+                        break;
+                    case DialogResult.Retry:
+                        loadButton_Click(sender, e);
+                        break;
+                    case DialogResult.Ignore:
+                        people = peopleListBox.Items.Cast<Person>().ToList();
+                        /*
+                        people = new List<Person>();
+                        foreach (var item in peopleListBox.Items)
+                        {
+                            Person p = item as Person;
+                            people.Add(p);
+                        }
+                        */
+                        break;
+                }
+            }
+            //people = new List<Person>(x);
+            UpdateListBox();
         }
     }
 }
