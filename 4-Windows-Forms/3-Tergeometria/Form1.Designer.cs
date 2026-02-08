@@ -67,7 +67,7 @@
             this.groupBox1.Location = new System.Drawing.Point(27, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 169);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 100;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test típusa";
             // 
@@ -78,10 +78,12 @@
             this.ConeButton.Location = new System.Drawing.Point(27, 129);
             this.ConeButton.Name = "ConeButton";
             this.ConeButton.Size = new System.Drawing.Size(62, 28);
-            this.ConeButton.TabIndex = 2;
+            this.ConeButton.TabIndex = 69;
             this.ConeButton.TabStop = true;
+            this.ConeButton.Tag = "cone";
             this.ConeButton.Text = "Kúp";
             this.ConeButton.UseVisualStyleBackColor = true;
+            this.ConeButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // CylinderButton
             // 
@@ -90,10 +92,12 @@
             this.CylinderButton.Location = new System.Drawing.Point(27, 88);
             this.CylinderButton.Name = "CylinderButton";
             this.CylinderButton.Size = new System.Drawing.Size(92, 28);
-            this.CylinderButton.TabIndex = 1;
+            this.CylinderButton.TabIndex = 68;
             this.CylinderButton.TabStop = true;
+            this.CylinderButton.Tag = "cylinder";
             this.CylinderButton.Text = "Henger";
             this.CylinderButton.UseVisualStyleBackColor = true;
+            this.CylinderButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // SphereButton
             // 
@@ -102,13 +106,16 @@
             this.SphereButton.Location = new System.Drawing.Point(27, 46);
             this.SphereButton.Name = "SphereButton";
             this.SphereButton.Size = new System.Drawing.Size(80, 28);
-            this.SphereButton.TabIndex = 0;
+            this.SphereButton.TabIndex = 67;
             this.SphereButton.TabStop = true;
+            this.SphereButton.Tag = "sphere";
             this.SphereButton.Text = "Gömb";
             this.SphereButton.UseVisualStyleBackColor = true;
+            this.SphereButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // ImgPanel
             // 
+            this.ImgPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ImgPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ImgPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ImgPanel.Location = new System.Drawing.Point(576, 257);
@@ -204,9 +211,9 @@
             this.LargestLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LargestLabel.Location = new System.Drawing.Point(37, 166);
             this.LargestLabel.Name = "LargestLabel";
-            this.LargestLabel.Size = new System.Drawing.Size(60, 24);
+            this.LargestLabel.Size = new System.Drawing.Size(193, 24);
             this.LargestLabel.TabIndex = 16;
-            this.LargestLabel.Text = "label5";
+            this.LargestLabel.Text = "Legnagyobb térfogatú";
             // 
             // ShapeListBox
             // 
