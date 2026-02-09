@@ -49,13 +49,13 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.OpenButton = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.CalculatePanel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RadiusNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AreaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeNumericUpDown)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.CalculatePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -132,6 +132,7 @@
             this.GenerateButton.TabIndex = 2;
             this.GenerateButton.Text = "Generál";
             this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
             // label1
             // 
@@ -155,19 +156,33 @@
             // 
             // RadiusNumericUpDown
             // 
+            this.RadiusNumericUpDown.DecimalPlaces = 1;
             this.RadiusNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.RadiusNumericUpDown.Location = new System.Drawing.Point(377, 122);
+            this.RadiusNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.RadiusNumericUpDown.Name = "RadiusNumericUpDown";
             this.RadiusNumericUpDown.Size = new System.Drawing.Size(120, 29);
             this.RadiusNumericUpDown.TabIndex = 10;
+            this.RadiusNumericUpDown.ValueChanged += new System.EventHandler(this.RadiusNumericUpDown_ValueChanged);
             // 
             // HeightNumericUpDown
             // 
+            this.HeightNumericUpDown.DecimalPlaces = 1;
             this.HeightNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.HeightNumericUpDown.Location = new System.Drawing.Point(377, 161);
+            this.HeightNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.HeightNumericUpDown.Name = "HeightNumericUpDown";
             this.HeightNumericUpDown.Size = new System.Drawing.Size(120, 29);
             this.HeightNumericUpDown.TabIndex = 11;
+            this.HeightNumericUpDown.ValueChanged += new System.EventHandler(this.HeightNumericUpDown_ValueChanged);
             // 
             // label3
             // 
@@ -191,16 +206,28 @@
             // 
             // AreaNumericUpDown
             // 
+            this.AreaNumericUpDown.DecimalPlaces = 1;
             this.AreaNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AreaNumericUpDown.Location = new System.Drawing.Point(103, 87);
+            this.AreaNumericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.AreaNumericUpDown.Name = "AreaNumericUpDown";
             this.AreaNumericUpDown.Size = new System.Drawing.Size(120, 29);
             this.AreaNumericUpDown.TabIndex = 14;
             // 
             // VolumeNumericUpDown
             // 
+            this.VolumeNumericUpDown.DecimalPlaces = 1;
             this.VolumeNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.VolumeNumericUpDown.Location = new System.Drawing.Point(345, 89);
+            this.VolumeNumericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.VolumeNumericUpDown.Name = "VolumeNumericUpDown";
             this.VolumeNumericUpDown.Size = new System.Drawing.Size(120, 29);
             this.VolumeNumericUpDown.TabIndex = 15;
@@ -234,6 +261,7 @@
             this.CalculateButton.TabIndex = 18;
             this.CalculateButton.Text = "Számol";
             this.CalculateButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
             // 
             // CheckButton
             // 
@@ -277,22 +305,22 @@
             this.OpenButton.Text = "📂";
             this.OpenButton.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // CalculatePanel
             // 
-            this.panel2.Controls.Add(this.CalculateButton);
-            this.panel2.Controls.Add(this.GenerateButton);
-            this.panel2.Controls.Add(this.AddButton);
-            this.panel2.Controls.Add(this.AreaNumericUpDown);
-            this.panel2.Controls.Add(this.VolumeNumericUpDown);
-            this.panel2.Controls.Add(this.CheckButton);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.LargestLabel);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(41, 216);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(499, 241);
-            this.panel2.TabIndex = 23;
+            this.CalculatePanel.Controls.Add(this.CalculateButton);
+            this.CalculatePanel.Controls.Add(this.GenerateButton);
+            this.CalculatePanel.Controls.Add(this.AddButton);
+            this.CalculatePanel.Controls.Add(this.AreaNumericUpDown);
+            this.CalculatePanel.Controls.Add(this.VolumeNumericUpDown);
+            this.CalculatePanel.Controls.Add(this.CheckButton);
+            this.CalculatePanel.Controls.Add(this.label4);
+            this.CalculatePanel.Controls.Add(this.LargestLabel);
+            this.CalculatePanel.Controls.Add(this.label3);
+            this.CalculatePanel.Enabled = false;
+            this.CalculatePanel.Location = new System.Drawing.Point(41, 216);
+            this.CalculatePanel.Name = "CalculatePanel";
+            this.CalculatePanel.Size = new System.Drawing.Size(499, 241);
+            this.CalculatePanel.TabIndex = 23;
             // 
             // Form1
             // 
@@ -308,7 +336,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ImgPanel);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.CalculatePanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
@@ -317,8 +345,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.HeightNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AreaNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeNumericUpDown)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.CalculatePanel.ResumeLayout(false);
+            this.CalculatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,7 +375,7 @@
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button OpenButton;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel CalculatePanel;
     }
 }
 
