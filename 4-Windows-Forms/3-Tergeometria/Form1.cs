@@ -25,25 +25,21 @@ namespace _3_Tergeometria
             RadioButton rb = sender as RadioButton;
             if (rb == null) return;
             //ImgPanel.BackgroundImage = Image.FromFile($"../../assets/{rb.Tag}.png");
-            double r = (double)RadiusNumericUpDown.Value;
-            double m = (double)HeightNumericUpDown.Value;
             switch (rb.Tag)
             {
                 case "sphere":
                     ImgPanel.BackgroundImage = Properties.Resources.sphere;
-                    shape = new Sphere(r);
                     break;
                 case "cylinder":
                     ImgPanel.BackgroundImage = Properties.Resources.cylinder;
-                    shape = new Cylinder(r, m);
                     break;
                 case "cone":
                     ImgPanel.BackgroundImage = Properties.Resources.cone;
-                    shape = new Cone(r, m);
                     break;
             }
             HeightNumericUpDown.Enabled = rb.Tag.ToString() != "sphere";
             CalculatePanel.Enabled = true;
+            CreateShape();
         }
 
         private void CreateShape()
@@ -62,6 +58,8 @@ namespace _3_Tergeometria
             {
                 shape = new Cone(r, m);
             }
+            AreaNumericUpDown.Value = 0;
+            VolumeNumericUpDown.Value = 0;
         }
 
         private void GenerateButton_Click(object sender, EventArgs e)
@@ -80,14 +78,15 @@ namespace _3_Tergeometria
             VolumeNumericUpDown.Value = (decimal)shape.Volume;
         }
 
-        private void RadiusNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void DataNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             CreateShape();
         }
 
-        private void HeightNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void CheckButton_Click(object sender, EventArgs e)
         {
-            CreateShape();
+            MessageBox.Show($"{Math.Round((double)AreaNumericUpDown.Value, 1, MidpointRounding.AwayFromZero)} {Math.Round(shape.Area, 1, MidpointRounding.AwayFromZero)}");
+            AreaNumericUpDown.BackColor = Math.Round((double)AreaNumericUpDown.Value, 1) == Math.Round(shape.Area, 1) ? Color.LightGreen : Color.LightPink;
         }
     }
 }

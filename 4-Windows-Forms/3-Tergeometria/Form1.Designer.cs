@@ -167,7 +167,7 @@
             this.RadiusNumericUpDown.Name = "RadiusNumericUpDown";
             this.RadiusNumericUpDown.Size = new System.Drawing.Size(120, 29);
             this.RadiusNumericUpDown.TabIndex = 10;
-            this.RadiusNumericUpDown.ValueChanged += new System.EventHandler(this.RadiusNumericUpDown_ValueChanged);
+            this.RadiusNumericUpDown.ValueChanged += new System.EventHandler(this.DataNumericUpDown_ValueChanged);
             // 
             // HeightNumericUpDown
             // 
@@ -182,7 +182,7 @@
             this.HeightNumericUpDown.Name = "HeightNumericUpDown";
             this.HeightNumericUpDown.Size = new System.Drawing.Size(120, 29);
             this.HeightNumericUpDown.TabIndex = 11;
-            this.HeightNumericUpDown.ValueChanged += new System.EventHandler(this.HeightNumericUpDown_ValueChanged);
+            this.HeightNumericUpDown.ValueChanged += new System.EventHandler(this.DataNumericUpDown_ValueChanged);
             // 
             // label3
             // 
@@ -272,6 +272,7 @@
             this.CheckButton.TabIndex = 19;
             this.CheckButton.Text = "Ellenőriz";
             this.CheckButton.UseVisualStyleBackColor = true;
+            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
             // 
             // AddButton
             // 
