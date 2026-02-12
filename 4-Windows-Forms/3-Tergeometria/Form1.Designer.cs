@@ -308,6 +308,7 @@
             this.OpenButton.TabIndex = 22;
             this.OpenButton.Text = "📂";
             this.OpenButton.UseVisualStyleBackColor = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // CalculatePanel
             // 

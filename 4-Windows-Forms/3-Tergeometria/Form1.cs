@@ -158,5 +158,44 @@ namespace _3_Tergeometria
                 }
             }
         }
+
+        private Shape ReadLine(StreamReader sr)
+        {
+            string[] temp = sr.ReadLine().Split(';');
+            Shape shape;
+            double r = double.Parse(temp[1]);
+            if (temp[0] == "G")
+            {
+                shape = new Sphere(r);
+            }
+            else if (temp[0] == "H")
+            {
+                shape = new Cylinder(r, double.Parse(temp[2]));
+            }
+            else
+            {
+                shape = new Cone(r, double.Parse(temp[2]));
+            }
+            return shape;
+        }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = Application.StartupPath;
+            dialog.Filter = "Szöveges fájl|*.txt|Minden fájl|*.*";
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = dialog.FileName;
+            using (StreamReader sr = new StreamReader(path))
+            {
+                shapes.Clear();
+                while (!sr.EndOfStream)
+                {
+                    shapes.Add(ReadLine(sr));
+                }
+            }
+            UpdateList();
+        }
     }
 }
