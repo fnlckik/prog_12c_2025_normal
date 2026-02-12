@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace _3_Tergeometria
 {
     public partial class Form1 : Form
     {
-        private Shape shape;
+        private List<Shape> shapes = new List<Shape>();
+        private Shape shape; // aktuális alakzat
 
         public Form1()
         {
@@ -40,6 +42,11 @@ namespace _3_Tergeometria
             HeightNumericUpDown.Enabled = rb.Tag.ToString() != "sphere";
             CalculatePanel.Enabled = true;
             CreateShape();
+            //MessageBox.Show($"{shape.GetType().Name} {rb.Tag}");
+            var largestShape = shapes.Where(s => s.GetType().Name.ToLower() == rb.Tag.ToString())
+                                     .OrderByDescending(s => s.Volume)
+                                     .FirstOrDefault();
+            LargestLabel.Text = "Legnagyobb térfogatú " + largestShape;
         }
 
         private void CreateShape()
@@ -60,6 +67,8 @@ namespace _3_Tergeometria
             }
             AreaNumericUpDown.Value = 0;
             VolumeNumericUpDown.Value = 0;
+            AreaNumericUpDown.BackColor = SystemColors.Window;
+            VolumeNumericUpDown.BackColor = SystemColors.Window;
         }
 
         private void GenerateButton_Click(object sender, EventArgs e)
@@ -85,8 +94,69 @@ namespace _3_Tergeometria
 
         private void CheckButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{Math.Round((double)AreaNumericUpDown.Value, 1, MidpointRounding.AwayFromZero)} {Math.Round(shape.Area, 1, MidpointRounding.AwayFromZero)}");
-            AreaNumericUpDown.BackColor = Math.Round((double)AreaNumericUpDown.Value, 1) == Math.Round(shape.Area, 1) ? Color.LightGreen : Color.LightPink;
+            //MessageBox.Show($"{Math.Round((double)AreaNumericUpDown.Value, 1, MidpointRounding.AwayFromZero)} {Math.Round(shape.Area, 1, MidpointRounding.AwayFromZero)}");
+            bool isCorrect = Math.Round((double)AreaNumericUpDown.Value, 1) == Math.Round(shape.Area, 1);
+            AreaNumericUpDown.BackColor = isCorrect ? Color.LightGreen : Color.LightPink;
+            isCorrect = Math.Round((double)VolumeNumericUpDown.Value, 1) == Math.Round(shape.Volume, 1);
+            VolumeNumericUpDown.BackColor = isCorrect ? Color.LightGreen : Color.LightPink;
+        }
+
+        private void UpdateList()
+        {
+            //ShapeListBox.Items.Clear();
+            //ShapeListBox.Items.AddRange(shapes.ToArray());
+            ShapeListBox.SelectionMode = SelectionMode.None;
+            ShapeListBox.DataSource = null;
+            ShapeListBox.DataSource = shapes;
+            ShapeListBox.SelectionMode = SelectionMode.One;
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            shapes.Add(shape);
+            UpdateList();
+        }
+
+        private void ShapeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Shape shape = ShapeListBox.SelectedItem as Shape;
+            //if (shape == null) return;
+            RadiusNumericUpDown.Value = (decimal)shape.r;
+            HeightNumericUpDown.Value = (decimal)shape.m;
+            if (shape is Sphere) SphereButton.Checked = true;
+            else if (shape is Cylinder) CylinderButton.Checked = true;
+            else if (shape is Cone) ConeButton.Checked = true;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = Application.StartupPath;
+            dialog.Filter = "Szöveges fájl|*.txt|Minden fájl|*.*";
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = dialog.FileName;
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (var shape in shapes)
+                {
+                    //if (shape is Sphere)
+                    //{
+                    //    sw.WriteLine($"G;{shape.r}");
+                    //}
+                    //else if (shape is Cylinder)
+                    //{
+                    //    sw.WriteLine($"H;{shape.r};{shape.m}");
+                    //}
+                    //else
+                    //{
+                    //    sw.WriteLine($"K;{shape.r};{shape.m}");
+                    //}
+                    //sw.WriteLine(shape);
+                    string end = shape is Sphere ? "" : (";" + shape.m);
+                    sw.WriteLine($"{shape.ToString()[0]};{shape.r}{end}");
+                }
+            }
         }
     }
 }

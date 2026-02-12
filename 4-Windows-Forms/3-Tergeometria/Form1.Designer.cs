@@ -247,10 +247,11 @@
             this.ShapeListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ShapeListBox.FormattingEnabled = true;
             this.ShapeListBox.ItemHeight = 24;
-            this.ShapeListBox.Location = new System.Drawing.Point(576, 39);
+            this.ShapeListBox.Location = new System.Drawing.Point(547, 39);
             this.ShapeListBox.Name = "ShapeListBox";
-            this.ShapeListBox.Size = new System.Drawing.Size(200, 172);
+            this.ShapeListBox.Size = new System.Drawing.Size(229, 172);
             this.ShapeListBox.TabIndex = 17;
+            this.ShapeListBox.SelectedIndexChanged += new System.EventHandler(this.ShapeListBox_SelectedIndexChanged);
             // 
             // CalculateButton
             // 
@@ -283,6 +284,7 @@
             this.AddButton.TabIndex = 20;
             this.AddButton.Text = "Tárol";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // SaveButton
             // 
@@ -294,6 +296,7 @@
             this.SaveButton.TabIndex = 21;
             this.SaveButton.Text = "💾";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // OpenButton
             // 
@@ -318,7 +321,7 @@
             this.CalculatePanel.Controls.Add(this.LargestLabel);
             this.CalculatePanel.Controls.Add(this.label3);
             this.CalculatePanel.Enabled = false;
-            this.CalculatePanel.Location = new System.Drawing.Point(41, 216);
+            this.CalculatePanel.Location = new System.Drawing.Point(27, 216);
             this.CalculatePanel.Name = "CalculatePanel";
             this.CalculatePanel.Size = new System.Drawing.Size(499, 241);
             this.CalculatePanel.TabIndex = 23;
@@ -327,6 +330,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(800, 482);
             this.Controls.Add(this.OpenButton);
             this.Controls.Add(this.SaveButton);
