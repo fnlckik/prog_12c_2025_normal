@@ -36,7 +36,18 @@
             this.DateLabel = new System.Windows.Forms.Label();
             this.EmailLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.TravellersComboBox = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.TravellersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RatingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -110,20 +121,105 @@
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Név:";
             // 
+            // TravellersComboBox
+            // 
+            this.TravellersComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TravellersComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.TravellersComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TravellersComboBox.FormattingEnabled = true;
+            this.TravellersComboBox.Location = new System.Drawing.Point(84, 98);
+            this.TravellersComboBox.Name = "TravellersComboBox";
+            this.TravellersComboBox.Size = new System.Drawing.Size(312, 28);
+            this.TravellersComboBox.TabIndex = 4;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1184, 29);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // FileMenuItem
+            // 
+            this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenMenuItem,
+            this.SaveMenuItem,
+            this.toolStripSeparator1,
+            this.ExitMenuItem});
+            this.FileMenuItem.Name = "FileMenuItem";
+            this.FileMenuItem.Size = new System.Drawing.Size(45, 25);
+            this.FileMenuItem.Text = "Fájl";
+            // 
+            // OpenMenuItem
+            // 
+            this.OpenMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TravellersMenuItem,
+            this.RatingsMenuItem});
+            this.OpenMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenMenuItem.Image")));
+            this.OpenMenuItem.Name = "OpenMenuItem";
+            this.OpenMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.OpenMenuItem.Text = "Megnyitás";
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("SaveMenuItem.Image")));
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.SaveMenuItem.Text = "Mentés";
+            // 
+            // ExitMenuItem
+            // 
+            this.ExitMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ExitMenuItem.Image")));
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.ExitMenuItem.Text = "Bezárás";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // TravellersMenuItem
+            // 
+            this.TravellersMenuItem.Name = "TravellersMenuItem";
+            this.TravellersMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.TravellersMenuItem.Text = "Utazók (txt)";
+            this.TravellersMenuItem.Click += new System.EventHandler(this.TravellersMenuItem_Click);
+            // 
+            // RatingsMenuItem
+            // 
+            this.RatingsMenuItem.Name = "RatingsMenuItem";
+            this.RatingsMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.RatingsMenuItem.Text = "Értékelések (csv)";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 503);
+            this.ClientSize = new System.Drawing.Size(1184, 493);
+            this.Controls.Add(this.TravellersComboBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 542);
             this.Name = "Main";
             this.Text = "TripReview";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +233,16 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox TravellersComboBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem TravellersMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RatingsMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 

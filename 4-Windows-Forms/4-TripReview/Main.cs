@@ -35,6 +35,37 @@ namespace TripReview
                     travellers.Add(t);
                 }
             }
+            TravellersComboBox.DataSource = travellers;
+            TravellersComboBox.SelectedIndex = -1;
+            TravellersComboBox.SelectedIndexChanged += TravellersComboBox_SelectedIndexChanged;
+        }
+
+        private void TravellersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Traveller t = TravellersComboBox.SelectedItem as Traveller;
+            if (t == null) return;
+            NameLabel.Text = "Név: " + t.Name;
+            EmailLabel.Text = "Email: " + t.Email;
+            //DateLabel.Text = "Születési dátum: " + t.BirthDate.ToShortDateString();
+            DateLabel.Text = $"Születési dátum: {t.BirthDate:d}";
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.Close();
+            Application.Exit();
+        }
+
+        private void TravellersMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Szöveges fájl|*.txt";
+            //MessageBox.Show(Application.StartupPath.Split('\\'));
+            //openFileDialog.InitialDirectory = "../../Data/";
+            openFileDialog.InitialDirectory = Application.StartupPath;
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            LoadTravellers(openFileDialog.FileName);
         }
     }
 }
