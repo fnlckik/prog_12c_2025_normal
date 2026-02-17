@@ -14,8 +14,11 @@ namespace TripReview
         public Main()
         {
             InitializeComponent();
+            openFileDialog = new OpenFileDialog();
+            string path = GetParentPath(Application.StartupPath, 2) + "\\Data";
+            openFileDialog.InitialDirectory = path;
             //LoadTravellers("../../Data/utasok.txt");
-            LoadReviews("../../Data/ertekelesek.csv");
+            //LoadReviews("../../Data/ertekelesek.csv");
         }
 
         private void LoadReviews(string path)
@@ -38,6 +41,7 @@ namespace TripReview
                     ratings.Add(r);
                 }
             }
+            //TravellersComboBox.DataSource = ratings;
         }
 
         private void LoadTravellers(string path)
@@ -78,16 +82,28 @@ namespace TripReview
             Application.Exit();
         }
 
+        // Megadja az n. szülő mappát!
+        private string GetParentPath(string path, int n)
+        {
+            string[] temp = path.Split('\\');
+            var t = temp.Take(temp.Length - n);
+            return string.Join("\\", t);
+        }
+
         private void TravellersMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Szöveges fájl|*.txt";
-            //MessageBox.Show(Application.StartupPath.Split('\\'));
-            //openFileDialog.InitialDirectory = "../../Data/";
-            openFileDialog.InitialDirectory = Application.StartupPath;
             DialogResult result = openFileDialog.ShowDialog();
             if (result != DialogResult.OK) return;
             LoadTravellers(openFileDialog.FileName);
+        }
+
+        private void RatingsMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Filter = "CSV fájl|*.csv";
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            LoadReviews(openFileDialog.FileName);
         }
     }
 }
