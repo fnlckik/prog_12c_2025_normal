@@ -15,7 +15,29 @@ namespace TripReview
         {
             InitializeComponent();
             //LoadTravellers("../../Data/utasok.txt");
-            //LoadReviews("../../Data/ertekelesek.csv");
+            LoadReviews("../../Data/ertekelesek.csv");
+        }
+
+        private void LoadReviews(string path)
+        {
+            using (StreamReader sr = new StreamReader(path))
+            {
+                ratings.Clear();
+                sr.ReadLine();
+                while (!sr.EndOfStream)
+                {
+                    string[] temp = sr.ReadLine().Split(';');
+                    int id = int.Parse(temp[0]);
+                    string tripName = temp[1];
+                    int travellerId = int.Parse(temp[2]);
+                    DateTime reviewDate = DateTime.Parse(temp[3]);
+                    int activitiesRating = int.Parse(temp[4]);
+                    int locationRating = int.Parse(temp[5]);
+                    string comment = temp[6];
+                    Rating r = new Rating(id, tripName, travellerId, reviewDate, activitiesRating, locationRating, comment);
+                    ratings.Add(r);
+                }
+            }
         }
 
         private void LoadTravellers(string path)
