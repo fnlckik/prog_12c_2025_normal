@@ -42,6 +42,28 @@ namespace TripReview
                 }
             }
             //TravellersComboBox.DataSource = ratings;
+            //RatingsDataGrid.Columns.Clear();
+            //RatingsDataGrid.DataSource = ratings;
+            ShowRatings();
+        }
+
+        private void ShowRatings()
+        {
+            RatingsDataGrid.Columns.Clear();
+            //RatingsDataGrid.ColumnCount = 5;
+            //RatingsDataGrid.RowCount = 18;
+            //Random r = new Random();
+            //for (int i = 0; i < RatingsDataGrid.RowCount; i++) // sorok
+            //{
+            //    for (int j = 0; j < RatingsDataGrid.ColumnCount; j++) // oszlop
+            //    {
+            //        RatingsDataGrid.Rows[i].Cells[j].Value = r.Next(10);
+            //    }
+            //}
+            RatingsDataGrid.Columns.Add("TripName", "Utazás célja");
+            RatingsDataGrid.Columns.Add("TravellerId", "Utazó azonosító");
+            RatingsDataGrid.Columns.Add("ReviewDate", "Értékelés dátuma");
+            RatingsDataGrid.Columns.Add("ActivitiesRating", "Értékelés dátuma");
         }
 
         private void LoadTravellers(string path)
