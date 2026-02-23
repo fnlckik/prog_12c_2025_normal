@@ -17,8 +17,8 @@ namespace TripReview
             openFileDialog = new OpenFileDialog();
             string path = GetParentPath(Application.StartupPath, 2) + "\\Data";
             openFileDialog.InitialDirectory = path;
-            //LoadTravellers("../../Data/utasok.txt");
-            //LoadReviews("../../Data/ertekelesek.csv");
+            LoadTravellers("../../Data/utasok.txt");
+            LoadReviews("../../Data/ertekelesek.csv");
         }
 
         private void LoadReviews(string path)
@@ -61,9 +61,18 @@ namespace TripReview
             //    }
             //}
             RatingsDataGrid.Columns.Add("TripName", "Utazás célja");
-            RatingsDataGrid.Columns.Add("TravellerId", "Utazó azonosító");
+            RatingsDataGrid.Columns.Add("TravellerId", "UtazóID");
             RatingsDataGrid.Columns.Add("ReviewDate", "Értékelés dátuma");
-            RatingsDataGrid.Columns.Add("ActivitiesRating", "Értékelés dátuma");
+            RatingsDataGrid.Columns.Add("ActivitiesRating", "Programok");
+            RatingsDataGrid.Columns.Add("LocationRating", "Helyszín");
+            RatingsDataGrid.Columns.Add("Comment", "Szöveges értékelés");
+
+            foreach (Rating r in ratings)
+            {
+                //string date = $"{r.ReviewDate:d}";
+                string date = r.ReviewDate.ToShortDateString();
+                RatingsDataGrid.Rows.Add(r.TripName, r.TravellerId, date, r.ActivitiesRating, r.LocationRating, r.Comment);
+            }
         }
 
         private void LoadTravellers(string path)
@@ -126,6 +135,21 @@ namespace TripReview
             DialogResult result = openFileDialog.ShowDialog();
             if (result != DialogResult.OK) return;
             LoadReviews(openFileDialog.FileName);
+        }
+
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            string path = GetParentPath(Application.StartupPath, 2) + "\\Data";
+            dialog.InitialDirectory = path;
+            dialog.Filter = "CSV fájl|*.csv";
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string fileName = dialog.FileName;
+            using (StreamWriter sw = new StreamWriter(fileName))
+            {
+
+            }
         }
     }
 }

@@ -187,8 +187,9 @@
             // 
             this.SaveMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("SaveMenuItem.Image")));
             this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.SaveMenuItem.Size = new System.Drawing.Size(180, 26);
             this.SaveMenuItem.Text = "Mentés";
+            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -209,6 +210,13 @@
             // 
             // RatingsDataGrid
             // 
+            this.RatingsDataGrid.AllowUserToAddRows = false;
+            this.RatingsDataGrid.AllowUserToDeleteRows = false;
+            this.RatingsDataGrid.AllowUserToOrderColumns = true;
+            this.RatingsDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RatingsDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.RatingsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RatingsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameColumn,
@@ -224,6 +232,7 @@
             this.NameColumn.HeaderText = "Név";
             this.NameColumn.Name = "NameColumn";
             this.NameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.NameColumn.Width = 58;
             // 
             // AgeColumn
             // 
@@ -238,11 +247,13 @@
             this.AgeColumn.Name = "AgeColumn";
             this.AgeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.AgeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.AgeColumn.Width = 77;
             // 
             // GenderColumn
             // 
             this.GenderColumn.HeaderText = "Férfi-e?";
             this.GenderColumn.Name = "GenderColumn";
+            this.GenderColumn.Width = 63;
             // 
             // Main
             // 
