@@ -166,7 +166,7 @@
             this.RatingsMenuItem});
             this.OpenMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OpenMenuItem.Image")));
             this.OpenMenuItem.Name = "OpenMenuItem";
-            this.OpenMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.OpenMenuItem.Size = new System.Drawing.Size(186, 26);
             this.OpenMenuItem.Text = "Megnyitás";
             // 
             // TravellersMenuItem
@@ -187,20 +187,21 @@
             // 
             this.SaveMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("SaveMenuItem.Image")));
             this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveMenuItem.Size = new System.Drawing.Size(186, 26);
             this.SaveMenuItem.Text = "Mentés";
             this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ExitMenuItem.Image")));
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.ExitMenuItem.Size = new System.Drawing.Size(186, 26);
             this.ExitMenuItem.Text = "Bezárás";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -211,7 +212,6 @@
             // RatingsDataGrid
             // 
             this.RatingsDataGrid.AllowUserToAddRows = false;
-            this.RatingsDataGrid.AllowUserToDeleteRows = false;
             this.RatingsDataGrid.AllowUserToOrderColumns = true;
             this.RatingsDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -224,8 +224,10 @@
             this.GenderColumn});
             this.RatingsDataGrid.Location = new System.Drawing.Point(428, 12);
             this.RatingsDataGrid.Name = "RatingsDataGrid";
+            this.RatingsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RatingsDataGrid.Size = new System.Drawing.Size(744, 469);
             this.RatingsDataGrid.TabIndex = 6;
+            this.RatingsDataGrid.SelectionChanged += new System.EventHandler(this.RatingsDataGrid_SelectionChanged);
             // 
             // NameColumn
             // 

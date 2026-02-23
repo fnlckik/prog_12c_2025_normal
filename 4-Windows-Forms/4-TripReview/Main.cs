@@ -60,18 +60,20 @@ namespace TripReview
             //        RatingsDataGrid.Rows[i].Cells[j].Value = r.Next(10);
             //    }
             //}
+            RatingsDataGrid.Columns.Add("ID", "Értékelés ID");
             RatingsDataGrid.Columns.Add("TripName", "Utazás célja");
             RatingsDataGrid.Columns.Add("TravellerId", "UtazóID");
             RatingsDataGrid.Columns.Add("ReviewDate", "Értékelés dátuma");
             RatingsDataGrid.Columns.Add("ActivitiesRating", "Programok");
             RatingsDataGrid.Columns.Add("LocationRating", "Helyszín");
             RatingsDataGrid.Columns.Add("Comment", "Szöveges értékelés");
+            RatingsDataGrid.Columns["ID"].Visible = false;
 
             foreach (Rating r in ratings)
             {
                 //string date = $"{r.ReviewDate:d}";
                 string date = r.ReviewDate.ToShortDateString();
-                RatingsDataGrid.Rows.Add(r.TripName, r.TravellerId, date, r.ActivitiesRating, r.LocationRating, r.Comment);
+                RatingsDataGrid.Rows.Add(r.ID, r.TripName, r.TravellerId, date, r.ActivitiesRating, r.LocationRating, r.Comment);
             }
         }
 
@@ -148,8 +150,29 @@ namespace TripReview
             string fileName = dialog.FileName;
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-
+                sw.WriteLine("---");
+                foreach (DataGridViewRow row in RatingsDataGrid.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.ColumnIndex == RatingsDataGrid.ColumnCount - 1)
+                        {
+                            sw.Write(cell.Value);
+                        }
+                        else
+                        {
+                            sw.Write(cell.Value + ";");
+                        }
+                    }
+                    sw.WriteLine();
+                }
             }
+        }
+
+        private void RatingsDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = RatingsDataGrid.SelectedRows[0];
+            MessageBox.Show(selectedRow.Index.ToString());
         }
     }
 }
