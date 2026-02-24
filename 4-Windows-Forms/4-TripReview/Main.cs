@@ -97,6 +97,7 @@ namespace TripReview
             TravellersComboBox.DataSource = travellers;
             TravellersComboBox.SelectedIndex = -1;
             TravellersComboBox.SelectedIndexChanged += TravellersComboBox_SelectedIndexChanged;
+            RatingsDataGrid.SelectionChanged += RatingsDataGrid_SelectionChanged;
         }
 
         private void TravellersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,6 +108,7 @@ namespace TripReview
             EmailLabel.Text = "Email: " + t.Email;
             //DateLabel.Text = "Születési dátum: " + t.BirthDate.ToShortDateString();
             DateLabel.Text = $"Születési dátum: {t.BirthDate:d}";
+            EditButton.Enabled = true;
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
@@ -171,8 +173,18 @@ namespace TripReview
 
         private void RatingsDataGrid_SelectionChanged(object sender, EventArgs e)
         {
+            if (RatingsDataGrid.SelectedRows.Count == 0) return;
             DataGridViewRow selectedRow = RatingsDataGrid.SelectedRows[0];
-            MessageBox.Show(selectedRow.Index.ToString());
+            //MessageBox.Show(selectedRow.Index.ToString());
+            int travellerID = (int)selectedRow.Cells["TravellerID"].Value;
+            Traveller selectedTraveller = travellers.FirstOrDefault(t => t.ID == travellerID);
+            TravellersComboBox.SelectedItem = selectedTraveller;
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            EditForm edit = new EditForm();
+            edit.ShowDialog();
         }
     }
 }

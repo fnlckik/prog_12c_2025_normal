@@ -89,6 +89,7 @@
             this.EditButton.TabIndex = 4;
             this.EditButton.Text = "Szerkesztés";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // panel1
             // 
@@ -227,7 +228,6 @@
             this.RatingsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RatingsDataGrid.Size = new System.Drawing.Size(744, 469);
             this.RatingsDataGrid.TabIndex = 6;
-            this.RatingsDataGrid.SelectionChanged += new System.EventHandler(this.RatingsDataGrid_SelectionChanged);
             // 
             // NameColumn
             // 
