@@ -30,17 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.EditButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DateLabel = new System.Windows.Forms.Label();
             this.EmailLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this.BirthDateTime = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.EditButton);
+            this.groupBox1.Controls.Add(this.BirthDateTime);
+            this.groupBox1.Controls.Add(this.EmailTextBox);
+            this.groupBox1.Controls.Add(this.NameTextBox);
+            this.groupBox1.Controls.Add(this.SaveButton);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.DateLabel);
             this.groupBox1.Controls.Add(this.EmailLabel);
@@ -48,20 +54,20 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.groupBox1.Location = new System.Drawing.Point(21, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(370, 324);
+            this.groupBox1.Size = new System.Drawing.Size(385, 324);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Utazó adatai";
             // 
-            // EditButton
+            // SaveButton
             // 
-            this.EditButton.Enabled = false;
-            this.EditButton.Location = new System.Drawing.Point(195, 221);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(119, 41);
-            this.EditButton.TabIndex = 4;
-            this.EditButton.Text = "Mentés";
-            this.EditButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new System.Drawing.Point(201, 221);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(119, 41);
+            this.SaveButton.TabIndex = 4;
+            this.SaveButton.Text = "Mentés";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // panel1
             // 
@@ -99,12 +105,36 @@
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Név:";
             // 
+            // NameTextBox
+            // 
+            this.NameTextBox.Location = new System.Drawing.Point(70, 46);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(287, 26);
+            this.NameTextBox.TabIndex = 5;
+            // 
+            // EmailTextBox
+            // 
+            this.EmailTextBox.Location = new System.Drawing.Point(82, 87);
+            this.EmailTextBox.Name = "EmailTextBox";
+            this.EmailTextBox.Size = new System.Drawing.Size(275, 26);
+            this.EmailTextBox.TabIndex = 6;
+            // 
+            // BirthDateTime
+            // 
+            this.BirthDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.BirthDateTime.Location = new System.Drawing.Point(157, 129);
+            this.BirthDateTime.Name = "BirthDateTime";
+            this.BirthDateTime.Size = new System.Drawing.Size(130, 26);
+            this.BirthDateTime.TabIndex = 7;
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 378);
+            this.ClientSize = new System.Drawing.Size(424, 378);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "EditForm";
             this.Text = "EditForm";
             this.groupBox1.ResumeLayout(false);
@@ -116,10 +146,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button EditButton;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label DateLabel;
         private System.Windows.Forms.Label EmailLabel;
         private System.Windows.Forms.Label NameLabel;
+        private System.Windows.Forms.DateTimePicker BirthDateTime;
+        private System.Windows.Forms.TextBox EmailTextBox;
+        private System.Windows.Forms.TextBox NameTextBox;
     }
 }

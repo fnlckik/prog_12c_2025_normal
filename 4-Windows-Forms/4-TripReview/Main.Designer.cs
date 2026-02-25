@@ -273,6 +273,7 @@
             this.MinimumSize = new System.Drawing.Size(1200, 542);
             this.Name = "Main";
             this.Text = "TripReview";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

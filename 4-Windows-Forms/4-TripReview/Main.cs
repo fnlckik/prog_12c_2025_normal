@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,14 +12,12 @@ namespace TripReview
         private List<Traveller> travellers = new List<Traveller>();
         private List<Rating> ratings = new List<Rating>();
 
+        // konstruktor -> memóriában létrejön az elem
+        // load -> tulajdonságok beállíthatók (grafikus is)
+        // show -> látja a felhasználó az elemeket
         public Main()
         {
             InitializeComponent();
-            openFileDialog = new OpenFileDialog();
-            string path = GetParentPath(Application.StartupPath, 2) + "\\Data";
-            openFileDialog.InitialDirectory = path;
-            LoadTravellers("../../Data/utasok.txt");
-            LoadReviews("../../Data/ertekelesek.csv");
         }
 
         private void LoadReviews(string path)
@@ -49,6 +48,7 @@ namespace TripReview
 
         private void ShowRatings()
         {
+            RatingsDataGrid.SelectionChanged -= RatingsDataGrid_SelectionChanged;
             RatingsDataGrid.Columns.Clear();
             //RatingsDataGrid.ColumnCount = 5;
             //RatingsDataGrid.RowCount = 18;
@@ -75,6 +75,9 @@ namespace TripReview
                 string date = r.ReviewDate.ToShortDateString();
                 RatingsDataGrid.Rows.Add(r.ID, r.TripName, r.TravellerId, date, r.ActivitiesRating, r.LocationRating, r.Comment);
             }
+
+            RatingsDataGrid.ClearSelection();
+            RatingsDataGrid.SelectionChanged += RatingsDataGrid_SelectionChanged;
         }
 
         private void LoadTravellers(string path)
@@ -97,7 +100,6 @@ namespace TripReview
             TravellersComboBox.DataSource = travellers;
             TravellersComboBox.SelectedIndex = -1;
             TravellersComboBox.SelectedIndexChanged += TravellersComboBox_SelectedIndexChanged;
-            RatingsDataGrid.SelectionChanged += RatingsDataGrid_SelectionChanged;
         }
 
         private void TravellersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,8 +185,22 @@ namespace TripReview
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            EditForm edit = new EditForm();
-            edit.ShowDialog();
+            Traveller editedTraveller = TravellersComboBox.SelectedItem as Traveller;
+            EditForm edit = new EditForm(editedTraveller);
+            DialogResult result = edit.ShowDialog();
+            if (result != DialogResult.OK) return;
+            travellers[TravellersComboBox.SelectedIndex] = edit.EditedTraveller;
+            TravellersComboBox.DataSource = null;
+            TravellersComboBox.DataSource = travellers;
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            openFileDialog = new OpenFileDialog();
+            string path = GetParentPath(Application.StartupPath, 2) + "\\Data";
+            openFileDialog.InitialDirectory = path;
+            LoadTravellers("../../Data/utasok.txt");
+            LoadReviews("../../Data/ertekelesek.csv");
         }
     }
 }
