@@ -41,10 +41,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MaterialGridView = new System.Windows.Forms.DataGridView();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.adatokToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RandomMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomNumUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaterialGridView)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -173,16 +179,52 @@
             this.panel1.Size = new System.Drawing.Size(200, 178);
             this.panel1.TabIndex = 5;
             // 
+            // MaterialGridView
+            // 
+            this.MaterialGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MaterialGridView.Location = new System.Drawing.Point(425, 37);
+            this.MaterialGridView.Name = "MaterialGridView";
+            this.MaterialGridView.Size = new System.Drawing.Size(472, 384);
+            this.MaterialGridView.TabIndex = 6;
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adatokToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(909, 36);
+            this.menuStrip.TabIndex = 7;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // adatokToolStripMenuItem
+            // 
+            this.adatokToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RandomMenuItem});
+            this.adatokToolStripMenuItem.Name = "adatokToolStripMenuItem";
+            this.adatokToolStripMenuItem.Size = new System.Drawing.Size(88, 32);
+            this.adatokToolStripMenuItem.Text = "Adatok";
+            // 
+            // RandomMenuItem
+            // 
+            this.RandomMenuItem.Name = "RandomMenuItem";
+            this.RandomMenuItem.Size = new System.Drawing.Size(180, 32);
+            this.RandomMenuItem.Text = "Random";
+            this.RandomMenuItem.Click += new System.EventHandler(this.RandomMenuItem_Click);
+            // 
             // DataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 435);
+            this.Controls.Add(this.MaterialGridView);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "DataForm";
@@ -193,7 +235,11 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopNumUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BottomNumUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaterialGridView)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -211,6 +257,10 @@
         private System.Windows.Forms.NumericUpDown BottomNumUpDown;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView MaterialGridView;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem adatokToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RandomMenuItem;
     }
 }
 

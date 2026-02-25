@@ -14,5 +14,13 @@ namespace GlovesFactory
         {
             InitializeComponent();
         }
+
+        private void RandomMenuItem_Click(object sender, EventArgs e)
+        {
+            data = new List<int>();
+            Random r = new Random();
+            // 123 adat
+
+        }
     }
 }
