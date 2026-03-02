@@ -86,7 +86,10 @@ namespace GlovesFactory
 
         private void CalculateStats()
         {
+            BottomNumUpDown.Value = data.Min();
+            TopNumUpDown.Value = data.Max();
             AverageLabel.Text = "Átlag: " + Math.Round(data.Average(), 2);
+            // HF: Median, Magnitude (terjedelem), Spread (szórás)
         }
 
         private void FileMenuItem_Click(object sender, EventArgs e)
@@ -102,6 +105,23 @@ namespace GlovesFactory
                 data = temp.Select(x => int.Parse(x)).ToList();
             }
             ShowData();
+        }
+
+        private void ExtremeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ExtremeCheckBox.Checked)
+            {
+                int min = (int)BottomNumUpDown.Value;
+                int max = (int)TopNumUpDown.Value;
+                foreach (DataGridViewRow item in MaterialDataGrid.Rows) // soronként járjuk be
+                {
+                    foreach (DataGridViewCell cell in item.Cells)
+                    {
+                        // Kéne ide egy feltétel
+                        cell.Style.BackColor = Color.LightPink;
+                    }
+                }
+            }
         }
     }
 }
