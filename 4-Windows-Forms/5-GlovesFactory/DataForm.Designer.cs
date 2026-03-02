@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.StatsGroupBox = new System.Windows.Forms.GroupBox();
@@ -46,6 +47,7 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.adatokToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RandomMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatsGroupBox.SuspendLayout();
             this.ExtremeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopNumUpDown)).BeginInit();
@@ -175,6 +177,8 @@
             // 
             // panel1
             // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel1.Location = new System.Drawing.Point(207, 50);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 178);
@@ -217,7 +221,8 @@
             // adatokToolStripMenuItem
             // 
             this.adatokToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.RandomMenuItem});
+            this.RandomMenuItem,
+            this.FileMenuItem});
             this.adatokToolStripMenuItem.Name = "adatokToolStripMenuItem";
             this.adatokToolStripMenuItem.Size = new System.Drawing.Size(91, 34);
             this.adatokToolStripMenuItem.Text = "Adatok";
@@ -229,6 +234,13 @@
             this.RandomMenuItem.Size = new System.Drawing.Size(236, 34);
             this.RandomMenuItem.Text = "Random";
             this.RandomMenuItem.Click += new System.EventHandler(this.RandomMenuItem_Click);
+            // 
+            // FileMenuItem
+            // 
+            this.FileMenuItem.Name = "FileMenuItem";
+            this.FileMenuItem.Size = new System.Drawing.Size(236, 34);
+            this.FileMenuItem.Text = "Fájlból";
+            this.FileMenuItem.Click += new System.EventHandler(this.FileMenuItem_Click);
             // 
             // DataForm
             // 
@@ -242,6 +254,7 @@
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
@@ -279,6 +292,7 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem adatokToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RandomMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
     }
 }
 

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,27 +19,12 @@ namespace GlovesFactory
 
         private void RandomMenuItem_Click(object sender, EventArgs e)
         {
-            data = new List<int>();
-            Random r = new Random();
-            // 123 adat
-            for (int i = 0; i < 123; i++)
-            {
-                double p = r.NextDouble(); // [0, 1)
-                int n;
-                if (p < 0.25)
-                {
-                    n = r.Next(50, 60);
-                }
-                else if (p < 0.95)
-                {
-                    n = r.Next(60, 70);
-                }
-                else
-                {
-                    n = r.Next(90, 100);
-                }
-                data.Add(n);
-            }
+            data = Generate();
+            ShowData();
+        }
+
+        private void ShowData()
+        {
             MaterialDataGrid.ColumnCount = 8;
             MaterialDataGrid.RowCount = (int)Math.Ceiling((double)data.Count / 8);
             int rowIndex = 0;
@@ -68,6 +55,53 @@ namespace GlovesFactory
             //}
             StatsGroupBox.Enabled = true;
             ExtremeGroupBox.Enabled = true;
+            CalculateStats();
+        }
+
+        private List<int> Generate()
+        {
+            List<int> result = new List<int>();
+            Random r = new Random();
+            // 123 adat
+            for (int i = 0; i < 123; i++)
+            {
+                double p = r.NextDouble(); // [0, 1)
+                int n;
+                if (p < 0.25)
+                {
+                    n = r.Next(50, 60);
+                }
+                else if (p < 0.95)
+                {
+                    n = r.Next(60, 70);
+                }
+                else
+                {
+                    n = r.Next(90, 100);
+                }
+                result.Add(n);
+            }
+            return result;
+        }
+
+        private void CalculateStats()
+        {
+            AverageLabel.Text = "Átlag: " + Math.Round(data.Average(), 2);
+        }
+
+        private void FileMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = Application.StartupPath;
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = dialog.FileName;
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string[] temp = sr.ReadLine().Split();
+                data = temp.Select(x => int.Parse(x)).ToList();
+            }
+            ShowData();
         }
     }
 }
