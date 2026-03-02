@@ -129,6 +129,7 @@
             this.DeleteButton.Text = "Törlés";
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Visible = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // AddButton
             // 
@@ -270,6 +271,7 @@
             this.LoadButton.TabIndex = 8;
             this.LoadButton.Text = "Betöltés";
             this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // PizzaListBox
             // 
@@ -279,6 +281,7 @@
             this.PizzaListBox.Name = "PizzaListBox";
             this.PizzaListBox.Size = new System.Drawing.Size(320, 214);
             this.PizzaListBox.TabIndex = 9;
+            this.PizzaListBox.SelectedIndexChanged += new System.EventHandler(this.PizzaListBox_SelectedIndexChanged);
             // 
             // Form1
             // 

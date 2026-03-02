@@ -46,11 +46,66 @@ namespace PizzaTime
             if (name == "" || address == "")
             {
                 MessageBox.Show("Add meg a neved és a rendelés címét!", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = Application.StartupPath;
+            dialog.Filter = "Szöveges fájlok|*.txt";
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = dialog.FileName;
+            MessageBox.Show(path);
+            using (StreamWriter sw = new StreamWriter(path))
             {
-
+                sw.WriteLine($"{name};{address}");
+                foreach (Pizza pizza in pizzas)
+                {
+                    char size = pizza.isFamily ? '1' : '0';
+                    sw.WriteLine($"{pizza.type};{size};{pizza.amount}");
+                }
             }
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string path = dialog.FileName;
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string[] temp = sr.ReadLine().Split(';');
+                NameTextBox.Text = temp[0];
+                AddressTextBox.Text = temp[1];
+                pizzas.Clear();
+                while (!sr.EndOfStream)
+                {
+                    temp = sr.ReadLine().Split(';');
+                    Pizza p = new Pizza(temp[0], temp[1] == "1", int.Parse(temp[2]));
+                    pizzas.Add(p);
+                }
+            }
+            UpdateListBox();
+        }
+
+        private void PizzaListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Pizza p = PizzaListBox.SelectedItem as Pizza;
+            if (p == null) return;
+            if (p.type == "Songoku") SongokuRadio.Checked = true;
+            else if (p.type == "Magyaros") MagyarosRadio.Checked = true;
+            else if (p.type == "Négysajtos") NegysajtosRadio.Checked = true;
+            FamilyCheckBox.Checked = p.isFamily;
+            AmountNumUpDown.Value = p.amount;
+            DeleteButton.Visible = true;
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            int index = PizzaListBox.SelectedIndex;
+            pizzas.RemoveAt(index);
+            UpdateListBox();
+            DeleteButton.Visible = false;
         }
     }
 }
