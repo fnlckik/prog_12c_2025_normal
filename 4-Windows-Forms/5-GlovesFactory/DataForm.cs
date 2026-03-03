@@ -88,8 +88,39 @@ namespace GlovesFactory
         {
             BottomNumUpDown.Value = data.Min();
             TopNumUpDown.Value = data.Max();
-            AverageLabel.Text = "Átlag: " + Math.Round(data.Average(), 2);
-            // HF: Median, Magnitude (terjedelem), Spread (szórás)
+            double avg = data.Average();
+            AverageLabel.Text = "Átlag: " + Math.Round(avg, 2);
+            MagnitudeLabel.Text = "Terjedelem: " + (data.Max() - data.Min());
+
+            // Szórás
+            //double s = 0;
+            //foreach (int e in data)
+            //{
+            //    s = s + Math.Pow(avg - e, 2);
+            //}
+            //s = s / data.Count;
+            //s = Math.Sqrt(s);
+            //double s = Math.Sqrt(data.Sum(e => Math.Pow(avg - e, 2)) / data.Count);
+            double s = Math.Sqrt(data.Aggregate(0.0, (S, e) => S + Math.Pow(avg - e, 2)) / data.Count);
+            SpreadLabel.Text = "Szórás: " + Math.Round(s, 2);
+
+            // Medián
+            var ordered = data.OrderBy(x => x).ToList();
+            int n = ordered.Count;
+            if (n % 2 == 1)
+            {
+                // 1 2 3 4 5
+                // Matek: 3. adat (n+1) / 2
+                // Prog: 2. adat n/2
+                MedianLabel.Text = "Medián: " + ordered[n / 2];
+            }
+            else
+            {
+                // 1 2 3 4 5 6
+                // Matek: 3. és 4. adat n/2; n/2 + 1
+                // Prog: 2. és 3. adat n/2; n/2 - 1
+                MedianLabel.Text = "Medián: " + (ordered[n / 2 - 1] + ordered[n / 2]) / 2.0;
+            }
         }
 
         private void FileMenuItem_Click(object sender, EventArgs e)
@@ -117,8 +148,10 @@ namespace GlovesFactory
                 {
                     foreach (DataGridViewCell cell in item.Cells)
                     {
-                        // Kéne ide egy feltétel
-                        cell.Style.BackColor = Color.LightPink;
+                        if (cell.Value != null && (int)cell.Value < min)
+                        {
+                            cell.Style.BackColor = Color.LightPink;
+                        }
                     }
                 }
             }
