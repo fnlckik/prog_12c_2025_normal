@@ -25,6 +25,7 @@ namespace GlovesFactory
 
         private void ShowData()
         {
+            MaterialDataGrid.Columns.Clear();
             MaterialDataGrid.ColumnCount = 8;
             MaterialDataGrid.RowCount = (int)Math.Ceiling((double)data.Count / 8);
             int rowIndex = 0;
@@ -152,6 +153,21 @@ namespace GlovesFactory
                         {
                             cell.Style.BackColor = Color.LightPink;
                         }
+                        else if (cell.Value != null && (int)cell.Value > max)
+                        {
+                            cell.Style.BackColor = Color.LightGreen;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //ShowData();
+                foreach (DataGridViewRow item in MaterialDataGrid.Rows) // soronként járjuk be
+                {
+                    foreach (DataGridViewCell cell in item.Cells)
+                    {
+                        cell.Style.BackColor = Color.White;
                     }
                 }
             }
