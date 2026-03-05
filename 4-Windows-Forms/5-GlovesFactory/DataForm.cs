@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace GlovesFactory
 {
@@ -56,6 +57,7 @@ namespace GlovesFactory
             //}
             StatsGroupBox.Enabled = true;
             ExtremeGroupBox.Enabled = true;
+            StatsMenuItem.Enabled = true;
             CalculateStats();
         }
 
@@ -171,6 +173,38 @@ namespace GlovesFactory
                     }
                 }
             }
+        }
+
+        private void ColumnMenuItem_Click(object sender, EventArgs e)
+        {
+            List<int> selected = GetSelected();
+            if (selected.Count == 0) return;
+            DiagramForm diagram = new DiagramForm(selected, SeriesChartType.Column);
+            diagram.Show();
+        }
+
+        private List<int> GetSelected()
+        {
+            var temp = MaterialDataGrid.SelectedCells;
+            List<int> result = new List<int>();
+            foreach (DataGridViewCell cell in temp)
+            {
+                if (cell.Value != null)
+                {
+                    result.Add((int)cell.Value);
+                }
+            }
+            // Enumerable.Reverse(selected).ToList()
+            result.Reverse();
+            return result;
+        }
+
+        private void LineMenuItem_Click(object sender, EventArgs e)
+        {
+            List<int> selected = GetSelected();
+            if (selected.Count == 0) return;
+            DiagramForm diagram = new DiagramForm(selected, SeriesChartType.Line);
+            diagram.Show();
         }
     }
 }

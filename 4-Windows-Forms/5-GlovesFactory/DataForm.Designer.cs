@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.StatsGroupBox = new System.Windows.Forms.GroupBox();
             this.MagnitudeLabel = new System.Windows.Forms.Label();
@@ -48,6 +48,10 @@
             this.adatokToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RandomMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiagramMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColumnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LineMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatsGroupBox.SuspendLayout();
             this.ExtremeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopNumUpDown)).BeginInit();
@@ -194,14 +198,14 @@
             this.MaterialDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.MaterialDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MaterialDataGrid.ColumnHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MaterialDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MaterialDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.MaterialDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.MaterialDataGrid.Location = new System.Drawing.Point(425, 37);
             this.MaterialDataGrid.Name = "MaterialDataGrid";
@@ -212,10 +216,11 @@
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.adatokToolStripMenuItem});
+            this.adatokToolStripMenuItem,
+            this.StatsMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(909, 38);
+            this.menuStrip.Size = new System.Drawing.Size(909, 36);
             this.menuStrip.TabIndex = 7;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -225,23 +230,57 @@
             this.RandomMenuItem,
             this.FileMenuItem});
             this.adatokToolStripMenuItem.Name = "adatokToolStripMenuItem";
-            this.adatokToolStripMenuItem.Size = new System.Drawing.Size(91, 34);
+            this.adatokToolStripMenuItem.Size = new System.Drawing.Size(88, 32);
             this.adatokToolStripMenuItem.Text = "Adatok";
             // 
             // RandomMenuItem
             // 
             this.RandomMenuItem.Name = "RandomMenuItem";
             this.RandomMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.RandomMenuItem.Size = new System.Drawing.Size(236, 34);
+            this.RandomMenuItem.Size = new System.Drawing.Size(227, 32);
             this.RandomMenuItem.Text = "Random";
             this.RandomMenuItem.Click += new System.EventHandler(this.RandomMenuItem_Click);
             // 
             // FileMenuItem
             // 
             this.FileMenuItem.Name = "FileMenuItem";
-            this.FileMenuItem.Size = new System.Drawing.Size(236, 34);
+            this.FileMenuItem.Size = new System.Drawing.Size(227, 32);
             this.FileMenuItem.Text = "Fájlból";
             this.FileMenuItem.Click += new System.EventHandler(this.FileMenuItem_Click);
+            // 
+            // StatsMenuItem
+            // 
+            this.StatsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DiagramMenuItem});
+            this.StatsMenuItem.Enabled = false;
+            this.StatsMenuItem.Name = "StatsMenuItem";
+            this.StatsMenuItem.Size = new System.Drawing.Size(122, 32);
+            this.StatsMenuItem.Text = "Statisztikák";
+            // 
+            // DiagramMenuItem
+            // 
+            this.DiagramMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ColumnMenuItem,
+            this.LineMenuItem});
+            this.DiagramMenuItem.Name = "DiagramMenuItem";
+            this.DiagramMenuItem.Size = new System.Drawing.Size(181, 32);
+            this.DiagramMenuItem.Text = "Diagramok";
+            // 
+            // ColumnMenuItem
+            // 
+            this.ColumnMenuItem.Name = "ColumnMenuItem";
+            this.ColumnMenuItem.Size = new System.Drawing.Size(180, 32);
+            this.ColumnMenuItem.Tag = "SeriesChartType.Column";
+            this.ColumnMenuItem.Text = "Oszlop";
+            this.ColumnMenuItem.Click += new System.EventHandler(this.ColumnMenuItem_Click);
+            // 
+            // LineMenuItem
+            // 
+            this.LineMenuItem.Name = "LineMenuItem";
+            this.LineMenuItem.Size = new System.Drawing.Size(180, 32);
+            this.LineMenuItem.Tag = "SeriesChartType.Line";
+            this.LineMenuItem.Text = "Vonal";
+            this.LineMenuItem.Click += new System.EventHandler(this.LineMenuItem_Click);
             // 
             // DataForm
             // 
@@ -294,6 +333,10 @@
         private System.Windows.Forms.ToolStripMenuItem adatokToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RandomMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StatsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DiagramMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ColumnMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LineMenuItem;
     }
 }
 
