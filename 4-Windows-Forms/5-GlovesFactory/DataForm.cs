@@ -21,10 +21,10 @@ namespace GlovesFactory
         private void RandomMenuItem_Click(object sender, EventArgs e)
         {
             data = Generate();
-            ShowData();
+            ShowData(data);
         }
 
-        private void ShowData()
+        private void ShowData(List<int> data)
         {
             MaterialDataGrid.Columns.Clear();
             MaterialDataGrid.ColumnCount = 8;
@@ -55,10 +55,21 @@ namespace GlovesFactory
             //    MaterialDataGrid.Rows[i / 8].Cells[i % 8].Value = data[i];
             //    MaterialDataGrid.Rows[i / 8].Height = MaterialDataGrid.Height / 8;
             //}
+            EnableControls();
+            CalculateStats();
+        }
+
+        private void EnableControls()
+        {
             StatsGroupBox.Enabled = true;
             ExtremeGroupBox.Enabled = true;
             StatsMenuItem.Enabled = true;
-            CalculateStats();
+            // 50 - 54; 55 - 59; 60 - 64; ... 95 - 99
+            CategoriesComboBox.Items.Clear();
+            for (int i = 50; i <= 95; i+=5)
+            {
+                CategoriesComboBox.Items.Add($"{i} - {i + 4} \u33A1");
+            }
         }
 
         private List<int> Generate()
@@ -138,7 +149,7 @@ namespace GlovesFactory
                 string[] temp = sr.ReadLine().Split();
                 data = temp.Select(x => int.Parse(x)).ToList();
             }
-            ShowData();
+            ShowData(data);
         }
 
         private void ExtremeCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -205,6 +216,15 @@ namespace GlovesFactory
             if (selected.Count == 0) return;
             DiagramForm diagram = new DiagramForm(selected, SeriesChartType.Line);
             diagram.Show();
+        }
+
+        private void CategoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string category = CategoriesComboBox.SelectedItem.ToString();
+            int min = int.Parse(category.Split(' ')[0]);
+            int max = min + 4;
+            var filtered = data.Where(x => min <= x && x <= max).ToList();
+            ShowData(filtered);
         }
     }
 }
