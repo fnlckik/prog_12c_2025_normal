@@ -85,15 +85,15 @@ namespace GlovesFactory
                 int n;
                 if (p < 0.25)
                 {
-                    n = r.Next(50, 60);
+                    n = r.Next(50, 60); // 25%
                 }
                 else if (p < 0.95)
                 {
-                    n = r.Next(60, 70);
+                    n = r.Next(60, 90); // 70%
                 }
                 else
                 {
-                    n = r.Next(90, 100);
+                    n = r.Next(90, 100); // 5%
                 }
                 result.Add(n);
             }
@@ -237,7 +237,7 @@ namespace GlovesFactory
 
         private void CategoriesMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> categories = CategoriesComboBox.Items.Cast<string>().Skip(1).ToList();
+            List<string> categories = CategoriesComboBox.Items.Cast<string>().ToList();
             CategoriesForm form = new CategoriesForm(data, categories);
             form.Show();
         }

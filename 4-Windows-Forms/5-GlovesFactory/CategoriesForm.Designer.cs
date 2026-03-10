@@ -32,8 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.CategoriesDataGrid = new System.Windows.Forms.DataGridView();
+            this.CategoriesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.CategoriesDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoriesChart)).BeginInit();
             this.SuspendLayout();
             // 
             // CategoriesDataGrid
@@ -75,16 +80,35 @@
             this.CategoriesDataGrid.Size = new System.Drawing.Size(478, 426);
             this.CategoriesDataGrid.TabIndex = 0;
             // 
+            // CategoriesChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.CategoriesChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.CategoriesChart.Legends.Add(legend1);
+            this.CategoriesChart.Location = new System.Drawing.Point(496, 12);
+            this.CategoriesChart.Name = "CategoriesChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.CategoriesChart.Series.Add(series1);
+            this.CategoriesChart.Size = new System.Drawing.Size(513, 426);
+            this.CategoriesChart.TabIndex = 1;
+            this.CategoriesChart.Text = "chart1";
+            // 
             // CategoriesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 450);
+            this.Controls.Add(this.CategoriesChart);
             this.Controls.Add(this.CategoriesDataGrid);
             this.Name = "CategoriesForm";
             this.Text = "CategoriesForm";
             this.Load += new System.EventHandler(this.CategoriesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CategoriesDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoriesChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -92,5 +116,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView CategoriesDataGrid;
+        private System.Windows.Forms.DataVisualization.Charting.Chart CategoriesChart;
     }
 }
