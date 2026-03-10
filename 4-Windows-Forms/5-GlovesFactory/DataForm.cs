@@ -22,6 +22,8 @@ namespace GlovesFactory
         {
             data = Generate();
             ShowData(data);
+            EnableControls();
+            CategoriesMenuItem_Click(sender, e);
         }
 
         private void ShowData(List<int> data)
@@ -55,7 +57,6 @@ namespace GlovesFactory
             //    MaterialDataGrid.Rows[i / 8].Cells[i % 8].Value = data[i];
             //    MaterialDataGrid.Rows[i / 8].Height = MaterialDataGrid.Height / 8;
             //}
-            EnableControls();
             CalculateStats();
         }
 
@@ -66,6 +67,7 @@ namespace GlovesFactory
             StatsMenuItem.Enabled = true;
             // 50 - 54; 55 - 59; 60 - 64; ... 95 - 99
             CategoriesComboBox.Items.Clear();
+            CategoriesComboBox.Items.Add("Minden adat...");
             for (int i = 50; i <= 95; i+=5)
             {
                 CategoriesComboBox.Items.Add($"{i} - {i + 4} \u33A1");
@@ -150,6 +152,7 @@ namespace GlovesFactory
                 data = temp.Select(x => int.Parse(x)).ToList();
             }
             ShowData(data);
+            EnableControls();
         }
 
         private void ExtremeCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -221,10 +224,22 @@ namespace GlovesFactory
         private void CategoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string category = CategoriesComboBox.SelectedItem.ToString();
+            if (category == "Minden adat...")
+            {
+                ShowData(data);
+                return;
+            }
             int min = int.Parse(category.Split(' ')[0]);
             int max = min + 4;
             var filtered = data.Where(x => min <= x && x <= max).ToList();
             ShowData(filtered);
+        }
+
+        private void CategoriesMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> categories = CategoriesComboBox.Items.Cast<string>().Skip(1).ToList();
+            CategoriesForm form = new CategoriesForm(data, categories);
+            form.Show();
         }
     }
 }
