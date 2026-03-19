@@ -23,7 +23,7 @@ namespace GlovesFactory
             data = Generate();
             ShowData(data);
             EnableControls();
-            CategoriesMenuItem_Click(sender, e);
+            //CategoriesMenuItem_Click(sender, e);
         }
 
         private void ShowData(List<int> data)
@@ -161,9 +161,9 @@ namespace GlovesFactory
             {
                 int min = (int)BottomNumUpDown.Value;
                 int max = (int)TopNumUpDown.Value;
-                foreach (DataGridViewRow item in MaterialDataGrid.Rows) // soronként járjuk be
+                foreach (DataGridViewRow row in MaterialDataGrid.Rows) // soronként járjuk be
                 {
-                    foreach (DataGridViewCell cell in item.Cells)
+                    foreach (DataGridViewCell cell in row.Cells)
                     {
                         if (cell.Value != null && (int)cell.Value < min)
                         {

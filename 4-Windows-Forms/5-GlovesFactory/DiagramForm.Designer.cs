@@ -49,6 +49,8 @@
             this.DataChart.Location = new System.Drawing.Point(12, 12);
             this.DataChart.Name = "DataChart";
             series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.Black;
+            series1.CustomProperties = "PointWidth=1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             series1.Points.Add(dataPoint1);

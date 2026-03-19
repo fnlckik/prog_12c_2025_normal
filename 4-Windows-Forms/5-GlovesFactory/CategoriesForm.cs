@@ -42,13 +42,29 @@ namespace GlovesFactory
         private void ShowChart()
         {
             Series series = CategoriesChart.Series[0];
+            //series.CustomProperties = "PieLabelStyle = Outside";
+            series["PieLabelStyle"] = "Outside";
 
             foreach (DataGridViewRow row in CategoriesDataGrid.Rows)
             {
                 int value = (int)row.Cells[0].Value;
+                string category = row.HeaderCell.Value.ToString();
 
                 DataPoint p = new DataPoint();
                 p.SetValueY(value);
+                p.LegendText = category; // jelmagyarázat
+                
+                if (value != 0)
+                {
+                    double percent = (double)value / data.Count;
+                    p.Label = $"{Math.Round(percent * 360)}°"; // adatfelirat
+                    p.LabelBackColor = Color.White;
+                    p.LabelBorderDashStyle = ChartDashStyle.Solid;
+                    p.LabelBorderColor = Color.Black;
+                }
+                p.BorderColor = Color.Black;
+                //p.BorderDashStyle = ChartDashStyle.Dot;
+                //p.BorderWidth = 3;
                 series.Points.Add(p);
             }
         }
@@ -59,6 +75,23 @@ namespace GlovesFactory
             int min = int.Parse(category.Split(' ')[0]);
             int max = min + 4;
             return data.Count(x => x >= min && x <= max);
+        }
+
+        private void CategoriesDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            var selected = CategoriesDataGrid.SelectedCells;
+            var points = CategoriesChart.Series[0].Points;
+
+            if (selected.Count == 0 || points.Count == 0) return;
+            DataGridViewCell cell = selected[0];
+            int rowIndex = cell.RowIndex;
+            
+            DataPoint p = points[rowIndex];
+            foreach (DataPoint point in points)
+            {
+                point["Exploded"] = "false";
+            }
+            p["Exploded"] = "true";
         }
     }
 }

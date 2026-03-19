@@ -63,7 +63,9 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.CategoriesDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CategoriesDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.CategoriesDataGrid.Location = new System.Drawing.Point(12, 12);
+            this.CategoriesDataGrid.MultiSelect = false;
             this.CategoriesDataGrid.Name = "CategoriesDataGrid";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -79,17 +81,26 @@
             this.CategoriesDataGrid.RowTemplate.Height = 42;
             this.CategoriesDataGrid.Size = new System.Drawing.Size(478, 426);
             this.CategoriesDataGrid.TabIndex = 0;
+            this.CategoriesDataGrid.SelectionChanged += new System.EventHandler(this.CategoriesDataGrid_SelectionChanged);
             // 
             // CategoriesChart
             // 
+            this.CategoriesChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CategoriesChart.BorderlineColor = System.Drawing.Color.Black;
+            this.CategoriesChart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             chartArea1.Name = "ChartArea1";
             this.CategoriesChart.ChartAreas.Add(chartArea1);
+            legend1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            legend1.IsTextAutoFit = false;
             legend1.Name = "Legend1";
             this.CategoriesChart.Legends.Add(legend1);
             this.CategoriesChart.Location = new System.Drawing.Point(496, 12);
             this.CategoriesChart.Name = "CategoriesChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.CategoriesChart.Series.Add(series1);
