@@ -125,5 +125,11 @@ namespace Kings
             kings[selectedIndex] = form.EditedKing;
             ShowKings(kings);
         }
+
+        private void RangeMenuItem_Click(object sender, EventArgs e)
+        {
+            var selectedRows = KingsDataGrid.SelectedRows.Cast<DataGridViewRow>();
+            var selectedKings = kings.Where(k => selectedRows.Any(r => r.Cells[2].Value.ToString() == k.Name));
+        }
     }
 }
