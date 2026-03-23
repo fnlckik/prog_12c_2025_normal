@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Kings
@@ -130,6 +131,38 @@ namespace Kings
         {
             var selectedRows = KingsDataGrid.SelectedRows.Cast<DataGridViewRow>();
             var selectedKings = kings.Where(k => selectedRows.Any(r => r.Cells[2].Value.ToString() == k.Name));
+
+            Series series = Chart.Series[0];
+            series.ChartType = SeriesChartType.Pie;
+            series.Points.Clear();
+            foreach (King king in selectedKings)
+            {
+                DataPoint p = new DataPoint();
+                int range = king.End - king.Start;
+                p.SetValueY(range);
+                p.Label = range.ToString();
+                p.LegendText = king.Name;
+                series.Points.Add(p);
+            }
+            Chart.Visible = true;
+        }
+
+        private void DynastyMenuItem_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, int> freq = new Dictionary<string, int>();
+            foreach (King king in kings)
+            {
+                if (freq.ContainsKey(king.Dynasty))
+                {
+                    freq[king.Dynasty]++;
+                }
+                else
+                {
+                    freq.Add(king.Dynasty, 1);
+                }
+            }
+            DynastyForm form = new DynastyForm(freq);
+            form.Show();
         }
     }
 }
