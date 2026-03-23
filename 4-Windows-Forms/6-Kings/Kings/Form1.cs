@@ -28,7 +28,25 @@ namespace Kings
             DialogResult result = dialog.ShowDialog();
             if (result != DialogResult.OK) return;
             ReadFile(dialog.FileName);
-            ShowKings();
+            ShowKings(kings);
+            ShowDynasty();
+        }
+
+        private void ShowDynasty()
+        {
+            //HashSet<string> dynasties = new HashSet<string>();
+            //foreach (King king in kings)
+            //{
+            //    dynasties.Add(king.Dynasty);
+            //}
+            var dynasties = kings.Select(k => k.Dynasty).Distinct();
+            DynastyComboBox.Items.Clear();
+            DynastyComboBox.Items.Add("Minden adat...");
+            //foreach (string dynasty in dynasties)
+            //{
+            //    DynastyComboBox.Items.Add(dynasty);
+            //}
+            DynastyComboBox.Items.AddRange(dynasties.ToArray());
         }
 
         private void ReadFile(string fileName)
@@ -52,7 +70,7 @@ namespace Kings
             }
         }
 
-        private void ShowKings()
+        private void ShowKings(List<King> kings)
         {
             KingsDataGrid.ColumnCount = headers.Length - 1;
             for (int i = 0; i < KingsDataGrid.ColumnCount; i++)
@@ -80,7 +98,32 @@ namespace Kings
         private void Form1_Load(object sender, EventArgs e)
         {
             ReadFile("kings.txt");
-            ShowKings();
+            ShowKings(kings);
+            ShowDynasty();
+        }
+
+        private void DynastyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string dynasty = DynastyComboBox.SelectedItem.ToString();
+            if (dynasty == "Minden adat...")
+            {
+                ShowKings(kings);
+                return;
+            }
+            var selectedKings = kings.Where(k => k.Dynasty == dynasty).ToList();
+            //if (selectedKings.Count == 0) selectedKings = kings;
+            ShowKings(selectedKings);
+        }
+
+        private void EditMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = KingsDataGrid.SelectedRows[0].Cells[2].Value.ToString();
+            King selectedKing = kings.First(k => k.Name == name);
+            EditForm form = new EditForm(selectedKing);
+            form.ShowDialog();
+            int selectedIndex = kings.IndexOf(selectedKing);
+            kings[selectedIndex] = form.EditedKing;
+            ShowKings(kings);
         }
     }
 }

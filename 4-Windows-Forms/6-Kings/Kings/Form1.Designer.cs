@@ -28,29 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiagramMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RangeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DynastyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.KingsDataGrid = new System.Windows.Forms.DataGridView();
+            this.DynastyComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KingsDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Chart)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenMenuItem});
+            this.OpenMenuItem,
+            this.DataMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1003, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(1003, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // OpenMenuItem
             // 
             this.OpenMenuItem.Name = "OpenMenuItem";
-            this.OpenMenuItem.Size = new System.Drawing.Size(121, 34);
+            this.OpenMenuItem.Size = new System.Drawing.Size(74, 20);
             this.OpenMenuItem.Text = "Megnyitás";
             this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
+            // 
+            // DataMenuItem
+            // 
+            this.DataMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DiagramMenuItem,
+            this.EditMenuItem});
+            this.DataMenuItem.Name = "DataMenuItem";
+            this.DataMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.DataMenuItem.Text = "Adatok";
+            // 
+            // DiagramMenuItem
+            // 
+            this.DiagramMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RangeMenuItem,
+            this.DynastyMenuItem});
+            this.DiagramMenuItem.Name = "DiagramMenuItem";
+            this.DiagramMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DiagramMenuItem.Text = "Diagram";
+            // 
+            // RangeMenuItem
+            // 
+            this.RangeMenuItem.Name = "RangeMenuItem";
+            this.RangeMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RangeMenuItem.Text = "Időtartam";
+            // 
+            // DynastyMenuItem
+            // 
+            this.DynastyMenuItem.Name = "DynastyMenuItem";
+            this.DynastyMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DynastyMenuItem.Text = "Uralkodóházak";
+            // 
+            // EditMenuItem
+            // 
+            this.EditMenuItem.Name = "EditMenuItem";
+            this.EditMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.EditMenuItem.Text = "Szerkesztés";
+            this.EditMenuItem.Click += new System.EventHandler(this.EditMenuItem_Click);
             // 
             // KingsDataGrid
             // 
@@ -64,18 +114,59 @@
             this.KingsDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.KingsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KingsDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.KingsDataGrid.Location = new System.Drawing.Point(245, 51);
+            this.KingsDataGrid.Location = new System.Drawing.Point(444, 51);
             this.KingsDataGrid.Name = "KingsDataGrid";
             this.KingsDataGrid.RowHeadersVisible = false;
             this.KingsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.KingsDataGrid.Size = new System.Drawing.Size(746, 387);
+            this.KingsDataGrid.Size = new System.Drawing.Size(547, 452);
             this.KingsDataGrid.TabIndex = 1;
+            // 
+            // DynastyComboBox
+            // 
+            this.DynastyComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.DynastyComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.DynastyComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DynastyComboBox.FormattingEnabled = true;
+            this.DynastyComboBox.Location = new System.Drawing.Point(24, 102);
+            this.DynastyComboBox.Name = "DynastyComboBox";
+            this.DynastyComboBox.Size = new System.Drawing.Size(196, 28);
+            this.DynastyComboBox.TabIndex = 2;
+            this.DynastyComboBox.SelectedIndexChanged += new System.EventHandler(this.DynastyComboBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(20, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Uralkodóház:";
+            // 
+            // Chart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.Chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Chart.Legends.Add(legend1);
+            this.Chart.Location = new System.Drawing.Point(24, 154);
+            this.Chart.Name = "Chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.Chart.Series.Add(series1);
+            this.Chart.Size = new System.Drawing.Size(395, 334);
+            this.Chart.TabIndex = 4;
+            this.Chart.Text = "chart1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1003, 450);
+            this.ClientSize = new System.Drawing.Size(1003, 515);
+            this.Controls.Add(this.Chart);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.DynastyComboBox);
             this.Controls.Add(this.KingsDataGrid);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -85,6 +176,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KingsDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,6 +187,14 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
         private System.Windows.Forms.DataGridView KingsDataGrid;
+        private System.Windows.Forms.ComboBox DynastyComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem DataMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DiagramMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RangeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DynastyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditMenuItem;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Chart;
     }
 }
 
