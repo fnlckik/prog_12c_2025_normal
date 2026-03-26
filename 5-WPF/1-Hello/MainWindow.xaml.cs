@@ -23,7 +23,8 @@ namespace _1_Hello
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Helló Világ!");
+            //MessageBox.Show("Helló Világ!");
+            GreetText.Text = "Helló Világ!";
         }
     }
 }

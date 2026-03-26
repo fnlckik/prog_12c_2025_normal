@@ -5,10 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1_Hello"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <!--CTRL + K + C (comment); CTRL + K + U (uncomment)-->
-        <!-- XAML: Extensible Application Markup Language -->
-        <Button Width="200" Height="100" Click="Button_Click">Kattints!</Button>
-    </Grid>
+        Title="MainWindow"
+        Height="450"
+        Width="800"
+        FontSize="24">
+    <!--CTRL + K + C (comment); CTRL + K + U (uncomment)-->
+    <!-- XAML: Extensible Application Markup Language -->
+    <!--Tools -> Options -> Text Editor -> XAML -> Spacing -> ... -->
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <Button Width="200"
+                Height="100"
+                Click="Button_Click"
+                Content="Kattints!"
+                Margin="0,0,0,20" />
+        <TextBlock x:Name="GreetText"
+                   Width="500"
+                   Height="100"
+                   Background="LightPink"
+                   Text="Köszöntés helye..." />
+    </StackPanel>
 </Window>
