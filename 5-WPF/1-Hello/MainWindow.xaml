@@ -12,17 +12,30 @@
     <!--CTRL + K + C (comment); CTRL + K + U (uncomment)-->
     <!-- XAML: Extensible Application Markup Language -->
     <!--Tools -> Options -> Text Editor -> XAML -> Spacing -> ... -->
-    <StackPanel HorizontalAlignment="Center"
+    <StackPanel MinWidth="300"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Név:"
+                   Padding="10"/>
+            <TextBox x:Name="NameTextBox"
+                     BorderBrush="Black"
+                     Width="250"
+                     Padding="10"/>
+        </StackPanel>
         <Button Width="200"
                 Height="100"
                 Click="Button_Click"
                 Content="Kattints!"
-                Margin="0,0,0,20" />
+                Margin="0,20,0,20" />
         <TextBlock x:Name="GreetText"
-                   Width="500"
-                   Height="100"
-                   Background="LightPink"
+                   Padding="10"
+                   Background="LightGray"
                    Text="Köszöntés helye..." />
+        <ListBox BorderBrush="Black">
+            <ListBoxItem>Sándor</ListBoxItem>
+            <ListBoxItem>József</ListBoxItem>
+            <ListBoxItem>Benedek</ListBoxItem>
+        </ListBox>
     </StackPanel>
 </Window>

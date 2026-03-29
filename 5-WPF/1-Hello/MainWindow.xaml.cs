@@ -24,7 +24,8 @@ namespace _1_Hello
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Helló Világ!");
-            GreetText.Text = "Helló Világ!";
+            string name = NameTextBox.Text;
+            GreetText.Text = $"Helló {name}!";
         }
     }
 }
