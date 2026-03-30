@@ -7,35 +7,64 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Height="450"
-        Width="800"
+        Width="1000"
+        MinHeight="450"
+        MinWidth="1000"
         FontSize="24">
     <!--CTRL + K + C (comment); CTRL + K + U (uncomment)-->
     <!-- XAML: Extensible Application Markup Language -->
     <!--Tools -> Options -> Text Editor -> XAML -> Spacing -> ... -->
-    <StackPanel MinWidth="300"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Név:"
-                   Padding="10"/>
-            <TextBox x:Name="NameTextBox"
-                     BorderBrush="Black"
-                     Width="250"
-                     Padding="10"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0"
+                    Width="400"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Név:"
+                       Padding="10"/>
+                <TextBox x:Name="NameTextBox"
+                         BorderBrush="Black"
+                         Width="250"
+                         Padding="10"/>
+            </StackPanel>
+            <Button Width="200"
+                    Height="100"
+                    Click="Button_Click"
+                    Content="Kattints!"
+                    Margin="0,20,0,20" />
+            <TextBlock x:Name="GreetText"
+                       Padding="10"
+                       Background="LightGray"
+                       Text="Köszöntés helye..." />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch">
+                <Button Content="Hozzáadás"
+                        Height="50"
+                        Padding="5"
+                        Margin="10"
+                        Click="AddButton_Click" />
+                <Button Content="Szerkesztés"
+                        Height="50"
+                        Padding="5"
+                        Margin="10"/>
+                <Button Content="Törlés"
+                        Height="50"
+                        Padding="5"
+                        Margin="10"/>
+            </StackPanel>
         </StackPanel>
-        <Button Width="200"
-                Height="100"
-                Click="Button_Click"
-                Content="Kattints!"
-                Margin="0,20,0,20" />
-        <TextBlock x:Name="GreetText"
-                   Padding="10"
-                   Background="LightGray"
-                   Text="Köszöntés helye..." />
-        <ListBox BorderBrush="Black">
+        <ListBox  Grid.Column="1"
+                  BorderBrush="Black"
+                  Margin="20"
+                  x:Name="NamesListBox">
             <ListBoxItem>Sándor</ListBoxItem>
             <ListBoxItem>József</ListBoxItem>
             <ListBoxItem>Benedek</ListBoxItem>
         </ListBox>
-    </StackPanel>
+    </Grid>
 </Window>

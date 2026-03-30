@@ -27,5 +27,11 @@ namespace _1_Hello
             string name = NameTextBox.Text;
             GreetText.Text = $"Helló {name}!";
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            string name = NameTextBox.Text;
+            //NamesListBox.Items.Add(name);
+        }
     }
 }
