@@ -29,6 +29,7 @@
                        Padding="10"/>
                 <TextBox x:Name="NameTextBox"
                          BorderBrush="Black"
+                         Text="{Binding PersonName}"
                          Width="250"
                          Padding="10"/>
             </StackPanel>
@@ -61,10 +62,11 @@
         <ListBox  Grid.Column="1"
                   BorderBrush="Black"
                   Margin="20"
-                  x:Name="NamesListBox">
-            <ListBoxItem>Sándor</ListBoxItem>
+                  x:Name="NamesListBox"
+                  ItemsSource="{Binding Names}">
+            <!--<ListBoxItem>Sándor</ListBoxItem>
             <ListBoxItem>József</ListBoxItem>
-            <ListBoxItem>Benedek</ListBoxItem>
+            <ListBoxItem>Benedek</ListBoxItem>-->
         </ListBox>
     </Grid>
 </Window>

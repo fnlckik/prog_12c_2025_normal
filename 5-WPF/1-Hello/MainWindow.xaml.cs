@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,22 +17,38 @@ namespace _1_Hello
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Binding: összekötés, összekapcsolás
+        // Csak property-ket lehet Bindolni (get, set)
+        // Observable: megfigyelhető lista
+        public ObservableCollection<string> Names { get; set; }
+        public string PersonName { get; set; } // aktuálisan kiválasztott ember
+
         public MainWindow()
         {
             InitializeComponent();
+            //Names = new ObservableCollection<string>();
+            //Names = new();
+            //Names = new() { "Sándor", "József", "Benedek" };
+            Names = ["Sándor", "József", "Benedek"];
+            PersonName = "";
+            DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Helló Világ!");
-            string name = NameTextBox.Text;
-            GreetText.Text = $"Helló {name}!";
+            //string name = NameTextBox.Text;
+            GreetText.Text = $"Helló {PersonName}!";
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            string name = NameTextBox.Text;
+            //string name = NameTextBox.Text;
             //NamesListBox.Items.Add(name);
+            if (string.IsNullOrWhiteSpace(PersonName) || Names.Contains(PersonName)) return;
+            Names.Add(PersonName);
+            //NamesListBox.ItemsSource = null;
+            //NamesListBox.ItemsSource = Names;
         }
     }
 }
