@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,13 +16,27 @@ namespace _1_Hello
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+
         // Binding: összekötés, összekapcsolás
         // Csak property-ket lehet Bindolni (get, set)
         // Observable: megfigyelhető lista
         public ObservableCollection<string> Names { get; set; }
-        public string PersonName { get; set; } // aktuálisan kiválasztott ember
+        
+        private string personName; // field (mező)
+        public string PersonName // property (tulajdonság)
+        {
+            get
+            {
+                return personName;
+            }
+            set
+            {
+                this.personName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PersonName"));
+            }
+        } // aktuálisan kiválasztott ember
 
         public MainWindow()
         {
@@ -33,6 +48,8 @@ namespace _1_Hello
             PersonName = "";
             DataContext = this;
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +66,12 @@ namespace _1_Hello
             Names.Add(PersonName);
             //NamesListBox.ItemsSource = null;
             //NamesListBox.ItemsSource = Names;
+        }
+
+        private void NamesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // null coalesce operator
+            PersonName = NamesListBox.SelectedItem.ToString() ?? "";
         }
     }
 }
