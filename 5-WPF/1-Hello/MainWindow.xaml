@@ -16,8 +16,8 @@
     <!--Tools -> Options -> Text Editor -> XAML -> Spacing -> ... -->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Column="0"
@@ -52,11 +52,12 @@
                 <Button Content="Szerkesztés"
                         Height="50"
                         Padding="5"
-                        Margin="10"/>
+                        Margin="10" Click="EditButton_Click"/>
                 <Button Content="Törlés"
                         Height="50"
                         Padding="5"
-                        Margin="10"/>
+                        Margin="10" 
+                        Click="DeleteButton_Click"/>
             </StackPanel>
         </StackPanel>
         <ListBox  Grid.Column="1"

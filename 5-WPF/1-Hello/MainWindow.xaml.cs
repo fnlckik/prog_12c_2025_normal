@@ -45,7 +45,7 @@ namespace _1_Hello
             //Names = new();
             //Names = new() { "Sándor", "József", "Benedek" };
             Names = ["Sándor", "József", "Benedek"];
-            PersonName = "";
+            personName = "";
             DataContext = this;
         }
 
@@ -71,7 +71,19 @@ namespace _1_Hello
         private void NamesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // null coalesce operator
-            PersonName = NamesListBox.SelectedItem.ToString() ?? "";
+            PersonName = NamesListBox.SelectedItem?.ToString() ?? "";
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Names.Remove(PersonName);
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            int i = NamesListBox.SelectedIndex;
+            if (i < 0) return; // ha nincs kiválasztott elem
+            Names[i] = PersonName;
         }
     }
 }
