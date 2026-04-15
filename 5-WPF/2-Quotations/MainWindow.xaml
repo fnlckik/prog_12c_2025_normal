@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2_Quotations"
+        xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        MinHeight="400" MinWidth="700">
+    <!-- Nuget Packet Manager (wpf toolkit) -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -47,10 +50,37 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <ListBox Grid.Row="0"></ListBox>
-                <StackPanel Grid.Row="1"></StackPanel>
-                <StackPanel Grid.Row="2"></StackPanel>
-                <StackPanel Grid.Row="3"></StackPanel>
+                <ListBox Grid.Row="0"
+                         BorderBrush="Black"
+                         Margin="20"/>
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Label Content="Költő:"
+                           VerticalAlignment="Center"/>
+                    <TextBox MinWidth="200"
+                             Padding="10"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Label Content="Cím:"
+                           VerticalAlignment="Center"/>
+                    <TextBox MinWidth="200"
+                             Padding="10"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Label Content="Év:"/>
+                    <tk:IntegerUpDown MinWidth="100"
+                                      Value="1000"
+                                      Minimum="1000"
+                                      Maximum="2000"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
