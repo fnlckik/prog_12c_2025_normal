@@ -10,6 +10,14 @@
             Text = text;
         }
 
+        public Quotation()
+        {
+            Author = "";
+            Title = "";
+            Year = 1000;
+            Text = "";
+        }
+
         public string Author { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }

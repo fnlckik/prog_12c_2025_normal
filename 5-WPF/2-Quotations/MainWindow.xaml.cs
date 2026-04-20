@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Security.Policy;
 using System.Text;
@@ -19,16 +20,71 @@ namespace _2_Quotations
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private Quotation correct;
+        private Quotation answer;
+        private Brush authorBackground;
+        private Brush titleBackground;
+        private Brush yearBackground;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         // Csak public property-t lehet Binding-nál használni.
         public ObservableCollection<Quotation> Quotes { get; set; }
+        public Quotation Correct
+        { 
+            get => correct;
+            set
+            {
+                correct = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Correct)));
+            }
+        }
+
+        public Quotation Answer
+        {
+            get => answer;
+            set => answer = value;
+        }
+
+        public Brush AuthorBackground
+        { 
+            get => authorBackground;
+            set
+            {
+                authorBackground = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AuthorBackground)));
+            }
+        }
+
+        public Brush TitleBackground
+        { 
+            get => titleBackground;
+            set
+            {
+                titleBackground = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TitleBackground)));
+            }
+        }
+
+        public Brush YearBackground
+        {
+            get => yearBackground;
+            set
+            {
+                yearBackground = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(YearBackground)));
+            }
+        }
 
         public MainWindow()
         {
             InitializeComponent();
             Quotes = [];
             DataContext = this;
+            correct = new();
+            answer = new();
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -58,8 +114,63 @@ namespace _2_Quotations
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             QuotationTextBlock.Visibility = Visibility.Visible;
-            Quotation q = (Quotation)QuotationComboBox.SelectedItem;
-            QuotationTextBlock.Text = q.Text;
+            //Quotation q = (Quotation)QuotationComboBox.SelectedItem;
+            //QuotationTextBlock.Text = q.Text;
+            Answer = new(); // Miért nem törli?
+            AuthorBackground = Brushes.White;
+            TitleBackground = Brushes.White;
+            YearBackground = Brushes.White;
+        }
+
+        private void CheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ez nagyon Windows Forms-os megoldás
+            //if (answer.Author == "" || correct.Author == "")
+            //{
+            //    AuthorTextBox.Background = Brushes.White;
+            //}
+            //else if (answer.Author == correct.Author)
+            //{
+            //    AuthorTextBox.Background = Brushes.LightGreen;
+            //}
+            //else
+            //{
+            //AuthorTextBox.Background = Brushes.LightPink;
+            //}
+            if (answer.Author == "" || correct.Author == "")
+            {
+                AuthorBackground = Brushes.White;
+            }
+            else if (answer.Author == correct.Author)
+            {
+                AuthorBackground = Brushes.LightGreen;
+            }
+            else
+            {
+                AuthorBackground = Brushes.LightPink;
+            }
+
+            if (answer.Title == "" || correct.Title == "")
+            {
+                TitleBackground = Brushes.White;
+            }
+            else if (answer.Title == correct.Title)
+            {
+                TitleBackground = Brushes.LightGreen;
+            }
+            else
+            {
+                TitleBackground = Brushes.LightPink;
+            }
+
+            if (answer.Year == correct.Year)
+            {
+                YearBackground = Brushes.LightGreen;
+            }
+            else
+            {
+                YearBackground = Brushes.LightPink;
+            }
         }
     }
 }
