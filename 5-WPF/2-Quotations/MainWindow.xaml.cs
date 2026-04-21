@@ -24,14 +24,16 @@ namespace _2_Quotations
     {
         private Quotation correct;
         private Quotation answer;
-        private Brush authorBackground;
-        private Brush titleBackground;
-        private Brush yearBackground;
+        private Brush? authorBackground;
+        private Brush? titleBackground;
+        private Brush? yearBackground;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         // Csak public property-t lehet Binding-nál használni.
         public ObservableCollection<Quotation> Quotes { get; set; }
+        public ObservableCollection<Quotation> Answers { get; set; }
+
         public Quotation Correct
         { 
             get => correct;
@@ -45,10 +47,14 @@ namespace _2_Quotations
         public Quotation Answer
         {
             get => answer;
-            set => answer = value;
+            set
+            {
+                answer = value;
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Answer)));
+            }
         }
 
-        public Brush AuthorBackground
+        public Brush? AuthorBackground
         { 
             get => authorBackground;
             set
@@ -58,7 +64,7 @@ namespace _2_Quotations
             }
         }
 
-        public Brush TitleBackground
+        public Brush? TitleBackground
         { 
             get => titleBackground;
             set
@@ -68,7 +74,7 @@ namespace _2_Quotations
             }
         }
 
-        public Brush YearBackground
+        public Brush? YearBackground
         {
             get => yearBackground;
             set
@@ -82,6 +88,7 @@ namespace _2_Quotations
         {
             InitializeComponent();
             Quotes = [];
+            Answers = [];
             DataContext = this;
             correct = new();
             answer = new();
@@ -116,7 +123,10 @@ namespace _2_Quotations
             QuotationTextBlock.Visibility = Visibility.Visible;
             //Quotation q = (Quotation)QuotationComboBox.SelectedItem;
             //QuotationTextBlock.Text = q.Text;
-            Answer = new(); // Miért nem törli?
+            //Answer = new(); // Miért nem törli?
+            Answer.Author = "";
+            Answer.Title = "";
+            Answer.Year = 1000;
             AuthorBackground = Brushes.White;
             TitleBackground = Brushes.White;
             YearBackground = Brushes.White;
@@ -171,6 +181,12 @@ namespace _2_Quotations
             {
                 YearBackground = Brushes.LightPink;
             }
+        }
+
+        private void StoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            Answer.Text = Correct.Text;
+            Answers.Add(Answer);
         }
     }
 }

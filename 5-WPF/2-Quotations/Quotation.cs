@@ -1,7 +1,48 @@
-﻿namespace _2_Quotations
+﻿using System.ComponentModel;
+
+namespace _2_Quotations
 {
-    public class Quotation
+    public class Quotation : INotifyPropertyChanged
     {
+        private string author;
+        private string title;
+        private int year;
+        private string text;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public string Author
+        { 
+            get => author;
+            set
+            {
+                author = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Author)));
+            }
+        }
+
+        public string Title
+        {
+            get => title;
+            set
+            {
+                title = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
+            }
+        }
+
+        public int Year
+        {
+            get => year;
+            set
+            {
+                year = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Year)));
+            }
+        }
+
+        public string Text { get => text; set => text = value; }
+
         public Quotation(string author, string title, int year, string text)
         {
             Author = author;
@@ -18,10 +59,13 @@
             Text = "";
         }
 
-        public string Author { get; set; }
-        public string Title { get; set; }
-        public int Year { get; set; }
-        public string Text { get; set; }
+        public string DisplayedText
+        {
+            get
+            {
+                return $"{Author}: {Text}";
+            }
+        }
 
         public override string ToString()
         {
