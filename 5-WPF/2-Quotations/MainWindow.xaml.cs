@@ -18,6 +18,7 @@ namespace _2_Quotations
         private Brush? authorBackground;
         private Brush? titleBackground;
         private Brush? yearBackground;
+        private bool isReload;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -83,6 +84,7 @@ namespace _2_Quotations
             DataContext = this;
             correct = new();
             answer = new();
+            isReload = false;
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -114,10 +116,11 @@ namespace _2_Quotations
             QuotationTextBlock.Visibility = Visibility.Visible;
             //Quotation q = (Quotation)QuotationComboBox.SelectedItem;
             //QuotationTextBlock.Text = q.Text;
-            //Answer = new(); // Miért nem törli?
-            Answer.Author = "";
-            Answer.Title = "";
-            Answer.Year = 1000;
+            if (isReload) return;
+            Answer = new();
+            //Answer.Author = "";
+            //Answer.Title = "";
+            //Answer.Year = 1000;
             AuthorBackground = Brushes.White;
             TitleBackground = Brushes.White;
             YearBackground = Brushes.White;
@@ -183,8 +186,11 @@ namespace _2_Quotations
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (answer == null) return; // Ha nincs kiválasztott elem
             // Keresés tétel!
+            isReload = true;
             Correct = Quotes.First(q => q.Text == answer.Text);
+            isReload = false;
             //MessageBox.Show(Answers[0].ToString());
             //MessageBox.Show(Answers[Answers.Count-1].ToString());
             CheckButton_Click(sender, e);
