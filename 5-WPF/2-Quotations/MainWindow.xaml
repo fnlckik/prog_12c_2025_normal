@@ -64,13 +64,15 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <ListBox Grid.Row="0"
+                <ListBox x:Name="AnswersListBox"
+                         Grid.Row="0"
                          BorderBrush="Black"
                          Margin="20"
-                         ItemsSource="{Binding Answers}">
+                         ItemsSource="{Binding Answers}"
+                         SelectedItem="{Binding Answer}" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Button Content="{Binding DisplayedText}" />
+                            <TextBlock Text="{Binding DisplayedText}" />
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

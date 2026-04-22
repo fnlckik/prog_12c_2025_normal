@@ -2,18 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Security.Policy;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Xceed.Wpf.Toolkit.Core;
 
 namespace _2_Quotations
 {
@@ -50,7 +41,7 @@ namespace _2_Quotations
             set
             {
                 answer = value;
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Answer)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Answer)));
             }
         }
 
@@ -185,8 +176,18 @@ namespace _2_Quotations
 
         private void StoreButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Correct.Text == "" || Answer.Author == "") return;
             Answer.Text = Correct.Text;
-            Answers.Add(Answer);
+            Answers.Add(Answer.Clone());
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Keresés tétel!
+            Correct = Quotes.First(q => q.Text == answer.Text);
+            //MessageBox.Show(Answers[0].ToString());
+            //MessageBox.Show(Answers[Answers.Count-1].ToString());
+            CheckButton_Click(sender, e);
         }
     }
 }

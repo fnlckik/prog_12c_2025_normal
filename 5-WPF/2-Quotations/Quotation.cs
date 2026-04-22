@@ -18,6 +18,7 @@ namespace _2_Quotations
             {
                 author = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Author)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayedText)));
             }
         }
 
@@ -59,6 +60,7 @@ namespace _2_Quotations
             Text = "";
         }
 
+        // Számított property
         public string DisplayedText
         {
             get
@@ -70,6 +72,12 @@ namespace _2_Quotations
         public override string ToString()
         {
             return string.Join("", Text.Take(20)) + "...";
+        }
+
+        // Készít egy másolatot az objektumról.
+        public Quotation Clone()
+        {
+            return new(author, title, year, text);
         }
     }
 }
