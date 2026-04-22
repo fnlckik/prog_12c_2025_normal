@@ -8,6 +8,7 @@ namespace _2_Quotations
         private string title;
         private int year;
         private string text;
+        private int point;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -50,6 +51,7 @@ namespace _2_Quotations
             Title = title;
             Year = year;
             Text = text;
+            Point = 0;
         }
 
         public Quotation()
@@ -58,6 +60,7 @@ namespace _2_Quotations
             Title = "";
             Year = 1000;
             Text = "";
+            Point = 0;
         }
 
         // Számított property
@@ -68,6 +71,8 @@ namespace _2_Quotations
                 return $"{Author}: {Text}";
             }
         }
+
+        public int Point { get => point; set => point = value; }
 
         public override string ToString()
         {

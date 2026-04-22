@@ -19,6 +19,7 @@ namespace _2_Quotations
         private Brush? titleBackground;
         private Brush? yearBackground;
         private bool isReload;
+        private string totalPoint;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -75,6 +76,9 @@ namespace _2_Quotations
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(YearBackground)));
             }
         }
+
+        // Csak getter van
+        public string TotalPoint => Answers.Sum(q => q.Point) + " pont";
 
         public MainWindow()
         {
@@ -141,40 +145,54 @@ namespace _2_Quotations
             //{
             //AuthorTextBox.Background = Brushes.LightPink;
             //}
-            if (answer.Author == "" || correct.Author == "")
-            {
-                AuthorBackground = Brushes.White;
-            }
-            else if (answer.Author == correct.Author)
-            {
-                AuthorBackground = Brushes.LightGreen;
-            }
-            else
-            {
-                AuthorBackground = Brushes.LightPink;
-            }
 
-            if (answer.Title == "" || correct.Title == "")
-            {
-                TitleBackground = Brushes.White;
-            }
-            else if (answer.Title == correct.Title)
-            {
-                TitleBackground = Brushes.LightGreen;
-            }
-            else
-            {
-                TitleBackground = Brushes.LightPink;
-            }
+            answer.Point = 0;
 
-            if (answer.Year == correct.Year)
-            {
-                YearBackground = Brushes.LightGreen;
-            }
-            else
-            {
-                YearBackground = Brushes.LightPink;
-            }
+            Brush w = Brushes.White;
+            Brush g = Brushes.LightGreen;
+            Brush r = Brushes.LightPink;
+            AuthorBackground = (answer.Author == "" || correct.Author == "") ? w : (answer.Author == correct.Author) ? g : r;
+            answer.Point += AuthorBackground == g ? 1 : 0;
+            //if (answer.Author == "" || correct.Author == "")
+            //{
+            //    AuthorBackground = Brushes.White;
+            //}
+            //else if (answer.Author == correct.Author)
+            //{
+            //    AuthorBackground = Brushes.LightGreen;
+            //}
+            //else
+            //{
+            //    AuthorBackground = Brushes.LightPink;
+            //}
+
+            TitleBackground = (answer.Title == "" || correct.Title == "") ? w : (answer.Title == correct.Title) ? g : r;
+            answer.Point += TitleBackground == g ? 1 : 0;
+            //if (answer.Title == "" || correct.Title == "")
+            //{
+            //    TitleBackground = Brushes.White;
+            //}
+            //else if (answer.Title == correct.Title)
+            //{
+            //    TitleBackground = Brushes.LightGreen;
+            //}
+            //else
+            //{
+            //    TitleBackground = Brushes.LightPink;
+            //}
+
+            YearBackground = answer.Year == correct.Year ? g : r;
+            answer.Point += YearBackground == g ? 1 : 0;
+            //if (answer.Year == correct.Year)
+            //{
+            //    YearBackground = Brushes.LightGreen;
+            //}
+            //else
+            //{
+            //    YearBackground = Brushes.LightPink;
+            //}
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalPoint)));
+            MessageBox.Show(answer.Point.ToString());
         }
 
         private void StoreButton_Click(object sender, RoutedEventArgs e)
@@ -182,6 +200,7 @@ namespace _2_Quotations
             if (Correct.Text == "" || Answer.Author == "") return;
             Answer.Text = Correct.Text;
             Answers.Add(Answer.Clone());
+            CheckButton_Click(sender, e);
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

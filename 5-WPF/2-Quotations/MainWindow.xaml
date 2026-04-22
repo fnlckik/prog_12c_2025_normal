@@ -19,6 +19,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"
                         Orientation="Horizontal"
@@ -55,6 +56,10 @@
                         Text="{Binding Correct.Text}"
                         />
             <!--Text="{Binding SelectedItem.Text, ElementName=QuotationComboBox}"-->
+            <TextBlock  Grid.Row="3"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="{Binding TotalPoint}" />
         </Grid>
         <Grid Grid.Column="1">
             <Grid>
