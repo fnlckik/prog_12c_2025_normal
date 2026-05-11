@@ -1,0 +1,68 @@
+Pörgő Macska Párt,Duna,Diktatórikus Korrupció,Rosszabbik
+Kovács Bence,2007-03-14,B,Pörgő Macska Párt
+Szabó Anna,2009-11-02,A,Duna
+Tóth Gergely,2006-07-21,C,Diktatórikus Korrupció
+Nagy Eszter,2008-01-30,B,Pörgő Macska Párt
+Varga Péter,1985-05-12,T,Diktatórikus Korrupció
+Kiss Dóra,2007-09-17,A,Rosszabbik
+Molnár Zoltán,2006-12-08,C,Pörgő Macska Párt
+Farkas Réka,2009-04-25,B,Duna
+Horváth Márk,2008-08-19,C,Diktatórikus Korrupció
+Balogh Lili,2007-02-11,A,Pörgő Macska Párt
+Papp Ádám,1990-10-03,T,Duna
+Juhász Tamás,2006-06-27,B,Rosszabbik
+Mészáros Nóra,2009-12-15,C,Pörgő Macska Párt
+Oláh Levente,2008-05-09,A,Diktatórikus Korrupció
+Gál Zsófia,2007-07-01,B,Pörgő Macska Párt
+Simon Dávid,2006-11-18,C,Duna
+Rácz Petra,1982-03-22,T,Pörgő Macska Párt
+Fekete Bálint,2008-10-13,A,Rosszabbik
+Takács Noémi,2007-01-05,B,Diktatórikus Korrupció
+Török Áron,2009-09-29,C,Pörgő Macska Párt
+Lakatos Viktor,1978-06-14,T,Duna
+Németh László,2006-04-07,A,Pörgő Macska Párt
+Bíró Kinga,2008-02-20,B,Rosszabbik
+Szalai Dániel,2007-05-11,C,Diktatórikus Korrupció
+Kocsis Erika,1992-08-23,T,Pörgő Macska Párt
+Veres Gábor,2009-03-06,A,Duna
+Barta Zsuzsanna,2008-12-01,B,Pörgő Macska Párt
+Antal Krisztián,2006-09-10,C,Rosszabbik
+Csonka Júlia,2007-06-03,A,Diktatórikus Korrupció
+Bognár Attila,1987-01-19,T,Pörgő Macska Párt
+Péterfi László,2008-07-26,B,Duna
+Kelemen Réka,2009-02-14,C,Pörgő Macska Párt
+Hegedűs András,2006-10-31,A,Diktatórikus Korrupció
+Sipos Melinda,2007-08-22,B,Rosszabbik
+Király Zoltán,1975-11-07,T,Duna
+Barna Fanni,2008-03-18,C,Pörgő Macska Párt
+Vass Norbert,2006-01-12,A,Pörgő Macska Párt
+Lukács Vivien,2009-05-30,B,Diktatórikus Korrupció
+Major Péter,2007-12-04,C,Duna
+Dudás Gergő,1983-09-09,T,Pörgő Macska Párt
+Pálfi Eszter,2008-06-16,A,Rosszabbik
+Sánta Balázs,2006-08-28,B,Diktatórikus Korrupció
+Kántor Lili,2009-10-21,C,Pörgő Macska Párt
+Illés Tibor,2007-04-02,A,Duna
+Kovács Judit,1991-07-13,T,Pörgő Macska Párt
+Szűcs Ádám,2008-11-27,B,Rosszabbik
+Gergely Zsófia,2006-02-09,C,Pörgő Macska Párt
+Fodor Bence,2007-03-25,A,Diktatórikus Korrupció
+Kiss Márta,1979-12-30,T,Duna
+Kerekes Dániel,2009-06-07,B,Pörgő Macska Párt
+Vincze Anna,2008-01-23,C,Rosszabbik
+Domokos Gábor,2006-05-15,A,Diktatórikus Korrupció
+Kádár Réka,2007-11-19,B,Pörgő Macska Párt
+Fábián Zoltán,1988-04-11,T,Pörgő Macska Párt
+Boros Noémi,2009-08-05,C,Duna
+Kiss Roland,2008-09-12,A,Pörgő Macska Párt
+Hollósi Tamás,2006-03-29,B,Diktatórikus Korrupció
+Vörös Eszter,2007-07-14,C,Rosszabbik
+Kelecsényi Péter,1980-02-17,T,Pörgő Macska Párt
+Balla Dóra,2009-01-08,A,Duna
+Kiss Gábor,2008-04-26,B,Pörgő Macska Párt
+Székely Áron,2006-12-22,C,Diktatórikus Korrupció
+Jenei Zsófia,2007-10-10,A,Pörgő Macska Párt
+Kertész Bálint,1993-06-01,T,Rosszabbik
+Csizmadia Anna,2008-05-19,B,Duna
+Fekete Norbert,2006-11-03,C,Pörgő Macska Párt
+Orbán Patrik,2007-09-08,A,Diktatórikus Korrupció
